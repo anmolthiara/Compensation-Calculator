@@ -307,6 +307,12 @@
                         <input type="number" id="bonusPercent" min="0" max="100" step="0.5" value="0">
                         <p style="font-size: 0.75rem; color: #6b7280; margin-top: 5px;">Applied to base salary each year</p>
                     </div>
+
+                    <div class="input-group">
+                        <label for="signOnBonus">Sign-On Bonus ($)</label>
+                        <input type="number" id="signOnBonus" min="0" step="1000" value="0">
+                        <p style="font-size: 0.75rem; color: #6b7280; margin-top: 5px;">One-time payment in Year 1</p>
+                    </div>
                 </div>
             </div>
 
@@ -504,6 +510,7 @@
                                 <th>Year</th>
                                 <th class="text-right">Base Salary</th>
                                 <th class="text-right">Bonus</th>
+                                <th class="text-right">Sign-On</th>
                                 <th class="text-right">Initial RSUs</th>
                                 <th class="text-right">Refresher RSUs</th>
                                 <th class="text-right">Stock Price</th>
@@ -515,35 +522,6 @@
                         <tbody id="tableBody">
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- AI Compensation Analysis -->
-        <div class="chart-container">
-            <div class="section-header" onclick="toggleSection('aiAnalysisSection')">
-                <h2>🤖 AI Compensation Analysis</h2>
-                <span class="collapse-icon" id="aiAnalysisIcon">▼</span>
-            </div>
-            <div class="collapsible-content" id="aiAnalysisSection">
-                <p style="font-size: 0.9rem; color: #6b7280; margin-bottom: 15px;">
-                    Get AI-powered insights on your compensation package compared to market data
-                </p>
-                
-                <button 
-                    id="analyzeButton" 
-                    onclick="analyzeCompensation()" 
-                    style="width: 100%; padding: 12px 20px; background: #3b82f6; color: white; border: none; border-radius: 6px; font-size: 1rem; font-weight: 600; cursor: pointer; margin-bottom: 15px;">
-                    Analyze My Compensation
-                </button>
-                
-                <div id="analysisResult" style="display: none; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 8px; padding: 20px;">
-                    <div id="analysisContent"></div>
-                </div>
-                
-                <div id="analysisLoading" style="display: none; text-align: center; padding: 20px;">
-                    <div style="display: inline-block; width: 40px; height: 40px; border: 4px solid #e5e7eb; border-top-color: #3b82f6; border-radius: 50%; animation: spin 1s linear infinite;"></div>
-                    <p style="margin-top: 10px; color: #6b7280;">Analyzing your compensation...</p>
                 </div>
             </div>
         </div>
@@ -698,6 +676,35 @@
             </div>
         </div>
 
+        <!-- AI Compensation Analysis -->
+        <div class="chart-container">
+            <div class="section-header" onclick="toggleSection('aiAnalysisSection')">
+                <h2>🤖 AI Compensation Analysis</h2>
+                <span class="collapse-icon" id="aiAnalysisIcon">▼</span>
+            </div>
+            <div class="collapsible-content" id="aiAnalysisSection">
+                <p style="font-size: 0.9rem; color: #6b7280; margin-bottom: 15px;">
+                    Get AI-powered insights on your compensation package compared to market data
+                </p>
+                
+                <button 
+                    id="analyzeButton" 
+                    onclick="analyzeCompensation()" 
+                    style="width: 100%; padding: 12px 20px; background: #3b82f6; color: white; border: none; border-radius: 6px; font-size: 1rem; font-weight: 600; cursor: pointer; margin-bottom: 15px;">
+                    Analyze My Compensation
+                </button>
+                
+                <div id="analysisResult" style="display: none; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 8px; padding: 20px;">
+                    <div id="analysisContent"></div>
+                </div>
+                
+                <div id="analysisLoading" style="display: none; text-align: center; padding: 20px;">
+                    <div style="display: inline-block; width: 40px; height: 40px; border: 4px solid #e5e7eb; border-top-color: #3b82f6; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                    <p style="margin-top: 10px; color: #6b7280;">Analyzing your compensation...</p>
+                </div>
+            </div>
+        </div>
+
         <div class="note">
             <strong>Note:</strong> This calculator shows your initial grant vesting schedule (40/30/20/10) plus any refresher grants you add. 
             Refresher RSUs typically vest over 4 years (25% per year by default, adjustable). The calculator assumes each refresher grant starts 
@@ -792,7 +799,7 @@
         // Save inputs to localStorage
         function saveInputs() {
             const inputs = [
-                'baseSalary', 'bonusPercent',
+                'baseSalary', 'bonusPercent', 'signOnBonus',
                 'stockYear1', 'stockYear2', 'stockYear3', 'stockYear4', 'stockGrowth',
                 'initialGrant', 'vestingSchedule', 'refresherYear2', 'refresherYear3', 'refresherYear4', 'refresherVesting',
                 'filingStatus', 'federalTaxRate', 'stateTaxRate', 'otherTaxRate'
@@ -839,6 +846,7 @@
         function calculateComp() {
             const baseSalary = parseInt(document.getElementById('baseSalary').value) || 0;
             const bonusPercent = parseFloat(document.getElementById('bonusPercent').value) || 0;
+            const signOnBonus = parseInt(document.getElementById('signOnBonus').value) || 0;
             const annualRaise = 0.03; // Fixed 3% annual raise
 
             const initialGrant = parseFloat(document.getElementById('initialGrant').value) || 0;
@@ -872,6 +880,8 @@
             for (let i = 0; i < 4; i++) {
                 const currentBaseSalary = baseSalary * Math.pow(1 + annualRaise, i);
                 const bonus = currentBaseSalary * (bonusPercent / 100);
+                // Add sign-on bonus only in Year 1
+                const signOn = (i === 0) ? signOnBonus : 0;
                 
                 // Initial grant vesting
                 const initialSharesVested = initialGrant * vestingSchedule[i];
@@ -894,13 +904,14 @@
                 
                 const totalSharesVested = initialSharesVested + refresherSharesVested;
                 const stockValue = totalSharesVested * stockPrices[i];
-                const totalComp = currentBaseSalary + bonus + stockValue;
+                const totalComp = currentBaseSalary + bonus + signOn + stockValue;
                 const afterTaxComp = Math.round(totalComp * (1 - totalTaxRate));
                 
                 years.push({
                     year: i + 1,
                     baseSalary: Math.round(currentBaseSalary),
                     bonus: Math.round(bonus),
+                    signOnBonus: Math.round(signOn),
                     initialSharesVested: Math.round(initialSharesVested),
                     refresherSharesVested: Math.round(refresherSharesVested),
                     stockPrice: stockPrices[i],
@@ -950,6 +961,7 @@
                     <td>Year ${row.year}</td>
                     <td class="text-right">${formatCurrency(row.baseSalary)}</td>
                     <td class="text-right">${formatCurrency(row.bonus)}</td>
+                    <td class="text-right">${row.signOnBonus > 0 ? formatCurrency(row.signOnBonus) : '-'}</td>
                     <td class="text-right">${row.initialSharesVested}</td>
                     <td class="text-right">${row.refresherSharesVested}</td>
                     <td class="text-right">$${row.stockPrice}</td>
@@ -1096,7 +1108,7 @@
         // Update display values as inputs change
         function setupInputListeners() {
             const inputs = [
-                'baseSalary', 'bonusPercent',
+                'baseSalary', 'bonusPercent', 'signOnBonus',
                 'initialGrant', 'vestingSchedule', 'refresherYear2', 'refresherYear3', 'refresherYear4', 'refresherVesting',
                 'enableTax', 'federalTaxRate', 'stateTaxRate', 'otherTaxRate'
             ];
@@ -1183,6 +1195,7 @@
             const track = document.getElementById('levelsTrack').value;
             const baseSalary = document.getElementById('baseSalary').value;
             const bonusPercent = document.getElementById('bonusPercent').value;
+            const signOnBonus = document.getElementById('signOnBonus').value;
             const initialGrant = document.getElementById('initialGrant').value;
             const stockPrice = document.getElementById('stockYear1').value;
             const vestingSchedule = document.getElementById('vestingSchedule').value === 'front' ? '40/30/20/10' : '25/25/25/25';
@@ -1219,6 +1232,7 @@
 **Compensation Package:**
 - Base Salary: $${Number(baseSalary).toLocaleString()}
 - Annual Bonus: ${bonusPercent}%
+- Sign-On Bonus: $${Number(signOnBonus).toLocaleString()}
 - RSU Grant: ${initialGrant} shares at $${stockPrice}/share
 - Vesting Schedule: ${vestingSchedule}
 
