@@ -91,6 +91,15 @@
             border-color: #3b82f6;
         }
 
+        select {
+            transition: border-color 0.2s;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
         .summary-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -277,7 +286,14 @@
                 <div class="input-group">
                     <label for="initialGrant">Initial Grant (RSUs)</label>
                     <input type="number" id="initialGrant" min="0" step="10" value="0">
-                    <p style="font-size: 0.75rem; color: #6b7280; margin-top: 5px;">Vests 40/30/20/10 over 4 years</p>
+                </div>
+
+                <div class="input-group">
+                    <label for="vestingSchedule">Vesting Schedule</label>
+                    <select id="vestingSchedule" style="width: 100%; padding: 10px; border: 2px solid #d1d5db; border-radius: 6px; font-size: 0.95rem;">
+                        <option value="front">Front-loaded (40/30/20/10)</option>
+                        <option value="even">Even (25/25/25/25)</option>
+                    </select>
                 </div>
 
                 <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;">
@@ -381,7 +397,14 @@
             }
         }
 
-        const vestingSchedule = [0.40, 0.30, 0.20, 0.10];
+        function getVestingSchedule() {
+            const scheduleType = document.getElementById('vestingSchedule').value;
+            if (scheduleType === 'front') {
+                return [0.40, 0.30, 0.20, 0.10];
+            } else {
+                return [0.25, 0.25, 0.25, 0.25];
+            }
+        }
         
         let stackedChart, lineChart;
 
@@ -393,7 +416,7 @@
                 'baseSalaryYear3', 'bonusYear3',
                 'baseSalaryYear4', 'bonusYear4',
                 'stockYear1', 'stockYear2', 'stockYear3', 'stockYear4', 'stockGrowth',
-                'initialGrant', 'refresherYear2', 'refresherYear3', 'refresherYear4', 'refresherVesting'
+                'initialGrant', 'vestingSchedule', 'refresherYear2', 'refresherYear3', 'refresherYear4', 'refresherVesting'
             ];
             
             const values = {};
@@ -443,6 +466,7 @@
             ];
 
             const initialGrant = parseFloat(document.getElementById('initialGrant').value) || 0;
+            const vestingSchedule = getVestingSchedule();
             
             const stockPrices = [
                 parseFloat(document.getElementById('stockYear1').value),
@@ -634,7 +658,7 @@
         function setupInputListeners() {
             const inputs = [
                 'bonusYear1', 'bonusYear2', 'bonusYear3', 'bonusYear4',
-                'initialGrant', 'refresherYear2', 'refresherYear3', 'refresherYear4', 'refresherVesting'
+                'initialGrant', 'vestingSchedule', 'refresherYear2', 'refresherYear3', 'refresherYear4', 'refresherVesting'
             ];
 
             inputs.forEach(id => {
