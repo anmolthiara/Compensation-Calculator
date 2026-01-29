@@ -250,52 +250,17 @@
                     <span class="collapse-icon" id="cashCompIcon">▼</span>
                 </div>
                 <div class="collapsible-content" id="cashCompSection">
-                    <p style="font-size: 0.85rem; color: #6b7280; margin-bottom: 15px;">Each year auto-applies 3% raise from previous year</p>
+                    <p style="font-size: 0.85rem; color: #6b7280; margin-bottom: 15px;">Auto-applies 3% annual raise each year</p>
                     
                     <div class="input-group">
-                        <label for="baseSalaryYear1">Year 1 Base Salary ($)</label>
-                        <input type="number" id="baseSalaryYear1" min="0" step="1000" value="0">
+                        <label for="baseSalary">Starting Base Salary ($)</label>
+                        <input type="number" id="baseSalary" min="0" step="1000" value="0">
                     </div>
 
                     <div class="input-group">
-                        <label for="bonusYear1">Year 1 Bonus (%)</label>
-                        <input type="number" id="bonusYear1" min="0" max="100" step="0.5" value="0">
-                    </div>
-
-                    <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;"></div>
-
-                    <div class="input-group">
-                        <label for="baseSalaryYear2">Year 2 Base Salary ($)</label>
-                        <input type="number" id="baseSalaryYear2" min="0" step="1000" value="0">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="bonusYear2">Year 2 Bonus (%)</label>
-                        <input type="number" id="bonusYear2" min="0" max="100" step="0.5" value="0">
-                    </div>
-
-                    <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;"></div>
-
-                    <div class="input-group">
-                        <label for="baseSalaryYear3">Year 3 Base Salary ($)</label>
-                        <input type="number" id="baseSalaryYear3" min="0" step="1000" value="0">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="bonusYear3">Year 3 Bonus (%)</label>
-                        <input type="number" id="bonusYear3" min="0" max="100" step="0.5" value="0">
-                    </div>
-
-                    <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;"></div>
-
-                    <div class="input-group">
-                        <label for="baseSalaryYear4">Year 4 Base Salary ($)</label>
-                        <input type="number" id="baseSalaryYear4" min="0" step="1000" value="0">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="bonusYear4">Year 4 Bonus (%)</label>
-                        <input type="number" id="bonusYear4" min="0" max="100" step="0.5" value="0">
+                        <label for="bonusPercent">Annual Bonus (%)</label>
+                        <input type="number" id="bonusPercent" min="0" max="100" step="0.5" value="0">
+                        <p style="font-size: 0.75rem; color: #6b7280; margin-top: 5px;">Applied to base salary each year</p>
                     </div>
                 </div>
             </div>
@@ -623,10 +588,7 @@
         // Save inputs to localStorage
         function saveInputs() {
             const inputs = [
-                'baseSalaryYear1', 'bonusYear1',
-                'baseSalaryYear2', 'bonusYear2',
-                'baseSalaryYear3', 'bonusYear3',
-                'baseSalaryYear4', 'bonusYear4',
+                'baseSalary', 'bonusPercent',
                 'stockYear1', 'stockYear2', 'stockYear3', 'stockYear4', 'stockGrowth',
                 'initialGrant', 'vestingSchedule', 'refresherYear2', 'refresherYear3', 'refresherYear4', 'refresherVesting',
                 'filingStatus', 'federalTaxRate', 'stateTaxRate', 'otherTaxRate'
@@ -671,19 +633,9 @@
         }
 
         function calculateComp() {
-            const baseSalaries = [
-                parseInt(document.getElementById('baseSalaryYear1').value) || 0,
-                parseInt(document.getElementById('baseSalaryYear2').value) || 0,
-                parseInt(document.getElementById('baseSalaryYear3').value) || 0,
-                parseInt(document.getElementById('baseSalaryYear4').value) || 0
-            ];
-
-            const bonusPercents = [
-                parseFloat(document.getElementById('bonusYear1').value) || 0,
-                parseFloat(document.getElementById('bonusYear2').value) || 0,
-                parseFloat(document.getElementById('bonusYear3').value) || 0,
-                parseFloat(document.getElementById('bonusYear4').value) || 0
-            ];
+            const baseSalary = parseInt(document.getElementById('baseSalary').value) || 0;
+            const bonusPercent = parseFloat(document.getElementById('bonusPercent').value) || 0;
+            const annualRaise = 0.03; // Fixed 3% annual raise
 
             const initialGrant = parseFloat(document.getElementById('initialGrant').value) || 0;
             const vestingSchedule = getVestingSchedule();
@@ -714,8 +666,8 @@
             const years = [];
             
             for (let i = 0; i < 4; i++) {
-                const currentBaseSalary = baseSalaries[i];
-                const bonus = currentBaseSalary * (bonusPercents[i] / 100);
+                const currentBaseSalary = baseSalary * Math.pow(1 + annualRaise, i);
+                const bonus = currentBaseSalary * (bonusPercent / 100);
                 
                 // Initial grant vesting
                 const initialSharesVested = initialGrant * vestingSchedule[i];
@@ -940,7 +892,7 @@
         // Update display values as inputs change
         function setupInputListeners() {
             const inputs = [
-                'bonusYear1', 'bonusYear2', 'bonusYear3', 'bonusYear4',
+                'baseSalary', 'bonusPercent',
                 'initialGrant', 'vestingSchedule', 'refresherYear2', 'refresherYear3', 'refresherYear4', 'refresherVesting',
                 'enableTax', 'federalTaxRate', 'stateTaxRate', 'otherTaxRate'
             ];
@@ -990,57 +942,6 @@
             stockGrowthInput.addEventListener('input', function() {
                 applyStockGrowth();
                 saveInputs();
-            });
-
-            // Auto-calculate base salary with 3% raise for years 2-4
-            const baseSalaryYear1Input = document.getElementById('baseSalaryYear1');
-            const baseSalaryYear2Input = document.getElementById('baseSalaryYear2');
-            const baseSalaryYear3Input = document.getElementById('baseSalaryYear3');
-            const baseSalaryYear4Input = document.getElementById('baseSalaryYear4');
-
-            function applyBaseSalaryRaises() {
-                const year1Salary = parseFloat(baseSalaryYear1Input.value) || 0;
-
-                // Year 2 = Year 1 * 1.03
-                const year2Salary = Math.round(year1Salary * 1.03);
-                baseSalaryYear2Input.value = year2Salary;
-                
-                // Year 3 = Year 2 * 1.03
-                const year3Salary = Math.round(year2Salary * 1.03);
-                baseSalaryYear3Input.value = year3Salary;
-                
-                // Year 4 = Year 3 * 1.03
-                baseSalaryYear4Input.value = Math.round(year3Salary * 1.03);
-                
-                saveInputs();
-                updateDisplay();
-            }
-
-            baseSalaryYear1Input.addEventListener('input', function() {
-                applyBaseSalaryRaises();
-            });
-            
-            baseSalaryYear2Input.addEventListener('input', function() {
-                // When Year 2 changes, update Years 3 and 4
-                const year2Salary = parseFloat(baseSalaryYear2Input.value) || 0;
-                baseSalaryYear3Input.value = Math.round(year2Salary * 1.03);
-                baseSalaryYear4Input.value = Math.round(year2Salary * 1.03 * 1.03);
-                saveInputs();
-                updateDisplay();
-            });
-            
-            baseSalaryYear3Input.addEventListener('input', function() {
-                // When Year 3 changes, update Year 4
-                const year3Salary = parseFloat(baseSalaryYear3Input.value) || 0;
-                baseSalaryYear4Input.value = Math.round(year3Salary * 1.03);
-                saveInputs();
-                updateDisplay();
-            });
-            
-            baseSalaryYear4Input.addEventListener('input', function() {
-                // Year 4 is independent, just save and update
-                saveInputs();
-                updateDisplay();
             });
         }
 
