@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compensation Calculator</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+
+        h1 {
+            color: #1f2937;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        h2 {
+            color: #4b5563;
+            margin-bottom: 20px;
+            font-size: 1.25rem;
+        }
+
+        .inputs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .inputs-grid-three {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .input-section {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .summary-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #e5e7eb;
+        }
+
+        .summary-label {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .summary-value {
+            font-size: 1.75rem;
+            font-weight: bold;
+        }
+
+        .summary-card:nth-child(1) .summary-value { color: #3b82f6; }
+        .summary-card:nth-child(2) .summary-value { color: #10b981; }
+        .summary-card:nth-child(3) .summary-value { color: #8b5cf6; }
+        .summary-card:nth-child(4) .summary-value { color: #f59e0b; }
+
+        .chart-container {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 1px solid #e5e7eb;
+        }
+
+        canvas {
+            max-height: 400px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background: #f3f4f6;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #374151;
+            border-bottom: 2px solid #d1d5db;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        tr:hover {
+            background: #f9fafb;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .note {
+            background: #dbeafe;
+            border: 1px solid #93c5fd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            color: #1e40af;
+            font-size: 0.9rem;
+        }
+
+        .note strong {
+            color: #1e3a8a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💼 Compensation Calculator</h1>
+        
+        <div class="inputs-grid-three">
+            <!-- Cash Compensation -->
+            <div class="input-section">
+                <h2>Cash Compensation</h2>
+                <p style="font-size: 0.85rem; color: #6b7280; margin-bottom: 15px;">Each year auto-applies 3% raise from previous year</p>
+                
+                <div class="input-group">
+                    <label for="baseSalaryYear1">Year 1 Base Salary ($)</label>
+                    <input type="number" id="baseSalaryYear1" min="0" step="1000" value="200000">
+                </div>
+
+                <div class="input-group">
+                    <label for="bonusYear1">Year 1 Bonus (%)</label>
+                    <input type="number" id="bonusYear1" min="0" max="100" step="0.5" value="12">
+                </div>
+
+                <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;"></div>
+
+                <div class="input-group">
+                    <label for="baseSalaryYear2">Year 2 Base Salary ($)</label>
+                    <input type="number" id="baseSalaryYear2" min="0" step="1000" value="206000">
+                </div>
+
+                <div class="input-group">
+                    <label for="bonusYear2">Year 2 Bonus (%)</label>
+                    <input type="number" id="bonusYear2" min="0" max="100" step="0.5" value="12">
+                </div>
+
+                <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;"></div>
+
+                <div class="input-group">
+                    <label for="baseSalaryYear3">Year 3 Base Salary ($)</label>
+                    <input type="number" id="baseSalaryYear3" min="0" step="1000" value="212180">
+                </div>
+
+                <div class="input-group">
+                    <label for="bonusYear3">Year 3 Bonus (%)</label>
+                    <input type="number" id="bonusYear3" min="0" max="100" step="0.5" value="12">
+                </div>
+
+                <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;"></div>
+
+                <div class="input-group">
+                    <label for="baseSalaryYear4">Year 4 Base Salary ($)</label>
+                    <input type="number" id="baseSalaryYear4" min="0" step="1000" value="218545">
+                </div>
+
+                <div class="input-group">
+                    <label for="bonusYear4">Year 4 Bonus (%)</label>
+                    <input type="number" id="bonusYear4" min="0" max="100" step="0.5" value="12">
+                </div>
+            </div>
+
+            <!-- Stock Prices -->
+            <div class="input-section">
+                <h2>Stock Price per Year</h2>
+                
+                <div class="input-group">
+                    <label for="stockYear1">Year 1 Stock Price ($)</label>
+                    <input type="number" id="stockYear1" min="0" step="1" value="190">
+                </div>
+
+                <div class="input-group">
+                    <label for="stockGrowth">Annual Stock Growth (%)</label>
+                    <input type="number" id="stockGrowth" min="-100" max="500" step="1" value="0">
+                    <p style="font-size: 0.75rem; color: #6b7280; margin-top: 5px;">Auto-calculates Years 2-4 prices (0 = no growth)</p>
+                </div>
+
+                <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;">
+                    <p style="font-size: 0.85rem; color: #6b7280; margin-bottom: 10px; font-weight: 500;">Or manually set each year:</p>
+                </div>
+
+                <div class="input-group">
+                    <label for="stockYear2">Year 2 Stock Price ($)</label>
+                    <input type="number" id="stockYear2" min="0" step="1" value="190">
+                </div>
+
+                <div class="input-group">
+                    <label for="stockYear3">Year 3 Stock Price ($)</label>
+                    <input type="number" id="stockYear3" min="0" step="1" value="190">
+                </div>
+
+                <div class="input-group">
+                    <label for="stockYear4">Year 4 Stock Price ($)</label>
+                    <input type="number" id="stockYear4" min="0" step="1" value="190">
+                </div>
+            </div>
+
+            <!-- RSU Refreshers -->
+            <div class="input-section">
+                <h2>RSU Grants</h2>
+                
+                <div class="input-group">
+                    <label for="initialGrant">Initial Grant (RSUs)</label>
+                    <input type="number" id="initialGrant" min="0" step="10" value="1800">
+                    <p style="font-size: 0.75rem; color: #6b7280; margin-top: 5px;">Vests 40/30/20/10 over 4 years</p>
+                </div>
+
+                <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;">
+                    <p style="font-size: 0.85rem; color: #6b7280; margin-bottom: 10px; font-weight: 500;">Annual Refreshers:</p>
+                </div>
+                
+                <div class="input-group">
+                    <label for="refresherYear2">Year 2 Grant (RSUs)</label>
+                    <input type="number" id="refresherYear2" min="0" step="10" value="0">
+                </div>
+
+                <div class="input-group">
+                    <label for="refresherYear3">Year 3 Grant (RSUs)</label>
+                    <input type="number" id="refresherYear3" min="0" step="10" value="0">
+                </div>
+
+                <div class="input-group">
+                    <label for="refresherYear4">Year 4 Grant (RSUs)</label>
+                    <input type="number" id="refresherYear4" min="0" step="10" value="0">
+                </div>
+
+                <div class="input-group">
+                    <label for="refresherVesting">Refresher Vesting % (per year)</label>
+                    <input type="number" id="refresherVesting" min="0" max="100" step="1" value="25">
+                    <p style="font-size: 0.75rem; color: #6b7280; margin-top: 5px;">% that vests in year granted (typical: 25% for 4-yr vest)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Stats -->
+        <div class="summary-grid">
+            <div class="summary-card">
+                <div class="summary-label">Year 1 Total</div>
+                <div class="summary-value" id="year1Total">$0</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-label">Year 4 Total</div>
+                <div class="summary-value" id="year4Total">$0</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-label">4-Year Total</div>
+                <div class="summary-value" id="fourYearTotal">$0</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-label">Average Annual</div>
+                <div class="summary-value" id="avgAnnual">$0</div>
+            </div>
+        </div>
+
+        <!-- Stacked Bar Chart -->
+        <div class="chart-container">
+            <h2>Compensation Breakdown by Year</h2>
+            <canvas id="stackedChart"></canvas>
+        </div>
+
+        <!-- Line Chart -->
+        <div class="chart-container">
+            <h2>Total Compensation Trend</h2>
+            <canvas id="lineChart"></canvas>
+        </div>
+
+        <!-- Detailed Table -->
+        <div class="chart-container">
+            <h2>Detailed Breakdown</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th class="text-right">Base Salary</th>
+                        <th class="text-right">Bonus</th>
+                        <th class="text-right">Initial RSUs</th>
+                        <th class="text-right">Refresher RSUs</th>
+                        <th class="text-right">Stock Price</th>
+                        <th class="text-right">Stock Value</th>
+                        <th class="text-right"><strong>Total Comp</strong></th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
+
+        <div class="note">
+            <strong>Note:</strong> This calculator shows your initial grant vesting schedule (40/30/20/10) plus any refresher grants you add. 
+            Refresher RSUs typically vest over 4 years (25% per year by default, adjustable). The calculator assumes each refresher grant starts 
+            vesting in the year it's granted and continues vesting in subsequent years. For example, a Year 2 refresher will vest in Years 2, 3, 
+            and 4. Ask your recruiter for the specific refresher amounts and vesting schedules!
+            <br><br>
+            <strong>💾 Auto-Save:</strong> Your inputs are automatically saved in your browser and will persist when you refresh the page.
+            <button onclick="resetCalculator()" style="margin-left: 10px; padding: 5px 15px; background: #ef4444; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.85rem;">
+                Reset to Defaults
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function resetCalculator() {
+            if (confirm('Are you sure you want to reset all values to defaults? This cannot be undone.')) {
+                localStorage.removeItem('databricksCompCalc');
+                location.reload();
+            }
+        }
+
+        const vestingSchedule = [0.40, 0.30, 0.20, 0.10];
+        
+        let stackedChart, lineChart;
+
+        // Save inputs to localStorage
+        function saveInputs() {
+            const inputs = [
+                'baseSalaryYear1', 'bonusYear1',
+                'baseSalaryYear2', 'bonusYear2',
+                'baseSalaryYear3', 'bonusYear3',
+                'baseSalaryYear4', 'bonusYear4',
+                'stockYear1', 'stockYear2', 'stockYear3', 'stockYear4', 'stockGrowth',
+                'initialGrant', 'refresherYear2', 'refresherYear3', 'refresherYear4', 'refresherVesting'
+            ];
+            
+            const values = {};
+            inputs.forEach(id => {
+                const element = document.getElementById(id);
+                values[id] = element.value;
+            });
+            
+            localStorage.setItem('databricksCompCalc', JSON.stringify(values));
+        }
+
+        // Load inputs from localStorage
+        function loadInputs() {
+            const saved = localStorage.getItem('databricksCompCalc');
+            if (saved) {
+                try {
+                    const values = JSON.parse(saved);
+                    Object.keys(values).forEach(id => {
+                        const element = document.getElementById(id);
+                        if (element) {
+                            element.value = values[id];
+                        }
+                    });
+                } catch (e) {
+                    console.error('Error loading saved data:', e);
+                }
+            }
+        }
+
+        function formatCurrency(value) {
+            return '$' + Math.round(value).toLocaleString();
+        }
+
+        function calculateComp() {
+            const baseSalaries = [
+                parseInt(document.getElementById('baseSalaryYear1').value) || 0,
+                parseInt(document.getElementById('baseSalaryYear2').value) || 0,
+                parseInt(document.getElementById('baseSalaryYear3').value) || 0,
+                parseInt(document.getElementById('baseSalaryYear4').value) || 0
+            ];
+
+            const bonusPercents = [
+                parseFloat(document.getElementById('bonusYear1').value) || 0,
+                parseFloat(document.getElementById('bonusYear2').value) || 0,
+                parseFloat(document.getElementById('bonusYear3').value) || 0,
+                parseFloat(document.getElementById('bonusYear4').value) || 0
+            ];
+
+            const initialGrant = parseFloat(document.getElementById('initialGrant').value) || 0;
+            
+            const stockPrices = [
+                parseFloat(document.getElementById('stockYear1').value),
+                parseFloat(document.getElementById('stockYear2').value),
+                parseFloat(document.getElementById('stockYear3').value),
+                parseFloat(document.getElementById('stockYear4').value)
+            ];
+
+            const refresherGrants = [
+                0, // Year 1 - no refresher
+                parseFloat(document.getElementById('refresherYear2').value),
+                parseFloat(document.getElementById('refresherYear3').value),
+                parseFloat(document.getElementById('refresherYear4').value)
+            ];
+
+            const refresherVestingPercent = parseFloat(document.getElementById('refresherVesting').value) / 100;
+
+            const years = [];
+            
+            for (let i = 0; i < 4; i++) {
+                const currentBaseSalary = baseSalaries[i];
+                const bonus = currentBaseSalary * (bonusPercents[i] / 100);
+                
+                // Initial grant vesting
+                const initialSharesVested = initialGrant * vestingSchedule[i];
+                
+                // Refresher vesting - each refresher vests over time
+                let refresherSharesVested = 0;
+                
+                // Year 2: only year 2 refresher vests (first year)
+                // Year 3: year 2 refresher (2nd year) + year 3 refresher (1st year)
+                // Year 4: year 2 refresher (3rd year) + year 3 refresher (2nd year) + year 4 refresher (1st year)
+                if (i >= 1) { // Year 2+
+                    refresherSharesVested += refresherGrants[i] * refresherVestingPercent; // Current year's refresher
+                }
+                if (i >= 2) { // Year 3+
+                    refresherSharesVested += refresherGrants[i-1] * refresherVestingPercent; // Last year's refresher
+                }
+                if (i >= 3) { // Year 4
+                    refresherSharesVested += refresherGrants[i-2] * refresherVestingPercent; // 2 years ago refresher
+                }
+                
+                const totalSharesVested = initialSharesVested + refresherSharesVested;
+                const stockValue = totalSharesVested * stockPrices[i];
+                const totalComp = currentBaseSalary + bonus + stockValue;
+                
+                years.push({
+                    year: i + 1,
+                    baseSalary: Math.round(currentBaseSalary),
+                    bonus: Math.round(bonus),
+                    initialSharesVested: Math.round(initialSharesVested),
+                    refresherSharesVested: Math.round(refresherSharesVested),
+                    stockPrice: stockPrices[i],
+                    stockValue: Math.round(stockValue),
+                    totalComp: Math.round(totalComp)
+                });
+            }
+            
+            return years;
+        }
+
+        function updateDisplay() {
+            const data = calculateComp();
+            
+            // Update summary cards
+            document.getElementById('year1Total').textContent = formatCurrency(data[0].totalComp);
+            document.getElementById('year4Total').textContent = formatCurrency(data[3].totalComp);
+            
+            const fourYearTotal = data.reduce((sum, year) => sum + year.totalComp, 0);
+            document.getElementById('fourYearTotal').textContent = formatCurrency(fourYearTotal);
+            document.getElementById('avgAnnual').textContent = formatCurrency(fourYearTotal / 4);
+            
+            // Update table
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = data.map(row => `
+                <tr>
+                    <td>Year ${row.year}</td>
+                    <td class="text-right">${formatCurrency(row.baseSalary)}</td>
+                    <td class="text-right">${formatCurrency(row.bonus)}</td>
+                    <td class="text-right">${row.initialSharesVested}</td>
+                    <td class="text-right">${row.refresherSharesVested}</td>
+                    <td class="text-right">$${row.stockPrice}</td>
+                    <td class="text-right">${formatCurrency(row.stockValue)}</td>
+                    <td class="text-right"><strong>${formatCurrency(row.totalComp)}</strong></td>
+                </tr>
+            `).join('');
+            
+            // Update charts
+            updateCharts(data);
+        }
+
+        function updateCharts(data) {
+            const labels = data.map(d => `Year ${d.year}`);
+            
+            // Stacked Bar Chart
+            if (stackedChart) stackedChart.destroy();
+            const stackedCtx = document.getElementById('stackedChart').getContext('2d');
+            stackedChart = new Chart(stackedCtx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Base Salary',
+                            data: data.map(d => d.baseSalary),
+                            backgroundColor: '#3b82f6'
+                        },
+                        {
+                            label: 'Bonus',
+                            data: data.map(d => d.bonus),
+                            backgroundColor: '#10b981'
+                        },
+                        {
+                            label: 'Stock Value',
+                            data: data.map(d => d.stockValue),
+                            backgroundColor: '#8b5cf6'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    scales: {
+                        x: { stacked: true },
+                        y: { 
+                            stacked: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + (value / 1000).toFixed(0) + 'k';
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': $' + context.parsed.y.toLocaleString();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Line Chart
+            if (lineChart) lineChart.destroy();
+            const lineCtx = document.getElementById('lineChart').getContext('2d');
+            lineChart = new Chart(lineCtx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Total Compensation',
+                        data: data.map(d => d.totalComp),
+                        borderColor: '#8b5cf6',
+                        backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    scales: {
+                        y: {
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + (value / 1000).toFixed(0) + 'k';
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return 'Total: $' + context.parsed.y.toLocaleString();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Update display values as inputs change
+        function setupInputListeners() {
+            const inputs = [
+                'bonusYear1', 'bonusYear2', 'bonusYear3', 'bonusYear4',
+                'initialGrant', 'refresherYear2', 'refresherYear3', 'refresherYear4', 'refresherVesting'
+            ];
+
+            inputs.forEach(id => {
+                const element = document.getElementById(id);
+                element.addEventListener('input', function() {
+                    saveInputs();
+                    updateDisplay();
+                });
+            });
+
+            // Special handling for stock inputs
+            const stockInputs = ['stockYear1', 'stockYear2', 'stockYear3', 'stockYear4'];
+            stockInputs.forEach(id => {
+                const element = document.getElementById(id);
+                element.addEventListener('input', function() {
+                    saveInputs();
+                    updateDisplay();
+                });
+            });
+
+            // Special handling for stock growth - auto-calculate Years 2-4
+            const stockGrowthInput = document.getElementById('stockGrowth');
+            const stockYear1Input = document.getElementById('stockYear1');
+            
+            function applyStockGrowth() {
+                const year1Price = parseFloat(stockYear1Input.value) || 0;
+                const growthPercent = parseFloat(stockGrowthInput.value) || 0;
+                const growthMultiplier = 1 + (growthPercent / 100);
+                
+                // Only auto-update if growth is not zero
+                if (growthPercent !== 0) {
+                    document.getElementById('stockYear2').value = Math.round(year1Price * growthMultiplier);
+                    document.getElementById('stockYear3').value = Math.round(year1Price * Math.pow(growthMultiplier, 2));
+                    document.getElementById('stockYear4').value = Math.round(year1Price * Math.pow(growthMultiplier, 3));
+                    saveInputs();
+                    updateDisplay();
+                }
+            }
+
+            stockGrowthInput.addEventListener('input', function() {
+                applyStockGrowth();
+                saveInputs();
+            });
+
+            // Auto-calculate base salary with 3% raise for years 2-4
+            const baseSalaryYear1Input = document.getElementById('baseSalaryYear1');
+            const baseSalaryYear2Input = document.getElementById('baseSalaryYear2');
+            const baseSalaryYear3Input = document.getElementById('baseSalaryYear3');
+            const baseSalaryYear4Input = document.getElementById('baseSalaryYear4');
+
+            function applyBaseSalaryRaises() {
+                const year1Salary = parseFloat(baseSalaryYear1Input.value) || 0;
+
+                // Year 2 = Year 1 * 1.03
+                const year2Salary = Math.round(year1Salary * 1.03);
+                baseSalaryYear2Input.value = year2Salary;
+                
+                // Year 3 = Year 2 * 1.03
+                const year3Salary = Math.round(year2Salary * 1.03);
+                baseSalaryYear3Input.value = year3Salary;
+                
+                // Year 4 = Year 3 * 1.03
+                baseSalaryYear4Input.value = Math.round(year3Salary * 1.03);
+                
+                saveInputs();
+                updateDisplay();
+            }
+
+            baseSalaryYear1Input.addEventListener('input', function() {
+                applyBaseSalaryRaises();
+            });
+            
+            baseSalaryYear2Input.addEventListener('input', function() {
+                // When Year 2 changes, update Years 3 and 4
+                const year2Salary = parseFloat(baseSalaryYear2Input.value) || 0;
+                baseSalaryYear3Input.value = Math.round(year2Salary * 1.03);
+                baseSalaryYear4Input.value = Math.round(year2Salary * 1.03 * 1.03);
+                saveInputs();
+                updateDisplay();
+            });
+            
+            baseSalaryYear3Input.addEventListener('input', function() {
+                // When Year 3 changes, update Year 4
+                const year3Salary = parseFloat(baseSalaryYear3Input.value) || 0;
+                baseSalaryYear4Input.value = Math.round(year3Salary * 1.03);
+                saveInputs();
+                updateDisplay();
+            });
+            
+            baseSalaryYear4Input.addEventListener('input', function() {
+                // Year 4 is independent, just save and update
+                saveInputs();
+                updateDisplay();
+            });
+        }
+
+        // Initialize
+        loadInputs();
+        setupInputListeners();
+        updateDisplay();
+    </script>
+</body>
+</html>
