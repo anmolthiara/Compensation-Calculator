@@ -54,6 +54,13 @@
             margin-bottom: 30px;
         }
 
+        .inputs-grid-four {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
         .input-section {
             background: #f9fafb;
             padding: 20px;
@@ -235,134 +242,194 @@
     <div class="container">
         <h1>💼 Compensation Calculator</h1>
         
-        <div class="inputs-grid-three">
+        <div class="inputs-grid-four">
             <!-- Cash Compensation -->
             <div class="input-section">
-                <h2>Cash Compensation</h2>
-                <p style="font-size: 0.85rem; color: #6b7280; margin-bottom: 15px;">Each year auto-applies 3% raise from previous year</p>
-                
-                <div class="input-group">
-                    <label for="baseSalaryYear1">Year 1 Base Salary ($)</label>
-                    <input type="number" id="baseSalaryYear1" min="0" step="1000" value="0">
+                <div class="section-header" onclick="toggleSection('cashCompSection')">
+                    <h2>Cash Compensation</h2>
+                    <span class="collapse-icon" id="cashCompIcon">▼</span>
                 </div>
+                <div class="collapsible-content" id="cashCompSection">
+                    <p style="font-size: 0.85rem; color: #6b7280; margin-bottom: 15px;">Each year auto-applies 3% raise from previous year</p>
+                    
+                    <div class="input-group">
+                        <label for="baseSalaryYear1">Year 1 Base Salary ($)</label>
+                        <input type="number" id="baseSalaryYear1" min="0" step="1000" value="0">
+                    </div>
 
-                <div class="input-group">
-                    <label for="bonusYear1">Year 1 Bonus (%)</label>
-                    <input type="number" id="bonusYear1" min="0" max="100" step="0.5" value="0">
-                </div>
+                    <div class="input-group">
+                        <label for="bonusYear1">Year 1 Bonus (%)</label>
+                        <input type="number" id="bonusYear1" min="0" max="100" step="0.5" value="0">
+                    </div>
 
-                <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;"></div>
+                    <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;"></div>
 
-                <div class="input-group">
-                    <label for="baseSalaryYear2">Year 2 Base Salary ($)</label>
-                    <input type="number" id="baseSalaryYear2" min="0" step="1000" value="0">
-                </div>
+                    <div class="input-group">
+                        <label for="baseSalaryYear2">Year 2 Base Salary ($)</label>
+                        <input type="number" id="baseSalaryYear2" min="0" step="1000" value="0">
+                    </div>
 
-                <div class="input-group">
-                    <label for="bonusYear2">Year 2 Bonus (%)</label>
-                    <input type="number" id="bonusYear2" min="0" max="100" step="0.5" value="0">
-                </div>
+                    <div class="input-group">
+                        <label for="bonusYear2">Year 2 Bonus (%)</label>
+                        <input type="number" id="bonusYear2" min="0" max="100" step="0.5" value="0">
+                    </div>
 
-                <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;"></div>
+                    <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;"></div>
 
-                <div class="input-group">
-                    <label for="baseSalaryYear3">Year 3 Base Salary ($)</label>
-                    <input type="number" id="baseSalaryYear3" min="0" step="1000" value="0">
-                </div>
+                    <div class="input-group">
+                        <label for="baseSalaryYear3">Year 3 Base Salary ($)</label>
+                        <input type="number" id="baseSalaryYear3" min="0" step="1000" value="0">
+                    </div>
 
-                <div class="input-group">
-                    <label for="bonusYear3">Year 3 Bonus (%)</label>
-                    <input type="number" id="bonusYear3" min="0" max="100" step="0.5" value="0">
-                </div>
+                    <div class="input-group">
+                        <label for="bonusYear3">Year 3 Bonus (%)</label>
+                        <input type="number" id="bonusYear3" min="0" max="100" step="0.5" value="0">
+                    </div>
 
-                <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;"></div>
+                    <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;"></div>
 
-                <div class="input-group">
-                    <label for="baseSalaryYear4">Year 4 Base Salary ($)</label>
-                    <input type="number" id="baseSalaryYear4" min="0" step="1000" value="0">
-                </div>
+                    <div class="input-group">
+                        <label for="baseSalaryYear4">Year 4 Base Salary ($)</label>
+                        <input type="number" id="baseSalaryYear4" min="0" step="1000" value="0">
+                    </div>
 
-                <div class="input-group">
-                    <label for="bonusYear4">Year 4 Bonus (%)</label>
-                    <input type="number" id="bonusYear4" min="0" max="100" step="0.5" value="0">
+                    <div class="input-group">
+                        <label for="bonusYear4">Year 4 Bonus (%)</label>
+                        <input type="number" id="bonusYear4" min="0" max="100" step="0.5" value="0">
+                    </div>
                 </div>
             </div>
 
             <!-- Stock Prices -->
             <div class="input-section">
-                <h2>Stock Price per Year</h2>
-                
-                <div class="input-group">
-                    <label for="stockYear1">Year 1 Stock Price ($)</label>
-                    <input type="number" id="stockYear1" min="0" step="1" value="0">
+                <div class="section-header" onclick="toggleSection('stockPriceSection')">
+                    <h2>Stock Price per Year</h2>
+                    <span class="collapse-icon" id="stockPriceIcon">▼</span>
                 </div>
+                <div class="collapsible-content" id="stockPriceSection">
+                    <div class="input-group">
+                        <label for="stockYear1">Year 1 Stock Price ($)</label>
+                        <input type="number" id="stockYear1" min="0" step="1" value="0">
+                    </div>
 
-                <div class="input-group">
-                    <label for="stockGrowth">Annual Stock Growth (%)</label>
-                    <input type="number" id="stockGrowth" min="-100" max="500" step="1" value="0">
-                    <p style="font-size: 0.75rem; color: #6b7280; margin-top: 5px;">Auto-calculates Years 2-4 prices (0 = no growth)</p>
-                </div>
+                    <div class="input-group">
+                        <label for="stockGrowth">Annual Stock Growth (%)</label>
+                        <input type="number" id="stockGrowth" min="-100" max="500" step="1" value="0">
+                        <p style="font-size: 0.75rem; color: #6b7280; margin-top: 5px;">Auto-calculates Years 2-4 prices (0 = no growth)</p>
+                    </div>
 
-                <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;">
-                    <p style="font-size: 0.85rem; color: #6b7280; margin-bottom: 10px; font-weight: 500;">Or manually set each year:</p>
-                </div>
+                    <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;">
+                        <p style="font-size: 0.85rem; color: #6b7280; margin-bottom: 10px; font-weight: 500;">Or manually set each year:</p>
+                    </div>
 
-                <div class="input-group">
-                    <label for="stockYear2">Year 2 Stock Price ($)</label>
-                    <input type="number" id="stockYear2" min="0" step="1" value="0">
-                </div>
+                    <div class="input-group">
+                        <label for="stockYear2">Year 2 Stock Price ($)</label>
+                        <input type="number" id="stockYear2" min="0" step="1" value="0">
+                    </div>
 
-                <div class="input-group">
-                    <label for="stockYear3">Year 3 Stock Price ($)</label>
-                    <input type="number" id="stockYear3" min="0" step="1" value="0">
-                </div>
+                    <div class="input-group">
+                        <label for="stockYear3">Year 3 Stock Price ($)</label>
+                        <input type="number" id="stockYear3" min="0" step="1" value="0">
+                    </div>
 
-                <div class="input-group">
-                    <label for="stockYear4">Year 4 Stock Price ($)</label>
-                    <input type="number" id="stockYear4" min="0" step="1" value="0">
+                    <div class="input-group">
+                        <label for="stockYear4">Year 4 Stock Price ($)</label>
+                        <input type="number" id="stockYear4" min="0" step="1" value="0">
+                    </div>
                 </div>
             </div>
 
             <!-- RSU Refreshers -->
             <div class="input-section">
-                <h2>RSU Grants</h2>
-                
-                <div class="input-group">
-                    <label for="initialGrant">Initial Grant (RSUs)</label>
-                    <input type="number" id="initialGrant" min="0" step="10" value="0">
+                <div class="section-header" onclick="toggleSection('rsuGrantsSection')">
+                    <h2>RSU Grants</h2>
+                    <span class="collapse-icon" id="rsuGrantsIcon">▼</span>
                 </div>
+                <div class="collapsible-content" id="rsuGrantsSection">
+                    <div class="input-group">
+                        <label for="initialGrant">Initial Grant (RSUs)</label>
+                        <input type="number" id="initialGrant" min="0" step="10" value="0">
+                    </div>
 
-                <div class="input-group">
-                    <label for="vestingSchedule">Vesting Schedule</label>
-                    <select id="vestingSchedule" style="width: 100%; padding: 10px; border: 2px solid #d1d5db; border-radius: 6px; font-size: 0.95rem;">
-                        <option value="front">Front-loaded (40/30/20/10)</option>
-                        <option value="even">Even (25/25/25/25)</option>
-                    </select>
-                </div>
+                    <div class="input-group">
+                        <label for="vestingSchedule">Vesting Schedule</label>
+                        <select id="vestingSchedule" style="width: 100%; padding: 10px; border: 2px solid #d1d5db; border-radius: 6px; font-size: 0.95rem;">
+                            <option value="front">Front-loaded (40/30/20/10)</option>
+                            <option value="even">Even (25/25/25/25)</option>
+                        </select>
+                    </div>
 
-                <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;">
-                    <p style="font-size: 0.85rem; color: #6b7280; margin-bottom: 10px; font-weight: 500;">Annual Refreshers:</p>
-                </div>
-                
-                <div class="input-group">
-                    <label for="refresherYear2">Year 2 Grant (RSUs)</label>
-                    <input type="number" id="refresherYear2" min="0" step="10" value="0">
-                </div>
+                    <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;">
+                        <p style="font-size: 0.85rem; color: #6b7280; margin-bottom: 10px; font-weight: 500;">Annual Refreshers:</p>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="refresherYear2">Year 2 Grant (RSUs)</label>
+                        <input type="number" id="refresherYear2" min="0" step="10" value="0">
+                    </div>
 
-                <div class="input-group">
-                    <label for="refresherYear3">Year 3 Grant (RSUs)</label>
-                    <input type="number" id="refresherYear3" min="0" step="10" value="0">
-                </div>
+                    <div class="input-group">
+                        <label for="refresherYear3">Year 3 Grant (RSUs)</label>
+                        <input type="number" id="refresherYear3" min="0" step="10" value="0">
+                    </div>
 
-                <div class="input-group">
-                    <label for="refresherYear4">Year 4 Grant (RSUs)</label>
-                    <input type="number" id="refresherYear4" min="0" step="10" value="0">
-                </div>
+                    <div class="input-group">
+                        <label for="refresherYear4">Year 4 Grant (RSUs)</label>
+                        <input type="number" id="refresherYear4" min="0" step="10" value="0">
+                    </div>
 
-                <div class="input-group">
-                    <label for="refresherVesting">Refresher Vesting % (per year)</label>
-                    <input type="number" id="refresherVesting" min="0" max="100" step="1" value="25">
-                    <p style="font-size: 0.75rem; color: #6b7280; margin-top: 5px;">% that vests in year granted (typical: 25% for 4-yr vest)</p>
+                    <div class="input-group">
+                        <label for="refresherVesting">Refresher Vesting % (per year)</label>
+                        <input type="number" id="refresherVesting" min="0" max="100" step="1" value="25">
+                        <p style="font-size: 0.75rem; color: #6b7280; margin-top: 5px;">% that vests in year granted (typical: 25% for 4-yr vest)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tax Withholding -->
+            <div class="input-section">
+                <div class="section-header" onclick="toggleSection('taxWithholdingSection')">
+                    <h2>Tax Withholding</h2>
+                    <span class="collapse-icon" id="taxWithholdingIcon">▼</span>
+                </div>
+                <div class="collapsible-content" id="taxWithholdingSection">
+                    <p style="font-size: 0.85rem; color: #6b7280; margin-bottom: 15px;">Optional: Calculate after-tax compensation</p>
+                    
+                    <div class="input-group">
+                        <label for="enableTax">
+                            <input type="checkbox" id="enableTax" style="width: auto; margin-right: 8px;">
+                            Apply tax withholding
+                        </label>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="filingStatus">Filing Status</label>
+                        <select id="filingStatus" style="width: 100%; padding: 10px; border: 2px solid #d1d5db; border-radius: 6px; font-size: 0.95rem;">
+                            <option value="single">Single</option>
+                            <option value="married">Married Filing Jointly</option>
+                            <option value="head">Head of Household</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="federalTaxRate">Federal Tax Rate (%)</label>
+                        <select id="federalTaxRate" style="width: 100%; padding: 10px; border: 2px solid #d1d5db; border-radius: 6px; font-size: 0.95rem;">
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                        <p style="font-size: 0.75rem; color: #6b7280; margin-top: 5px;">2024 federal tax brackets</p>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="stateTaxRate">State Tax Rate (%)</label>
+                        <input type="number" id="stateTaxRate" min="0" max="20" step="0.5" value="0">
+                        <p style="font-size: 0.75rem; color: #6b7280; margin-top: 5px;">CA: ~9-13%, NY: ~4-11%, TX/FL: 0%</p>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="otherTaxRate">Other Taxes (FICA, etc.) (%)</label>
+                        <input type="number" id="otherTaxRate" min="0" max="20" step="0.5" value="7.65">
+                        <p style="font-size: 0.75rem; color: #6b7280; margin-top: 5px;">Default: 7.65% for Social Security + Medicare</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -372,18 +439,22 @@
             <div class="summary-card">
                 <div class="summary-label">Year 1 Total</div>
                 <div class="summary-value" id="year1Total">$0</div>
+                <div class="summary-label" style="font-size: 0.75rem; margin-top: 5px;" id="year1TotalAfterTax"></div>
             </div>
             <div class="summary-card">
                 <div class="summary-label">Year 4 Total</div>
                 <div class="summary-value" id="year4Total">$0</div>
+                <div class="summary-label" style="font-size: 0.75rem; margin-top: 5px;" id="year4TotalAfterTax"></div>
             </div>
             <div class="summary-card">
                 <div class="summary-label">4-Year Total</div>
                 <div class="summary-value" id="fourYearTotal">$0</div>
+                <div class="summary-label" style="font-size: 0.75rem; margin-top: 5px;" id="fourYearTotalAfterTax"></div>
             </div>
             <div class="summary-card">
                 <div class="summary-label">Average Annual</div>
                 <div class="summary-value" id="avgAnnual">$0</div>
+                <div class="summary-label" style="font-size: 0.75rem; margin-top: 5px;" id="avgAnnualAfterTax"></div>
             </div>
         </div>
 
@@ -428,6 +499,7 @@
                                 <th class="text-right">Stock Price</th>
                                 <th class="text-right">Stock Value</th>
                                 <th class="text-right"><strong>Total Comp</strong></th>
+                                <th class="text-right" id="afterTaxHeader" style="display: none;"><strong>After Tax</strong></th>
                             </tr>
                         </thead>
                         <tbody id="tableBody">
@@ -486,6 +558,65 @@
                 return [0.25, 0.25, 0.25, 0.25];
             }
         }
+
+        // 2024 Federal tax brackets
+        const taxBrackets = {
+            single: [
+                { rate: 10, min: 0, max: 11600 },
+                { rate: 12, min: 11601, max: 47150 },
+                { rate: 22, min: 47151, max: 100525 },
+                { rate: 24, min: 100526, max: 191950 },
+                { rate: 32, min: 191951, max: 243725 },
+                { rate: 35, min: 243726, max: 609350 },
+                { rate: 37, min: 609351, max: Infinity }
+            ],
+            married: [
+                { rate: 10, min: 0, max: 23200 },
+                { rate: 12, min: 23201, max: 94300 },
+                { rate: 22, min: 94301, max: 201050 },
+                { rate: 24, min: 201051, max: 383900 },
+                { rate: 32, min: 383901, max: 487450 },
+                { rate: 35, min: 487451, max: 731200 },
+                { rate: 37, min: 731201, max: Infinity }
+            ],
+            head: [
+                { rate: 10, min: 0, max: 16550 },
+                { rate: 12, min: 16551, max: 63100 },
+                { rate: 22, min: 63101, max: 100500 },
+                { rate: 24, min: 100501, max: 191950 },
+                { rate: 32, min: 191951, max: 243700 },
+                { rate: 35, min: 243701, max: 609350 },
+                { rate: 37, min: 609351, max: Infinity }
+            ]
+        };
+
+        function formatTaxRange(min, max) {
+            const formatNum = (val) => '$' + Math.round(val).toLocaleString();
+            if (max === Infinity) {
+                return 'Over ' + formatNum(min - 1);
+            }
+            return formatNum(min) + ' to ' + formatNum(max);
+        }
+
+        function updateFederalTaxBrackets() {
+            const filingStatus = document.getElementById('filingStatus').value;
+            const federalTaxRate = document.getElementById('federalTaxRate');
+            const currentValue = federalTaxRate.value;
+            
+            const brackets = taxBrackets[filingStatus];
+            
+            federalTaxRate.innerHTML = brackets.map(bracket => 
+                `<option value="${bracket.rate}">${bracket.rate}% - ${formatTaxRange(bracket.min, bracket.max)}</option>`
+            ).join('');
+            
+            // Try to restore previous selection or default to first option
+            if (currentValue && federalTaxRate.querySelector(`option[value="${currentValue}"]`)) {
+                federalTaxRate.value = currentValue;
+            }
+            
+            saveInputs();
+            updateDisplay();
+        }
         
         let stackedChart, lineChart;
 
@@ -497,7 +628,8 @@
                 'baseSalaryYear3', 'bonusYear3',
                 'baseSalaryYear4', 'bonusYear4',
                 'stockYear1', 'stockYear2', 'stockYear3', 'stockYear4', 'stockGrowth',
-                'initialGrant', 'vestingSchedule', 'refresherYear2', 'refresherYear3', 'refresherYear4', 'refresherVesting'
+                'initialGrant', 'vestingSchedule', 'refresherYear2', 'refresherYear3', 'refresherYear4', 'refresherVesting',
+                'filingStatus', 'federalTaxRate', 'stateTaxRate', 'otherTaxRate'
             ];
             
             const values = {};
@@ -505,6 +637,9 @@
                 const element = document.getElementById(id);
                 values[id] = element.value;
             });
+            
+            // Handle checkbox separately
+            values['enableTax'] = document.getElementById('enableTax').checked;
             
             localStorage.setItem('databricksCompCalc', JSON.stringify(values));
         }
@@ -518,7 +653,11 @@
                     Object.keys(values).forEach(id => {
                         const element = document.getElementById(id);
                         if (element) {
-                            element.value = values[id];
+                            if (id === 'enableTax') {
+                                element.checked = values[id];
+                            } else {
+                                element.value = values[id];
+                            }
                         }
                     });
                 } catch (e) {
@@ -565,6 +704,13 @@
 
             const refresherVestingPercent = parseFloat(document.getElementById('refresherVesting').value) / 100;
 
+            // Tax calculation
+            const enableTax = document.getElementById('enableTax').checked;
+            const federalTaxRate = parseFloat(document.getElementById('federalTaxRate').value) / 100;
+            const stateTaxRate = parseFloat(document.getElementById('stateTaxRate').value) / 100;
+            const otherTaxRate = parseFloat(document.getElementById('otherTaxRate').value) / 100;
+            const totalTaxRate = enableTax ? (federalTaxRate + stateTaxRate + otherTaxRate) : 0;
+
             const years = [];
             
             for (let i = 0; i < 4; i++) {
@@ -593,6 +739,7 @@
                 const totalSharesVested = initialSharesVested + refresherSharesVested;
                 const stockValue = totalSharesVested * stockPrices[i];
                 const totalComp = currentBaseSalary + bonus + stockValue;
+                const afterTaxComp = Math.round(totalComp * (1 - totalTaxRate));
                 
                 years.push({
                     year: i + 1,
@@ -602,7 +749,8 @@
                     refresherSharesVested: Math.round(refresherSharesVested),
                     stockPrice: stockPrices[i],
                     stockValue: Math.round(stockValue),
-                    totalComp: Math.round(totalComp)
+                    totalComp: Math.round(totalComp),
+                    afterTaxComp: afterTaxComp
                 });
             }
             
@@ -611,6 +759,7 @@
 
         function updateDisplay() {
             const data = calculateComp();
+            const enableTax = document.getElementById('enableTax').checked;
             
             // Update summary cards
             document.getElementById('year1Total').textContent = formatCurrency(data[0].totalComp);
@@ -619,6 +768,24 @@
             const fourYearTotal = data.reduce((sum, year) => sum + year.totalComp, 0);
             document.getElementById('fourYearTotal').textContent = formatCurrency(fourYearTotal);
             document.getElementById('avgAnnual').textContent = formatCurrency(fourYearTotal / 4);
+
+            // Show/hide after-tax values in summary cards
+            if (enableTax) {
+                document.getElementById('year1TotalAfterTax').textContent = 'After tax: ' + formatCurrency(data[0].afterTaxComp);
+                document.getElementById('year4TotalAfterTax').textContent = 'After tax: ' + formatCurrency(data[3].afterTaxComp);
+                const fourYearAfterTax = data.reduce((sum, year) => sum + year.afterTaxComp, 0);
+                document.getElementById('fourYearTotalAfterTax').textContent = 'After tax: ' + formatCurrency(fourYearAfterTax);
+                document.getElementById('avgAnnualAfterTax').textContent = 'After tax: ' + formatCurrency(fourYearAfterTax / 4);
+            } else {
+                document.getElementById('year1TotalAfterTax').textContent = '';
+                document.getElementById('year4TotalAfterTax').textContent = '';
+                document.getElementById('fourYearTotalAfterTax').textContent = '';
+                document.getElementById('avgAnnualAfterTax').textContent = '';
+            }
+
+            // Show/hide after-tax column in table
+            const afterTaxHeader = document.getElementById('afterTaxHeader');
+            afterTaxHeader.style.display = enableTax ? '' : 'none';
             
             // Update table
             const tableBody = document.getElementById('tableBody');
@@ -632,6 +799,7 @@
                     <td class="text-right">$${row.stockPrice}</td>
                     <td class="text-right">${formatCurrency(row.stockValue)}</td>
                     <td class="text-right"><strong>${formatCurrency(row.totalComp)}</strong></td>
+                    ${enableTax ? `<td class="text-right"><strong>${formatCurrency(row.afterTaxComp)}</strong></td>` : ''}
                 </tr>
             `).join('');
             
@@ -641,39 +809,56 @@
 
         function updateCharts(data) {
             const labels = data.map(d => `Year ${d.year}`);
+            const enableTax = document.getElementById('enableTax').checked;
             
             // Stacked Bar Chart
             if (stackedChart) stackedChart.destroy();
             const stackedCtx = document.getElementById('stackedChart').getContext('2d');
+            
+            const datasets = [
+                {
+                    label: 'Base Salary',
+                    data: data.map(d => d.baseSalary),
+                    backgroundColor: '#3b82f6',
+                    stack: 'pre-tax'
+                },
+                {
+                    label: 'Bonus',
+                    data: data.map(d => d.bonus),
+                    backgroundColor: '#10b981',
+                    stack: 'pre-tax'
+                },
+                {
+                    label: 'Stock Value',
+                    data: data.map(d => d.stockValue),
+                    backgroundColor: '#8b5cf6',
+                    stack: 'pre-tax'
+                }
+            ];
+
+            // Add after-tax bar as separate grouped bar if tax is enabled
+            if (enableTax) {
+                datasets.push({
+                    label: 'After Tax',
+                    data: data.map(d => d.afterTaxComp),
+                    backgroundColor: '#ef4444',
+                    stack: 'after-tax'
+                });
+            }
+
             stackedChart = new Chart(stackedCtx, {
                 type: 'bar',
                 data: {
                     labels: labels,
-                    datasets: [
-                        {
-                            label: 'Base Salary',
-                            data: data.map(d => d.baseSalary),
-                            backgroundColor: '#3b82f6'
-                        },
-                        {
-                            label: 'Bonus',
-                            data: data.map(d => d.bonus),
-                            backgroundColor: '#10b981'
-                        },
-                        {
-                            label: 'Stock Value',
-                            data: data.map(d => d.stockValue),
-                            backgroundColor: '#8b5cf6'
-                        }
-                    ]
+                    datasets: datasets
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: true,
                     scales: {
-                        x: { stacked: true },
+                        x: { stacked: false }, // Group bars instead of stacking
                         y: { 
-                            stacked: true,
+                            stacked: true, // Stack within each group
                             ticks: {
                                 callback: function(value) {
                                     return '$' + (value / 1000).toFixed(0) + 'k';
@@ -696,19 +881,36 @@
             // Line Chart
             if (lineChart) lineChart.destroy();
             const lineCtx = document.getElementById('lineChart').getContext('2d');
+            
+            const lineDatasets = [{
+                label: 'Total Compensation',
+                data: data.map(d => d.totalComp),
+                borderColor: '#8b5cf6',
+                backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                borderWidth: 3,
+                tension: 0.4,
+                fill: true
+            }];
+
+            // Add after-tax line if tax is enabled
+            if (enableTax) {
+                lineDatasets.push({
+                    label: 'After Tax Compensation',
+                    data: data.map(d => d.afterTaxComp),
+                    borderColor: '#ef4444',
+                    backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                    borderWidth: 3,
+                    borderDash: [10, 5],
+                    tension: 0.4,
+                    fill: true
+                });
+            }
+
             lineChart = new Chart(lineCtx, {
                 type: 'line',
                 data: {
                     labels: labels,
-                    datasets: [{
-                        label: 'Total Compensation',
-                        data: data.map(d => d.totalComp),
-                        borderColor: '#8b5cf6',
-                        backgroundColor: 'rgba(139, 92, 246, 0.1)',
-                        borderWidth: 3,
-                        tension: 0.4,
-                        fill: true
-                    }]
+                    datasets: lineDatasets
                 },
                 options: {
                     responsive: true,
@@ -726,7 +928,7 @@
                         tooltip: {
                             callbacks: {
                                 label: function(context) {
-                                    return 'Total: $' + context.parsed.y.toLocaleString();
+                                    return context.dataset.label + ': $' + context.parsed.y.toLocaleString();
                                 }
                             }
                         }
@@ -739,7 +941,8 @@
         function setupInputListeners() {
             const inputs = [
                 'bonusYear1', 'bonusYear2', 'bonusYear3', 'bonusYear4',
-                'initialGrant', 'vestingSchedule', 'refresherYear2', 'refresherYear3', 'refresherYear4', 'refresherVesting'
+                'initialGrant', 'vestingSchedule', 'refresherYear2', 'refresherYear3', 'refresherYear4', 'refresherVesting',
+                'enableTax', 'federalTaxRate', 'stateTaxRate', 'otherTaxRate'
             ];
 
             inputs.forEach(id => {
@@ -748,6 +951,11 @@
                     saveInputs();
                     updateDisplay();
                 });
+            });
+
+            // Filing status changes the tax brackets
+            document.getElementById('filingStatus').addEventListener('change', function() {
+                updateFederalTaxBrackets();
             });
 
             // Special handling for stock inputs
@@ -847,6 +1055,7 @@
 
         // Initialize
         loadInputs();
+        updateFederalTaxBrackets(); // Populate tax brackets on load
         setupInputListeners();
         updateDisplay();
     </script>
