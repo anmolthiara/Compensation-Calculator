@@ -415,7 +415,7 @@
             background: var(--bg-card);
         }
 
-        .comp-option input[type="radio"]:checked + .comp-option-content {
+        .comp-option input[type="radio"]:checked+.comp-option-content {
             border-color: #8feeff;
             background: var(--bg-card);
             box-shadow: 0 0 0 3px rgba(143, 238, 255, 0.1);
@@ -452,73 +452,73 @@
             table td {
                 padding: 8px;
             }
-            
+
             /* Onboarding step titles */
             .onboarding-step h2 {
                 font-size: 1.3rem !important;
             }
-            
+
             .onboarding-step p {
                 font-size: 0.9rem !important;
             }
-            
+
             .onboarding-step {
                 padding: 20px 10px !important;
             }
-            
+
             /* Compensation option cards */
             .comp-option {
                 min-width: 100% !important;
             }
-            
+
             .comp-option-content {
                 padding: 15px !important;
             }
-            
-            .comp-option-content > div:first-child {
+
+            .comp-option-content>div:first-child {
                 font-size: 0.95rem !important;
             }
-            
-            .comp-option-content > div:last-child {
+
+            .comp-option-content>div:last-child {
                 font-size: 0.8rem !important;
             }
-            
+
             /* Header buttons */
             #startOverBtn,
             #darkModeToggle {
                 padding: 6px 12px !important;
                 font-size: 0.8rem !important;
             }
-            
+
             /* Onboarding buttons */
             .onboarding-step button {
                 padding: 12px !important;
                 font-size: 0.95rem !important;
             }
-            
+
             /* Profile banner */
             #profileBanner {
                 padding: 15px !important;
             }
-            
+
             #profileBanner h3 {
                 font-size: 1rem !important;
             }
-            
+
             #profileBanner p {
                 font-size: 0.8rem !important;
             }
-            
+
             #profileBadge {
                 padding: 6px 12px !important;
                 font-size: 0.75rem !important;
             }
-            
+
             #profileBanner button {
                 padding: 6px 12px !important;
                 font-size: 0.75rem !important;
             }
-            
+
             /* AI Analysis button */
             #analyzeBtn {
                 padding: 12px !important;
@@ -537,7 +537,8 @@
                     Thiara</p>
             </div>
             <div style="display: flex; gap: 10px;">
-                <button id="startOverBtn" onclick="resetOnboarding()" style="display: none; padding: 8px 16px; background: var(--bg-secondary); color: var(--text-primary); border: 2px solid var(--border-color); border-radius: 6px; cursor: pointer; font-size: 0.9rem; font-weight: 500;">
+                <button id="startOverBtn" onclick="resetOnboarding()"
+                    style="display: none; padding: 8px 16px; background: var(--bg-secondary); color: var(--text-primary); border: 2px solid var(--border-color); border-radius: 6px; cursor: pointer; font-size: 0.9rem; font-weight: 500;">
                     ⚙️ Start Over
                 </button>
                 <button id="darkModeToggle" onclick="toggleDarkMode()"
@@ -565,13 +566,15 @@
                         <div class="input-group">
                             <label for="onboardRole">Role/Title *</label>
                             <div class="autocomplete-wrapper">
-                                <input type="text" id="onboardRole" placeholder="e.g., Senior Software Engineer" autocomplete="off" required>
+                                <input type="text" id="onboardRole" placeholder="e.g., Senior Software Engineer"
+                                    autocomplete="off" required>
                             </div>
                         </div>
                         <div class="input-group">
                             <label for="onboardLocation">Location *</label>
                             <div class="autocomplete-wrapper">
-                                <input type="text" id="onboardLocation" placeholder="e.g., San Francisco, CA" autocomplete="off" required>
+                                <input type="text" id="onboardLocation" placeholder="e.g., San Francisco, CA"
+                                    autocomplete="off" required>
                             </div>
                         </div>
                         <div class="input-group">
@@ -581,7 +584,8 @@
                         <div class="input-group">
                             <label for="onboardIndustry">Industry *</label>
                             <div class="autocomplete-wrapper">
-                                <input type="text" id="onboardIndustry" placeholder="e.g., Technology" autocomplete="off" required>
+                                <input type="text" id="onboardIndustry" placeholder="e.g., Technology"
+                                    autocomplete="off" required>
                             </div>
                         </div>
                         <div class="input-group">
@@ -592,7 +596,7 @@
                         </div>
                     </div>
 
-                    <button onclick="goToStep2()" 
+                    <button onclick="goToStep2()"
                         style="width: 100%; padding: 15px; background: #8feeff; color: #0a0a0a; border: none; border-radius: 6px; cursor: pointer; font-size: 1.1rem; font-weight: 600; transition: all 0.3s ease; margin-top: 20px;">
                         Continue →
                     </button>
@@ -602,8 +606,10 @@
             <!-- Step 2: Compensation Structure -->
             <div id="onboardingStep2" class="onboarding-step" style="display: none;">
                 <div style="max-width: 800px; margin: 0 auto;">
-                    <h2 style="font-size: 1.8rem; margin-bottom: 10px; text-align: center;">Your Compensation Structure 💰</h2>
-                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: 40px; font-size: 1.1rem;">
+                    <h2 style="font-size: 1.8rem; margin-bottom: 10px; text-align: center;">Your Compensation Structure
+                        💰</h2>
+                    <p
+                        style="text-align: center; color: var(--text-secondary); margin-bottom: 40px; font-size: 1.1rem;">
                         Tell us about your compensation package
                     </p>
 
@@ -614,15 +620,19 @@
                             <label class="comp-option" style="flex: 1; min-width: 250px;">
                                 <input type="radio" name="cashType" value="straight" checked>
                                 <div class="comp-option-content">
-                                    <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 5px;">💵 Straight Salary</div>
-                                    <div style="font-size: 0.85rem; color: var(--text-secondary);">Fixed annual salary only</div>
+                                    <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 5px;">💵 Straight
+                                        Salary</div>
+                                    <div style="font-size: 0.85rem; color: var(--text-secondary);">Fixed annual salary
+                                        only</div>
                                 </div>
                             </label>
                             <label class="comp-option" style="flex: 1; min-width: 250px;">
                                 <input type="radio" name="cashType" value="commission">
                                 <div class="comp-option-content">
-                                    <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 5px;">📈 Salary + Commission (OTE)</div>
-                                    <div style="font-size: 0.85rem; color: var(--text-secondary);">Base + variable performance pay</div>
+                                    <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 5px;">📈 Salary +
+                                        Commission (OTE)</div>
+                                    <div style="font-size: 0.85rem; color: var(--text-secondary);">Base + variable
+                                        performance pay</div>
                                 </div>
                             </label>
                         </div>
@@ -635,7 +645,8 @@
                             <label class="comp-option" style="flex: 1; min-width: 200px;">
                                 <input type="radio" name="equityType" value="none" checked>
                                 <div class="comp-option-content">
-                                    <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 5px;">❌ No Equity</div>
+                                    <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 5px;">❌ No Equity
+                                    </div>
                                     <div style="font-size: 0.85rem; color: var(--text-secondary);">Cash only</div>
                                 </div>
                             </label>
@@ -643,7 +654,8 @@
                                 <input type="radio" name="equityType" value="rsu">
                                 <div class="comp-option-content">
                                     <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 5px;">📊 RSUs</div>
-                                    <div style="font-size: 0.85rem; color: var(--text-secondary);">Restricted Stock Units</div>
+                                    <div style="font-size: 0.85rem; color: var(--text-secondary);">Restricted Stock
+                                        Units</div>
                                 </div>
                             </label>
                             <label class="comp-option" style="flex: 1; min-width: 200px;">
@@ -657,11 +669,11 @@
                     </div>
 
                     <div style="display: flex; gap: 15px;">
-                        <button onclick="goToStep1()" 
+                        <button onclick="goToStep1()"
                             style="flex: 1; padding: 15px; background: var(--bg-secondary); color: var(--text-primary); border: 2px solid var(--border-color); border-radius: 6px; cursor: pointer; font-size: 1.1rem; font-weight: 600;">
                             ← Back
                         </button>
-                        <button onclick="completeOnboarding()" 
+                        <button onclick="completeOnboarding()"
                             style="flex: 2; padding: 15px; background: #8feeff; color: #0a0a0a; border: none; border-radius: 6px; cursor: pointer; font-size: 1.1rem; font-weight: 600; transition: all 0.3s ease;">
                             Get Started 🚀
                         </button>
@@ -672,723 +684,726 @@
 
         <!-- Calculator Section (Hidden Initially) -->
         <div id="calculatorSection" style="display: none;">
-        
-        <!-- User Profile Banner -->
-        <div id="profileBanner" style="background: var(--bg-secondary); border: 2px solid var(--border-color); border-radius: 8px; padding: 20px; margin-bottom: 30px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
-                <div>
-                    <h3 style="margin: 0 0 8px 0; font-size: 1.2rem;" id="profileRole">Loading...</h3>
-                    <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;" id="profileDetails">Loading...</p>
-                </div>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                    <span id="profileBadge" style="padding: 8px 16px; background: #8feeff; color: #0a0a0a; border-radius: 6px; font-size: 0.85rem; font-weight: 600;">💵 Cash Only</span>
-                    <button onclick="editCompStructure()" style="padding: 8px 16px; background: var(--bg-card); color: var(--text-primary); border: 2px solid var(--border-color); border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: all 0.3s ease;">
-                        ✏️ Edit
-                    </button>
+
+            <!-- User Profile Banner -->
+            <div id="profileBanner"
+                style="background: var(--bg-secondary); border: 2px solid var(--border-color); border-radius: 8px; padding: 20px; margin-bottom: 30px;">
+                <div
+                    style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+                    <div>
+                        <h3 style="margin: 0 0 8px 0; font-size: 1.2rem;" id="profileRole">Loading...</h3>
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;" id="profileDetails">
+                            Loading...</p>
+                    </div>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <span id="profileBadge"
+                            style="padding: 8px 16px; background: #8feeff; color: #0a0a0a; border-radius: 6px; font-size: 0.85rem; font-weight: 600;">💵
+                            Cash Only</span>
+                        <button onclick="editCompStructure()"
+                            style="padding: 8px 16px; background: var(--bg-card); color: var(--text-primary); border: 2px solid var(--border-color); border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: all 0.3s ease;">
+                            ✏️ Edit
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- RSU Calculator Content -->
-        <div id="rsuCalculator">
-            <div class="inputs-grid-four">
-                <!-- Cash Compensation -->
-                <div class="input-section">
-                    <div class="section-header" onclick="toggleSection('cashCompSection')">
-                        <h2>Cash Compensation</h2>
-                        <span class="collapse-icon" id="cashCompIcon">▼</span>
-                    </div>
-                    <div class="collapsible-content" id="cashCompSection">
-                        <p style="font-size: 0.85rem; color: #57534e; margin-bottom: 15px;">Auto-applies 3% annual raise
-                            each year</p>
+            <!-- RSU Calculator Content -->
+            <div id="rsuCalculator">
+                <div class="inputs-grid-four">
+                    <!-- Cash Compensation -->
+                    <div class="input-section">
+                        <div class="section-header" onclick="toggleSection('cashCompSection')">
+                            <h2>Cash Compensation</h2>
+                            <span class="collapse-icon" id="cashCompIcon">▼</span>
+                        </div>
+                        <div class="collapsible-content" id="cashCompSection">
+                            <p style="font-size: 0.85rem; color: #57534e; margin-bottom: 15px;">Auto-applies 3% annual
+                                raise
+                                each year</p>
 
-                        <!-- Straight Salary Mode (default) -->
-                        <div id="straightSalaryMode">
+                            <!-- Straight Salary Mode (default) -->
+                            <div id="straightSalaryMode">
+                                <div class="input-group">
+                                    <label for="baseSalary">Starting Base Salary ($)</label>
+                                    <input type="number" id="baseSalary" min="0" step="1000" placeholder="0">
+                                </div>
+
+                                <div class="input-group">
+                                    <label style="display: flex; align-items: center; cursor: pointer;">
+                                        <input type="checkbox" id="enableAnnualRaise" checked
+                                            style="width: auto; margin-right: 10px; cursor: pointer;">
+                                        <span>Apply 3% annual raise</span>
+                                    </label>
+                                </div>
+
+                                <div class="input-group">
+                                    <label for="bonusPercent">Annual Bonus (%)</label>
+                                    <input type="number" id="bonusPercent" min="0" max="100" step="0.5" placeholder="0">
+                                    <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">Applied to base
+                                        salary each
+                                        year
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Commission/OTE Mode -->
+                            <div id="commissionMode" style="display: none;">
+                                <!-- Toggle between OTE and Base+Variable -->
+                                <div class="input-group" style="margin-bottom: 20px;">
+                                    <label style="display: flex; align-items: center; cursor: pointer;">
+                                        <input type="checkbox" id="oteInputMode"
+                                            style="width: auto; margin-right: 10px; cursor: pointer;">
+                                        <span>Enter OTE (On-Target Earnings) instead of Base + Variable</span>
+                                    </label>
+                                </div>
+
+                                <!-- Base + Variable Mode (default) -->
+                                <div id="baseVariableInputs">
+                                    <div class="input-group">
+                                        <label for="commissionBase">Base Salary ($)</label>
+                                        <input type="number" id="commissionBase" min="0" step="1000" placeholder="0">
+                                    </div>
+
+                                    <div class="input-group">
+                                        <label for="targetVariable">Target Variable/Commission ($)</label>
+                                        <input type="number" id="targetVariable" min="0" step="1000" placeholder="0">
+                                        <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">
+                                            Target commission at 100% attainment
+                                        </p>
+                                    </div>
+
+                                    <div
+                                        style="padding: 12px; background: var(--bg-secondary); border-radius: 6px; margin-top: 10px;">
+                                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">
+                                            <strong>OTE (On-Target Earnings):</strong> <span
+                                                id="calculatedOTE">$0</span>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- OTE Input Mode -->
+                                <div id="oteInputs" style="display: none;">
+                                    <div class="input-group">
+                                        <label for="oteAmount">OTE (On-Target Earnings) ($)</label>
+                                        <input type="number" id="oteAmount" min="0" step="1000" placeholder="0">
+                                    </div>
+
+                                    <div class="input-group">
+                                        <label for="baseSplit">Base Salary % of OTE</label>
+                                        <input type="number" id="baseSplit" min="0" max="100" step="1" placeholder="70"
+                                            value="70">
+                                        <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">
+                                            Common splits: 70/30, 75/25, 80/20, 60/40
+                                        </p>
+                                    </div>
+
+                                    <div
+                                        style="padding: 12px; background: var(--bg-secondary); border-radius: 6px; margin-top: 10px;">
+                                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0 0 5px 0;">
+                                            <strong>Base Salary:</strong> <span id="calculatedBase">$0</span>
+                                        </p>
+                                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">
+                                            <strong>Target Variable:</strong> <span id="calculatedVariable">$0</span>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="input-group" style="margin-top: 15px;">
+                                    <label style="display: flex; align-items: center; cursor: pointer;">
+                                        <input type="checkbox" id="enableAnnualRaiseComm" checked
+                                            style="width: auto; margin-right: 10px; cursor: pointer;">
+                                        <span>Apply 3% annual raise to base salary</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Sign-On Bonus (both modes) -->
                             <div class="input-group">
-                                <label for="baseSalary">Starting Base Salary ($)</label>
-                                <input type="number" id="baseSalary" min="0" step="1000" placeholder="0">
+                                <label for="signOnBonus">Sign-On Bonus ($)</label>
+                                <input type="number" id="signOnBonus" min="0" step="1000" placeholder="0">
+                                <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">One-time payment in Year
+                                    1
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RSU Grants -->
+                    <div class="input-section" id="rsuGrantsInputSection">
+                        <div class="section-header" onclick="toggleSection('rsuGrantsSection')">
+                            <h2>RSU Grants</h2>
+                            <span class="collapse-icon" id="rsuGrantsIcon">▼</span>
+                        </div>
+                        <div class="collapsible-content" id="rsuGrantsSection">
+                            <div class="input-group">
+                                <label for="initialGrant">Initial Grant (RSUs)</label>
+                                <input type="number" id="initialGrant" min="0" step="10" placeholder="0">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="vestingSchedule">Vesting Schedule</label>
+                                <select id="vestingSchedule"
+                                    style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.95rem; background: var(--bg-card); color: var(--text-primary);">
+                                    <option value="front">Front-loaded (40/30/20/10)</option>
+                                    <option value="even">Even (25/25/25/25)</option>
+                                </select>
+                            </div>
+
+                            <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;">
+                                <div class="input-group" style="margin-bottom: 15px;">
+                                    <label style="display: flex; align-items: center; cursor: pointer;">
+                                        <input type="checkbox" id="enableRefreshers"
+                                            style="width: auto; margin-right: 10px; cursor: pointer;">
+                                        <span style="font-weight: 500;">Include Annual Refreshers</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div id="refreshersInputs" style="display: none;">
+                                <div class="input-group">
+                                    <label for="refresherYear2">Year 2 Grant (RSUs)</label>
+                                    <input type="number" id="refresherYear2" min="0" step="10" placeholder="0">
+                                </div>
+
+                                <div class="input-group">
+                                    <label for="refresherYear3">Year 3 Grant (RSUs)</label>
+                                    <input type="number" id="refresherYear3" min="0" step="10" placeholder="0">
+                                </div>
+
+                                <div class="input-group">
+                                    <label for="refresherYear4">Year 4 Grant (RSUs)</label>
+                                    <input type="number" id="refresherYear4" min="0" step="10" placeholder="0">
+                                </div>
+
+                                <div class="input-group">
+                                    <label for="refresherVesting">Refresher Vesting % (per year)</label>
+                                    <input type="number" id="refresherVesting" min="0" max="100" step="1" value="25">
+                                    <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">% that vests in year
+                                        granted
+                                        (typical: 25% for 4-yr vest)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stock Prices -->
+                    <div class="input-section" id="stockPriceInputSection">
+                        <div class="section-header" onclick="toggleSection('stockPriceSection')">
+                            <h2>Stock Price per Year</h2>
+                            <span class="collapse-icon" id="stockPriceIcon">▼</span>
+                        </div>
+                        <div class="collapsible-content" id="stockPriceSection">
+                            <div class="input-group">
+                                <label for="stockYear1">Year 1 Stock Price ($)</label>
+                                <input type="number" id="stockYear1" min="0" step="1" placeholder="0">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="stockGrowth">Annual Stock Growth (%)</label>
+                                <input type="number" id="stockGrowth" min="-100" max="500" step="1" placeholder="0">
+                                <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">Auto-calculates Years
+                                    2-4
+                                    prices
+                                    (0 = no growth)</p>
+                            </div>
+
+                            <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;">
+                                <p style="font-size: 0.85rem; color: #57534e; margin-bottom: 10px; font-weight: 500;">Or
+                                    manually set each year:</p>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="stockYear2">Year 2 Stock Price ($)</label>
+                                <input type="number" id="stockYear2" min="0" step="1" placeholder="0">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="stockYear3">Year 3 Stock Price ($)</label>
+                                <input type="number" id="stockYear3" min="0" step="1" placeholder="0">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="stockYear4">Year 4 Stock Price ($)</label>
+                                <input type="number" id="stockYear4" min="0" step="1" placeholder="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tax Withholding -->
+                    <div class="input-section">
+                        <div class="section-header" onclick="toggleSection('taxWithholdingSection')">
+                            <h2>Tax Withholding</h2>
+                            <span class="collapse-icon" id="taxWithholdingIcon">▼</span>
+                        </div>
+                        <div class="collapsible-content" id="taxWithholdingSection">
+                            <p style="font-size: 0.85rem; color: #57534e; margin-bottom: 15px;">Optional: Calculate
+                                after-tax
+                                compensation using progressive federal tax brackets</p>
+
+                            <div class="input-group">
+                                <label for="enableTax">
+                                    <input type="checkbox" id="enableTax" style="width: auto; margin-right: 8px;">
+                                    Apply tax withholding
+                                </label>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="filingStatus">Filing Status</label>
+                                <select id="filingStatus"
+                                    style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.95rem; background: var(--bg-card); color: var(--text-primary);">
+                                    <option value="single">Single</option>
+                                    <option value="married">Married Filing Jointly</option>
+                                    <option value="head">Head of Household</option>
+                                </select>
+                                <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">Automatically applies
+                                    2026
+                                    standard deduction and progressive brackets</p>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="stateTaxRate">State Tax Rate (%)</label>
+                                <input type="number" id="stateTaxRate" min="0" max="20" step="0.5" placeholder="0">
+                                <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">CA: ~9-13%, NY: ~4-11%,
+                                    TX/FL:
+                                    0%</p>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="ficaTaxRate">FICA Tax (%)</label>
+                                <input type="number" id="ficaTaxRate" min="0" max="20" step="0.01" value="7.65">
+                                <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">Social Security (6.2%) +
+                                    Medicare (1.45%) = 7.65%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary Stats -->
+                <div class="summary-grid">
+                    <div class="summary-card">
+                        <div class="summary-label">Year 1 Total</div>
+                        <div class="summary-value" id="year1Total" onclick="copyToClipboard(this)"
+                            style="cursor: pointer;" title="Click to copy">$0</div>
+                        <div class="summary-label" style="font-size: 0.75rem; margin-top: 5px;" id="year1TotalAfterTax">
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-label">Year 4 Total</div>
+                        <div class="summary-value" id="year4Total" onclick="copyToClipboard(this)"
+                            style="cursor: pointer;" title="Click to copy">$0</div>
+                        <div class="summary-label" style="font-size: 0.75rem; margin-top: 5px;" id="year4TotalAfterTax">
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-label">4-Year Total</div>
+                        <div class="summary-value" id="fourYearTotal" onclick="copyToClipboard(this)"
+                            style="cursor: pointer;" title="Click to copy">$0</div>
+                        <div class="summary-label" style="font-size: 0.75rem; margin-top: 5px;"
+                            id="fourYearTotalAfterTax">
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-label">Average Annual</div>
+                        <div class="summary-value" id="avgAnnual" onclick="copyToClipboard(this)"
+                            style="cursor: pointer;" title="Click to copy">$0</div>
+                        <div class="summary-label" style="font-size: 0.75rem; margin-top: 5px;" id="avgAnnualAfterTax">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stacked Bar Chart -->
+                <div class="chart-container">
+                    <div class="section-header" onclick="toggleSection('stackedChartSection')">
+                        <h2>Compensation Breakdown by Year</h2>
+                        <span class="collapse-icon" id="stackedChartIcon">▼</span>
+                    </div>
+                    <div class="collapsible-content" id="stackedChartSection">
+                        <canvas id="stackedChart" onclick="copyChartToClipboard('stackedChart')"
+                            style="cursor: pointer;" title="Click to copy chart as image"></canvas>
+                    </div>
+                </div>
+
+                <!-- Detailed Table -->
+                <div class="chart-container">
+                    <div class="section-header" onclick="toggleSection('detailedTableSection')">
+                        <h2>Detailed Breakdown</h2>
+                        <span class="collapse-icon" id="detailedTableIcon">▼</span>
+                    </div>
+                    <div class="collapsible-content" id="detailedTableSection">
+                        <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Year</th>
+                                        <th class="text-right">Base Salary</th>
+                                        <th class="text-right">Target Variable</th>
+                                        <th class="text-right">Sign-On</th>
+                                        <th class="text-right">Initial RSUs</th>
+                                        <th class="text-right">Refresher RSUs</th>
+                                        <th class="text-right">Stock Price</th>
+                                        <th class="text-right">Stock Value</th>
+                                        <th class="text-right"><strong>Total Comp</strong></th>
+                                        <th class="text-right" id="afterTaxHeader" style="display: none;"><strong>After
+                                                Tax</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- AI Compensation Comparison -->
+                <div class="chart-container" style="margin-top: 30px;">
+                    <h2 style="margin-bottom: 20px;">🤖 AI Compensation Analysis</h2>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 20px;">
+                        Get AI-powered insights comparing your compensation package to industry standards.
+                    </p>
+
+                    <!-- Show profile summary instead of input fields -->
+                    <div
+                        style="padding: 20px; background: var(--bg-secondary); border-radius: 8px; margin-bottom: 20px; border: 2px solid var(--border-color);">
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                            <div>
+                                <p
+                                    style="font-size: 0.75rem; color: var(--text-secondary); margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.5px;">
+                                    Role</p>
+                                <p style="font-size: 0.95rem; font-weight: 600; margin: 0;" id="aiSummaryRole">-</p>
+                            </div>
+                            <div>
+                                <p
+                                    style="font-size: 0.75rem; color: var(--text-secondary); margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.5px;">
+                                    Location</p>
+                                <p style="font-size: 0.95rem; font-weight: 600; margin: 0;" id="aiSummaryLocation">-</p>
+                            </div>
+                            <div>
+                                <p
+                                    style="font-size: 0.75rem; color: var(--text-secondary); margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.5px;">
+                                    Experience</p>
+                                <p style="font-size: 0.95rem; font-weight: 600; margin: 0;" id="aiSummaryYears">-</p>
+                            </div>
+                            <div>
+                                <p
+                                    style="font-size: 0.75rem; color: var(--text-secondary); margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.5px;">
+                                    Industry</p>
+                                <p style="font-size: 0.95rem; font-weight: 600; margin: 0;" id="aiSummaryIndustry">-</p>
+                            </div>
+                            <div>
+                                <p
+                                    style="font-size: 0.75rem; color: var(--text-secondary); margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.5px;">
+                                    Company</p>
+                                <p style="font-size: 0.95rem; font-weight: 600; margin: 0;" id="aiSummaryCompany">-</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="analyzeCompensation()" id="analyzeBtn"
+                        style="width: 100%; padding: 15px; background: #8feeff; color: #0a0a0a; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: all 0.3s ease;">
+                        Analyze My Compensation 🚀
+                    </button>
+
+                    <div id="aiAnalysisResult"
+                        style="margin-top: 20px; padding: 25px; background: var(--bg-card); border-radius: 8px; border: 2px solid #8feeff; display: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                        <h3
+                            style="margin-bottom: 20px; color: #8feeff; font-size: 1.3rem; border-bottom: 2px solid #8feeff; padding-bottom: 10px;">
+                            📊 Analysis Results</h3>
+                        <div id="aiAnalysisContent"
+                            style="line-height: 1.9; color: var(--text-primary); font-size: 0.95rem;"></div>
+                    </div>
+
+                    <div id="aiLoadingSpinner" style="display: none; text-align: center; margin-top: 20px;">
+                        <div
+                            style="display: inline-block; width: 40px; height: 40px; border: 4px solid var(--border-color); border-top-color: #8feeff; border-radius: 50%; animation: spin 1s linear infinite;">
+                        </div>
+                        <p style="margin-top: 10px; color: var(--text-secondary);">Analyzing your compensation...</p>
+                    </div>
+                </div>
+
+
+                <!-- Levels.fyi Comparison -->
+                <div class="chart-container">
+                    <div class="section-header" onclick="toggleSection('levelsFyiSection')">
+                        <h2>📊 Compare with Market Data</h2>
+                        <span class="collapse-icon" id="levelsFyiIcon">▼</span>
+                    </div>
+                    <div class="collapsible-content" id="levelsFyiSection">
+                        <p style="font-size: 0.9rem; color: #57534e; margin-bottom: 15px;">
+                            Use the interactive chart below to compare your compensation with market data from
+                            levels.fyi
+                        </p>
+
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 15px;">
+                            <div>
+                                <label for="levelsCompany"
+                                    style="display: block; font-weight: 500; margin-bottom: 8px; font-size: 0.9rem;">Company</label>
+                                <div class="autocomplete-wrapper">
+                                    <input type="text" id="levelsCompany"
+                                        style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.9rem; background: var(--bg-card); color: var(--text-primary);"
+                                        placeholder="e.g., Meta" autocomplete="off">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="levelsTrack"
+                                    style="display: block; font-weight: 500; margin-bottom: 8px; font-size: 0.9rem;">Job
+                                    Track</label>
+                                <div class="autocomplete-wrapper">
+                                    <input type="text" id="levelsTrack"
+                                        style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.9rem; background: var(--bg-card); color: var(--text-primary);"
+                                        placeholder="e.g., Software Engineer" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+
+                        <iframe id="levelsIframe"
+                            src="https://www.levels.fyi/charts_embed.html?company=Meta&track=Software%20Engineer&hide_selector=true"
+                            height="500" style="width: 100%; border: 1px solid #e5e7eb; border-radius: 8px;"
+                            frameborder="0" scrolling="auto">
+                        </iframe>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- End RSU Calculator -->
+
+            <!-- ISO Calculator Content -->
+            <div id="isoCalculator" style="display: none;">
+                <div class="inputs-grid-four">
+                    <!-- Cash Compensation -->
+                    <div class="input-section">
+                        <div class="section-header" onclick="toggleSection('isoCashCompSection')">
+                            <h2>Cash Compensation</h2>
+                            <span class="collapse-icon" id="isoCashCompIcon">▼</span>
+                        </div>
+                        <div class="collapsible-content" id="isoCashCompSection">
+                            <div class="input-group">
+                                <label for="isoBaseSalary">Base Salary ($)</label>
+                                <input type="number" id="isoBaseSalary" min="0" step="1000" placeholder="0">
                             </div>
 
                             <div class="input-group">
                                 <label style="display: flex; align-items: center; cursor: pointer;">
-                                    <input type="checkbox" id="enableAnnualRaise" checked
+                                    <input type="checkbox" id="enableISOAnnualRaise" checked
                                         style="width: auto; margin-right: 10px; cursor: pointer;">
                                     <span>Apply 3% annual raise</span>
                                 </label>
                             </div>
 
                             <div class="input-group">
-                                <label for="bonusPercent">Annual Bonus (%)</label>
-                                <input type="number" id="bonusPercent" min="0" max="100" step="0.5" placeholder="0">
-                                <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">Applied to base salary each
-                                    year
+                                <label for="isoBonusPercent">Bonus (%)</label>
+                                <input type="number" id="isoBonusPercent" min="0" max="200" step="1" placeholder="0">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="isoSignOnBonus">Sign-On Bonus ($)</label>
+                                <input type="number" id="isoSignOnBonus" min="0" step="1000" placeholder="0">
+                                <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">One-time payment in Year
+                                    1
                                 </p>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Commission/OTE Mode -->
-                        <div id="commissionMode" style="display: none;">
-                            <!-- Toggle between OTE and Base+Variable -->
-                            <div class="input-group" style="margin-bottom: 20px;">
-                                <label style="display: flex; align-items: center; cursor: pointer;">
-                                    <input type="checkbox" id="oteInputMode" 
-                                        style="width: auto; margin-right: 10px; cursor: pointer;">
-                                    <span>Enter OTE (On-Target Earnings) instead of Base + Variable</span>
-                                </label>
-                            </div>
-
-                            <!-- Base + Variable Mode (default) -->
-                            <div id="baseVariableInputs">
-                                <div class="input-group">
-                                    <label for="commissionBase">Base Salary ($)</label>
-                                    <input type="number" id="commissionBase" min="0" step="1000" placeholder="0">
-                                </div>
-
-                                <div class="input-group">
-                                    <label for="targetVariable">Target Variable/Commission ($)</label>
-                                    <input type="number" id="targetVariable" min="0" step="1000" placeholder="0">
-                                    <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">
-                                        Target commission at 100% attainment
-                                    </p>
-                                </div>
-
-                                <div style="padding: 12px; background: var(--bg-secondary); border-radius: 6px; margin-top: 10px;">
-                                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">
-                                        <strong>OTE (On-Target Earnings):</strong> <span id="calculatedOTE">$0</span>
-                                    </p>
-                                </div>
-                            </div>
-
-                            <!-- OTE Input Mode -->
-                            <div id="oteInputs" style="display: none;">
-                                <div class="input-group">
-                                    <label for="oteAmount">OTE (On-Target Earnings) ($)</label>
-                                    <input type="number" id="oteAmount" min="0" step="1000" placeholder="0">
-                                </div>
-
-                                <div class="input-group">
-                                    <label for="baseSplit">Base Salary % of OTE</label>
-                                    <input type="number" id="baseSplit" min="0" max="100" step="1" placeholder="70" value="70">
-                                    <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">
-                                        Common splits: 70/30, 75/25, 80/20, 60/40
-                                    </p>
-                                </div>
-
-                                <div style="padding: 12px; background: var(--bg-secondary); border-radius: 6px; margin-top: 10px;">
-                                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0 0 5px 0;">
-                                        <strong>Base Salary:</strong> <span id="calculatedBase">$0</span>
-                                    </p>
-                                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">
-                                        <strong>Target Variable:</strong> <span id="calculatedVariable">$0</span>
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="input-group" style="margin-top: 15px;">
-                                <label style="display: flex; align-items: center; cursor: pointer;">
-                                    <input type="checkbox" id="enableAnnualRaiseComm" checked
-                                        style="width: auto; margin-right: 10px; cursor: pointer;">
-                                    <span>Apply 3% annual raise to base salary</span>
-                                </label>
-                            </div>
+                    <!-- ISO Basics -->
+                    <div class="input-section">
+                        <div class="section-header" onclick="toggleSection('isoBasicsSection')">
+                            <h2>ISO Basics</h2>
+                            <span class="collapse-icon" id="isoBasicsIcon">▼</span>
                         </div>
+                        <div class="collapsible-content" id="isoBasicsSection">
+                            <div class="input-group">
+                                <label for="numberOfOptions">Number of Options</label>
+                                <input type="number" id="numberOfOptions" min="0" step="100" placeholder="0">
+                            </div>
 
-                        <!-- Sign-On Bonus (both modes) -->
-                        <div class="input-group">
-                            <label for="signOnBonus">Sign-On Bonus ($)</label>
-                            <input type="number" id="signOnBonus" min="0" step="1000" placeholder="0">
-                            <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">One-time payment in Year 1
-                            </p>
+                            <div class="input-group">
+                                <label for="strikePrice">Strike Price ($)</label>
+                                <input type="number" id="strikePrice" min="0" step="0.01" placeholder="0">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="assumedSharePrice">Assumed Future Share Price ($)</label>
+                                <input type="number" id="assumedSharePrice" min="0" step="0.01" placeholder="0">
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- RSU Grants -->
-                <div class="input-section" id="rsuGrantsInputSection">
-                    <div class="section-header" onclick="toggleSection('rsuGrantsSection')">
-                        <h2>RSU Grants</h2>
-                        <span class="collapse-icon" id="rsuGrantsIcon">▼</span>
+                    <!-- Vesting Schedule -->
+                    <div class="input-section">
+                        <div class="section-header" onclick="toggleSection('isoVestingSection')">
+                            <h2>Vesting Schedule</h2>
+                            <span class="collapse-icon" id="isoVestingIcon">▼</span>
+                        </div>
+                        <div class="collapsible-content" id="isoVestingSection">
+                            <div class="input-group">
+                                <label for="hasCliff">1-Year Cliff</label>
+                                <select id="hasCliff"
+                                    style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.95rem; background: var(--bg-card); color: var(--text-primary);">
+                                    <option value="yes">Yes (25% vests at 1 year)</option>
+                                    <option value="no">No (Monthly vesting from start)</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="vestingPeriod">Total Vesting Period (Years)</label>
+                                <input type="number" id="vestingPeriod" min="1" max="10" step="1" value="4">
+                                <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">Standard is 4 years</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="collapsible-content" id="rsuGrantsSection">
-                        <div class="input-group">
-                            <label for="initialGrant">Initial Grant (RSUs)</label>
-                            <input type="number" id="initialGrant" min="0" step="10" placeholder="0">
+
+                    <!-- Exercise Timing -->
+                    <div class="input-section">
+                        <div class="section-header" onclick="toggleSection('isoExerciseSection')">
+                            <h2>Exercise & Tax</h2>
+                            <span class="collapse-icon" id="isoExerciseIcon">▼</span>
                         </div>
-
-                        <div class="input-group">
-                            <label for="vestingSchedule">Vesting Schedule</label>
-                            <select id="vestingSchedule"
-                                style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.95rem; background: var(--bg-card); color: var(--text-primary);">
-                                <option value="front">Front-loaded (40/30/20/10)</option>
-                                <option value="even">Even (25/25/25/25)</option>
-                            </select>
-                        </div>
-
-                        <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;">
-                            <div class="input-group" style="margin-bottom: 15px;">
-                                <label style="display: flex; align-items: center; cursor: pointer;">
-                                    <input type="checkbox" id="enableRefreshers"
-                                        style="width: auto; margin-right: 10px; cursor: pointer;">
-                                    <span style="font-weight: 500;">Include Annual Refreshers</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div id="refreshersInputs" style="display: none;">
+                        <div class="collapsible-content" id="isoExerciseSection">
                             <div class="input-group">
-                                <label for="refresherYear2">Year 2 Grant (RSUs)</label>
-                                <input type="number" id="refresherYear2" min="0" step="10" placeholder="0">
+                                <label for="exerciseTiming">Exercise Timing</label>
+                                <select id="exerciseTiming"
+                                    style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.95rem; background: var(--bg-card); color: var(--text-primary);">
+                                    <option value="at_vest">At Vest (as options vest)</option>
+                                    <option value="at_exit" selected>At Exit (all at once)</option>
+                                </select>
                             </div>
 
                             <div class="input-group">
-                                <label for="refresherYear3">Year 3 Grant (RSUs)</label>
-                                <input type="number" id="refresherYear3" min="0" step="10" placeholder="0">
+                                <label for="isoState">State</label>
+                                <select id="isoState" onchange="updateTaxProfileOptions()"
+                                    style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.95rem; background: var(--bg-card); color: var(--text-primary);">
+                                    <option value="">Select state...</option>
+                                    <option value="CA" selected>California</option>
+                                    <option value="NY">New York</option>
+                                    <option value="TX">Texas</option>
+                                    <option value="FL">Florida</option>
+                                    <option value="WA">Washington</option>
+                                    <option value="MA">Massachusetts</option>
+                                    <option value="IL">Illinois</option>
+                                    <option value="PA">Pennsylvania</option>
+                                    <option value="CO">Colorado</option>
+                                    <option value="OR">Oregon</option>
+                                    <option value="NV">Nevada</option>
+                                    <option value="TN">Tennessee</option>
+                                    <option value="AZ">Arizona</option>
+                                    <option value="NC">North Carolina</option>
+                                    <option value="GA">Georgia</option>
+                                    <option value="VA">Virginia</option>
+                                    <option value="NJ">New Jersey</option>
+                                    <option value="other">Other</option>
+                                </select>
                             </div>
 
                             <div class="input-group">
-                                <label for="refresherYear4">Year 4 Grant (RSUs)</label>
-                                <input type="number" id="refresherYear4" min="0" step="10" placeholder="0">
+                                <label for="taxProfile">Tax Profile</label>
+                                <select id="taxProfile" onchange="applyTaxProfile()"
+                                    style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.95rem; background: var(--bg-card); color: var(--text-primary);">
+                                    <option value="">Select a profile...</option>
+                                    <option value="ca_high">Single, CA high earner → 40%</option>
+                                    <option value="ca_married">Married, CA → 37%</option>
+                                    <option value="no_income_tax">No-income-tax state → 32%</option>
+                                    <option value="custom">Custom → unlocks manual entry</option>
+                                </select>
                             </div>
 
                             <div class="input-group">
-                                <label for="refresherVesting">Refresher Vesting % (per year)</label>
-                                <input type="number" id="refresherVesting" min="0" max="100" step="1" value="25">
-                                <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">% that vests in year
-                                    granted
-                                    (typical: 25% for 4-yr vest)</p>
+                                <label for="marginalTaxRate">Marginal Tax Rate % (on ISO gains)</label>
+                                <input type="number" id="marginalTaxRate" min="0" max="100" step="0.1" placeholder="37"
+                                    disabled>
+                                <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">Estimated combined
+                                    federal +
+                                    state rate applied to ISO gains. Not the same as tax withholding.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Stock Prices -->
-                <div class="input-section" id="stockPriceInputSection">
-                    <div class="section-header" onclick="toggleSection('stockPriceSection')">
-                        <h2>Stock Price per Year</h2>
-                        <span class="collapse-icon" id="stockPriceIcon">▼</span>
+                <!-- ISO Summary Cards -->
+                <div class="summary-grid">
+                    <div class="summary-card">
+                        <div class="summary-label">💸 Exercise Cost</div>
+                        <div class="summary-value" id="isoExerciseCost" onclick="copyToClipboard(this)"
+                            style="cursor: pointer;" title="Click to copy">$0</div>
                     </div>
-                    <div class="collapsible-content" id="stockPriceSection">
-                        <div class="input-group">
-                            <label for="stockYear1">Year 1 Stock Price ($)</label>
-                            <input type="number" id="stockYear1" min="0" step="1" placeholder="0">
-                        </div>
-
-                        <div class="input-group">
-                            <label for="stockGrowth">Annual Stock Growth (%)</label>
-                            <input type="number" id="stockGrowth" min="-100" max="500" step="1" placeholder="0">
-                            <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">Auto-calculates Years 2-4
-                                prices
-                                (0 = no growth)</p>
-                        </div>
-
-                        <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;">
-                            <p style="font-size: 0.85rem; color: #57534e; margin-bottom: 10px; font-weight: 500;">Or
-                                manually set each year:</p>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="stockYear2">Year 2 Stock Price ($)</label>
-                            <input type="number" id="stockYear2" min="0" step="1" placeholder="0">
-                        </div>
-
-                        <div class="input-group">
-                            <label for="stockYear3">Year 3 Stock Price ($)</label>
-                            <input type="number" id="stockYear3" min="0" step="1" placeholder="0">
-                        </div>
-
-                        <div class="input-group">
-                            <label for="stockYear4">Year 4 Stock Price ($)</label>
-                            <input type="number" id="stockYear4" min="0" step="1" placeholder="0">
-                        </div>
+                    <div class="summary-card">
+                        <div class="summary-label">📈 Gross Upside</div>
+                        <div class="summary-value" id="isoGrossUpside" onclick="copyToClipboard(this)"
+                            style="cursor: pointer;" title="Click to copy">$0</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-label">🧾 Estimated Taxes</div>
+                        <div class="summary-value" id="isoEstimatedTaxes" onclick="copyToClipboard(this)"
+                            style="cursor: pointer;" title="Click to copy">$0</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-label">✅ Net Upside</div>
+                        <div class="summary-value" id="isoNetUpside" onclick="copyToClipboard(this)"
+                            style="cursor: pointer;" title="Click to copy">$0</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-label">📊 ROI Multiple</div>
+                        <div class="summary-value" id="isoROI" onclick="copyToClipboard(this)" style="cursor: pointer;"
+                            title="Click to copy">0x</div>
                     </div>
                 </div>
 
-                <!-- Tax Withholding -->
-                <div class="input-section">
-                    <div class="section-header" onclick="toggleSection('taxWithholdingSection')">
-                        <h2>Tax Withholding</h2>
-                        <span class="collapse-icon" id="taxWithholdingIcon">▼</span>
+                <!-- ISO Scenario Chart -->
+                <div class="chart-container">
+                    <div class="section-header" onclick="toggleSection('isoScenarioChartSection')">
+                        <h2>Compensation + ISO Upside Scenarios</h2>
+                        <span class="collapse-icon" id="isoScenarioChartIcon">▼</span>
                     </div>
-                    <div class="collapsible-content" id="taxWithholdingSection">
-                        <p style="font-size: 0.85rem; color: #57534e; margin-bottom: 15px;">Optional: Calculate
-                            after-tax
-                            compensation using progressive federal tax brackets</p>
-
-                        <div class="input-group">
-                            <label for="enableTax">
-                                <input type="checkbox" id="enableTax" style="width: auto; margin-right: 8px;">
-                                Apply tax withholding
+                    <div class="collapsible-content" id="isoScenarioChartSection">
+                        <!-- Slider for scenario adjustment -->
+                        <div
+                            style="margin-bottom: 20px; padding: 15px; background: var(--bg-card); border-radius: 8px; border: 1px solid var(--border-color);">
+                            <label for="scenarioSharePrice"
+                                style="display: block; font-weight: 600; margin-bottom: 10px; color: var(--text-primary);">
+                                Scenario Share Price: $<span id="scenarioSharePriceDisplay">0</span>
                             </label>
+                            <input type="range" id="scenarioSharePrice" min="0" max="500" step="1" value="0"
+                                style="width: 100%; height: 8px; border-radius: 4px; background: var(--bg-secondary); outline: none; cursor: pointer;">
+                            <div
+                                style="display: flex; justify-content: space-between; margin-top: 5px; font-size: 0.85rem; color: var(--text-secondary);">
+                                <span id="sliderMinLabel">$0</span>
+                                <span id="sliderMaxLabel">$500</span>
+                            </div>
                         </div>
-
-                        <div class="input-group">
-                            <label for="filingStatus">Filing Status</label>
-                            <select id="filingStatus"
-                                style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.95rem; background: var(--bg-card); color: var(--text-primary);">
-                                <option value="single">Single</option>
-                                <option value="married">Married Filing Jointly</option>
-                                <option value="head">Head of Household</option>
-                            </select>
-                            <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">Automatically applies 2026
-                                standard deduction and progressive brackets</p>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="stateTaxRate">State Tax Rate (%)</label>
-                            <input type="number" id="stateTaxRate" min="0" max="20" step="0.5" placeholder="0">
-                            <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">CA: ~9-13%, NY: ~4-11%,
-                                TX/FL:
-                                0%</p>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="ficaTaxRate">FICA Tax (%)</label>
-                            <input type="number" id="ficaTaxRate" min="0" max="20" step="0.01" value="7.65">
-                            <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">Social Security (6.2%) +
-                                Medicare (1.45%) = 7.65%</p>
-                        </div>
+                        <canvas id="isoScenarioChart"></canvas>
                     </div>
                 </div>
-            </div>
 
-            <!-- Summary Stats -->
-            <div class="summary-grid">
-                <div class="summary-card">
-                    <div class="summary-label">Year 1 Total</div>
-                    <div class="summary-value" id="year1Total" onclick="copyToClipboard(this)" style="cursor: pointer;"
-                        title="Click to copy">$0</div>
-                    <div class="summary-label" style="font-size: 0.75rem; margin-top: 5px;" id="year1TotalAfterTax">
+                <!-- ISO Detailed Breakdown Table -->
+                <div class="table-container">
+                    <div class="section-header" onclick="toggleSection('isoTableSection')">
+                        <h2>Year-by-Year Breakdown</h2>
+                        <span class="collapse-icon" id="isoTableIcon">▼</span>
                     </div>
-                </div>
-                <div class="summary-card">
-                    <div class="summary-label">Year 4 Total</div>
-                    <div class="summary-value" id="year4Total" onclick="copyToClipboard(this)" style="cursor: pointer;"
-                        title="Click to copy">$0</div>
-                    <div class="summary-label" style="font-size: 0.75rem; margin-top: 5px;" id="year4TotalAfterTax">
-                    </div>
-                </div>
-                <div class="summary-card">
-                    <div class="summary-label">4-Year Total</div>
-                    <div class="summary-value" id="fourYearTotal" onclick="copyToClipboard(this)"
-                        style="cursor: pointer;" title="Click to copy">$0</div>
-                    <div class="summary-label" style="font-size: 0.75rem; margin-top: 5px;" id="fourYearTotalAfterTax">
-                    </div>
-                </div>
-                <div class="summary-card">
-                    <div class="summary-label">Average Annual</div>
-                    <div class="summary-value" id="avgAnnual" onclick="copyToClipboard(this)" style="cursor: pointer;"
-                        title="Click to copy">$0</div>
-                    <div class="summary-label" style="font-size: 0.75rem; margin-top: 5px;" id="avgAnnualAfterTax">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Stacked Bar Chart -->
-            <div class="chart-container">
-                <div class="section-header" onclick="toggleSection('stackedChartSection')">
-                    <h2>Compensation Breakdown by Year</h2>
-                    <span class="collapse-icon" id="stackedChartIcon">▼</span>
-                </div>
-                <div class="collapsible-content" id="stackedChartSection">
-                    <canvas id="stackedChart" onclick="copyChartToClipboard('stackedChart')" style="cursor: pointer;"
-                        title="Click to copy chart as image"></canvas>
-                </div>
-            </div>
-
-            <!-- Detailed Table -->
-            <div class="chart-container">
-                <div class="section-header" onclick="toggleSection('detailedTableSection')">
-                    <h2>Detailed Breakdown</h2>
-                    <span class="collapse-icon" id="detailedTableIcon">▼</span>
-                </div>
-                <div class="collapsible-content" id="detailedTableSection">
-                    <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
-                        <table>
+                    <div class="collapsible-content" id="isoTableSection">
+                        <table id="isoBreakdownTable">
                             <thead>
                                 <tr>
                                     <th>Year</th>
-                                    <th class="text-right">Base Salary</th>
-                                    <th class="text-right">Target Variable</th>
-                                    <th class="text-right">Sign-On</th>
-                                    <th class="text-right">Initial RSUs</th>
-                                    <th class="text-right">Refresher RSUs</th>
-                                    <th class="text-right">Stock Price</th>
-                                    <th class="text-right">Stock Value</th>
-                                    <th class="text-right"><strong>Total Comp</strong></th>
-                                    <th class="text-right" id="afterTaxHeader" style="display: none;"><strong>After
-                                            Tax</strong></th>
+                                    <th>Base Salary</th>
+                                    <th>Target Variable</th>
+                                    <th>Sign-On</th>
+                                    <th>Total Cash</th>
+                                    <th>ISO Upside (Annual)</th>
+                                    <th>Total w/ ISO</th>
                                 </tr>
                             </thead>
-                            <tbody id="tableBody">
+                            <tbody id="isoTableBody">
+                                <!-- Populated by JavaScript -->
                             </tbody>
                         </table>
                     </div>
                 </div>
+
             </div>
-            <!-- AI Compensation Comparison -->
-            <div class="chart-container" style="margin-top: 30px;">
-                <h2 style="margin-bottom: 20px;">🤖 AI Compensation Analysis</h2>
-                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 20px;">
-                    Get AI-powered insights comparing your compensation package to industry standards.
-                </p>
-
-                <!-- Show profile summary instead of input fields -->
-                <div style="padding: 20px; background: var(--bg-secondary); border-radius: 8px; margin-bottom: 20px; border: 2px solid var(--border-color);">
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
-                        <div>
-                            <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.5px;">Role</p>
-                            <p style="font-size: 0.95rem; font-weight: 600; margin: 0;" id="aiSummaryRole">-</p>
-                        </div>
-                        <div>
-                            <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.5px;">Location</p>
-                            <p style="font-size: 0.95rem; font-weight: 600; margin: 0;" id="aiSummaryLocation">-</p>
-                        </div>
-                        <div>
-                            <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.5px;">Experience</p>
-                            <p style="font-size: 0.95rem; font-weight: 600; margin: 0;" id="aiSummaryYears">-</p>
-                        </div>
-                        <div>
-                            <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.5px;">Industry</p>
-                            <p style="font-size: 0.95rem; font-weight: 600; margin: 0;" id="aiSummaryIndustry">-</p>
-                        </div>
-                        <div>
-                            <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.5px;">Company</p>
-                            <p style="font-size: 0.95rem; font-weight: 600; margin: 0;" id="aiSummaryCompany">-</p>
-                        </div>
-                    </div>
-                </div>
-
-                <button onclick="analyzeCompensation()" id="analyzeBtn"
-                    style="width: 100%; padding: 15px; background: #8feeff; color: #0a0a0a; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: all 0.3s ease;">
-                    Analyze My Compensation 🚀
-                </button>
-
-                <div id="aiAnalysisResult"
-                    style="margin-top: 20px; padding: 25px; background: var(--bg-card); border-radius: 8px; border: 2px solid #8feeff; display: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                    <h3
-                        style="margin-bottom: 20px; color: #8feeff; font-size: 1.3rem; border-bottom: 2px solid #8feeff; padding-bottom: 10px;">
-                        📊 Analysis Results</h3>
-                    <div id="aiAnalysisContent"
-                        style="line-height: 1.9; color: var(--text-primary); font-size: 0.95rem;"></div>
-                </div>
-
-                <div id="aiLoadingSpinner" style="display: none; text-align: center; margin-top: 20px;">
-                    <div
-                        style="display: inline-block; width: 40px; height: 40px; border: 4px solid var(--border-color); border-top-color: #8feeff; border-radius: 50%; animation: spin 1s linear infinite;">
-                    </div>
-                    <p style="margin-top: 10px; color: var(--text-secondary);">Analyzing your compensation...</p>
-                </div>
-            </div>
-
-
-            <!-- Levels.fyi Comparison -->
-            <div class="chart-container">
-                <div class="section-header" onclick="toggleSection('levelsFyiSection')">
-                    <h2>📊 Compare with Market Data</h2>
-                    <span class="collapse-icon" id="levelsFyiIcon">▼</span>
-                </div>
-                <div class="collapsible-content" id="levelsFyiSection">
-                    <p style="font-size: 0.9rem; color: #57534e; margin-bottom: 15px;">
-                        Use the interactive chart below to compare your compensation with market data from levels.fyi
-                    </p>
-
-                    <div
-                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 15px;">
-                        <div>
-                            <label for="levelsCompany"
-                                style="display: block; font-weight: 500; margin-bottom: 8px; font-size: 0.9rem;">Company</label>
-                            <div class="autocomplete-wrapper">
-                                <input type="text" id="levelsCompany"
-                                    style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.9rem; background: var(--bg-card); color: var(--text-primary);"
-                                    placeholder="e.g., Meta" autocomplete="off">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label for="levelsTrack"
-                                style="display: block; font-weight: 500; margin-bottom: 8px; font-size: 0.9rem;">Job
-                                Track</label>
-                            <div class="autocomplete-wrapper">
-                                <input type="text" id="levelsTrack"
-                                    style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.9rem; background: var(--bg-card); color: var(--text-primary);"
-                                    placeholder="e.g., Software Engineer" autocomplete="off">
-                            </div>
-                        </div>
-                    </div>
-
-                    <iframe id="levelsIframe"
-                        src="https://www.levels.fyi/charts_embed.html?company=Meta&track=Software%20Engineer&hide_selector=true"
-                        height="500" style="width: 100%; border: 1px solid #e5e7eb; border-radius: 8px;" frameborder="0"
-                        scrolling="auto">
-                    </iframe>
-                </div>
-            </div>
-
-            <div class="note">
-                <strong>Note:</strong> This calculator shows your initial grant vesting schedule (40/30/20/10) plus any
-                refresher grants you add.
-                Refresher RSUs typically vest over 4 years (25% per year by default, adjustable). The calculator assumes
-                each refresher grant starts
-                vesting in the year it's granted and continues vesting in subsequent years. For example, a Year 2
-                refresher
-                will vest in Years 2, 3,
-                and 4. Ask your recruiter for the specific refresher amounts and vesting schedules!
-                <br><br>
-                <strong>💾 Auto-Save:</strong> Your inputs are automatically saved in your browser and will persist when
-                you
-                refresh the page.
-            </div>
-
-
-        </div>
-        <!-- End RSU Calculator -->
-
-        <!-- ISO Calculator Content -->
-        <div id="isoCalculator" style="display: none;">
-            <div class="inputs-grid-four">
-                <!-- Cash Compensation -->
-                <div class="input-section">
-                    <div class="section-header" onclick="toggleSection('isoCashCompSection')">
-                        <h2>Cash Compensation</h2>
-                        <span class="collapse-icon" id="isoCashCompIcon">▼</span>
-                    </div>
-                    <div class="collapsible-content" id="isoCashCompSection">
-                        <div class="input-group">
-                            <label for="isoBaseSalary">Base Salary ($)</label>
-                            <input type="number" id="isoBaseSalary" min="0" step="1000" placeholder="0">
-                        </div>
-
-                        <div class="input-group">
-                            <label style="display: flex; align-items: center; cursor: pointer;">
-                                <input type="checkbox" id="enableISOAnnualRaise" checked
-                                    style="width: auto; margin-right: 10px; cursor: pointer;">
-                                <span>Apply 3% annual raise</span>
-                            </label>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="isoBonusPercent">Bonus (%)</label>
-                            <input type="number" id="isoBonusPercent" min="0" max="200" step="1" placeholder="0">
-                        </div>
-
-                        <div class="input-group">
-                            <label for="isoSignOnBonus">Sign-On Bonus ($)</label>
-                            <input type="number" id="isoSignOnBonus" min="0" step="1000" placeholder="0">
-                            <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">One-time payment in Year 1
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ISO Basics -->
-                <div class="input-section">
-                    <div class="section-header" onclick="toggleSection('isoBasicsSection')">
-                        <h2>ISO Basics</h2>
-                        <span class="collapse-icon" id="isoBasicsIcon">▼</span>
-                    </div>
-                    <div class="collapsible-content" id="isoBasicsSection">
-                        <div class="input-group">
-                            <label for="numberOfOptions">Number of Options</label>
-                            <input type="number" id="numberOfOptions" min="0" step="100" placeholder="0">
-                        </div>
-
-                        <div class="input-group">
-                            <label for="strikePrice">Strike Price ($)</label>
-                            <input type="number" id="strikePrice" min="0" step="0.01" placeholder="0">
-                        </div>
-
-                        <div class="input-group">
-                            <label for="assumedSharePrice">Assumed Future Share Price ($)</label>
-                            <input type="number" id="assumedSharePrice" min="0" step="0.01" placeholder="0">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Vesting Schedule -->
-                <div class="input-section">
-                    <div class="section-header" onclick="toggleSection('isoVestingSection')">
-                        <h2>Vesting Schedule</h2>
-                        <span class="collapse-icon" id="isoVestingIcon">▼</span>
-                    </div>
-                    <div class="collapsible-content" id="isoVestingSection">
-                        <div class="input-group">
-                            <label for="hasCliff">1-Year Cliff</label>
-                            <select id="hasCliff"
-                                style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.95rem; background: var(--bg-card); color: var(--text-primary);">
-                                <option value="yes">Yes (25% vests at 1 year)</option>
-                                <option value="no">No (Monthly vesting from start)</option>
-                            </select>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="vestingPeriod">Total Vesting Period (Years)</label>
-                            <input type="number" id="vestingPeriod" min="1" max="10" step="1" value="4">
-                            <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">Standard is 4 years</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Exercise Timing -->
-                <div class="input-section">
-                    <div class="section-header" onclick="toggleSection('isoExerciseSection')">
-                        <h2>Exercise & Tax</h2>
-                        <span class="collapse-icon" id="isoExerciseIcon">▼</span>
-                    </div>
-                    <div class="collapsible-content" id="isoExerciseSection">
-                        <div class="input-group">
-                            <label for="exerciseTiming">Exercise Timing</label>
-                            <select id="exerciseTiming"
-                                style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.95rem; background: var(--bg-card); color: var(--text-primary);">
-                                <option value="at_vest">At Vest (as options vest)</option>
-                                <option value="at_exit" selected>At Exit (all at once)</option>
-                            </select>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="isoState">State</label>
-                            <select id="isoState" onchange="updateTaxProfileOptions()"
-                                style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.95rem; background: var(--bg-card); color: var(--text-primary);">
-                                <option value="">Select state...</option>
-                                <option value="CA" selected>California</option>
-                                <option value="NY">New York</option>
-                                <option value="TX">Texas</option>
-                                <option value="FL">Florida</option>
-                                <option value="WA">Washington</option>
-                                <option value="MA">Massachusetts</option>
-                                <option value="IL">Illinois</option>
-                                <option value="PA">Pennsylvania</option>
-                                <option value="CO">Colorado</option>
-                                <option value="OR">Oregon</option>
-                                <option value="NV">Nevada</option>
-                                <option value="TN">Tennessee</option>
-                                <option value="AZ">Arizona</option>
-                                <option value="NC">North Carolina</option>
-                                <option value="GA">Georgia</option>
-                                <option value="VA">Virginia</option>
-                                <option value="NJ">New Jersey</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="taxProfile">Tax Profile</label>
-                            <select id="taxProfile" onchange="applyTaxProfile()"
-                                style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.95rem; background: var(--bg-card); color: var(--text-primary);">
-                                <option value="">Select a profile...</option>
-                                <option value="ca_high">Single, CA high earner → 40%</option>
-                                <option value="ca_married">Married, CA → 37%</option>
-                                <option value="no_income_tax">No-income-tax state → 32%</option>
-                                <option value="custom">Custom → unlocks manual entry</option>
-                            </select>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="marginalTaxRate">Marginal Tax Rate % (on ISO gains)</label>
-                            <input type="number" id="marginalTaxRate" min="0" max="100" step="0.1" placeholder="37"
-                                disabled>
-                            <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">Estimated combined federal +
-                                state rate applied to ISO gains. Not the same as tax withholding.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ISO Summary Cards -->
-            <div class="summary-grid">
-                <div class="summary-card">
-                    <div class="summary-label">💸 Exercise Cost</div>
-                    <div class="summary-value" id="isoExerciseCost" onclick="copyToClipboard(this)"
-                        style="cursor: pointer;" title="Click to copy">$0</div>
-                </div>
-                <div class="summary-card">
-                    <div class="summary-label">📈 Gross Upside</div>
-                    <div class="summary-value" id="isoGrossUpside" onclick="copyToClipboard(this)"
-                        style="cursor: pointer;" title="Click to copy">$0</div>
-                </div>
-                <div class="summary-card">
-                    <div class="summary-label">🧾 Estimated Taxes</div>
-                    <div class="summary-value" id="isoEstimatedTaxes" onclick="copyToClipboard(this)"
-                        style="cursor: pointer;" title="Click to copy">$0</div>
-                </div>
-                <div class="summary-card">
-                    <div class="summary-label">✅ Net Upside</div>
-                    <div class="summary-value" id="isoNetUpside" onclick="copyToClipboard(this)"
-                        style="cursor: pointer;" title="Click to copy">$0</div>
-                </div>
-                <div class="summary-card">
-                    <div class="summary-label">📊 ROI Multiple</div>
-                    <div class="summary-value" id="isoROI" onclick="copyToClipboard(this)" style="cursor: pointer;"
-                        title="Click to copy">0x</div>
-                </div>
-            </div>
-
-            <!-- ISO Scenario Chart -->
-            <div class="chart-container">
-                <div class="section-header" onclick="toggleSection('isoScenarioChartSection')">
-                    <h2>Compensation + ISO Upside Scenarios</h2>
-                    <span class="collapse-icon" id="isoScenarioChartIcon">▼</span>
-                </div>
-                <div class="collapsible-content" id="isoScenarioChartSection">
-                    <!-- Slider for scenario adjustment -->
-                    <div
-                        style="margin-bottom: 20px; padding: 15px; background: var(--bg-card); border-radius: 8px; border: 1px solid var(--border-color);">
-                        <label for="scenarioSharePrice"
-                            style="display: block; font-weight: 600; margin-bottom: 10px; color: var(--text-primary);">
-                            Scenario Share Price: $<span id="scenarioSharePriceDisplay">0</span>
-                        </label>
-                        <input type="range" id="scenarioSharePrice" min="0" max="500" step="1" value="0"
-                            style="width: 100%; height: 8px; border-radius: 4px; background: var(--bg-secondary); outline: none; cursor: pointer;">
-                        <div
-                            style="display: flex; justify-content: space-between; margin-top: 5px; font-size: 0.85rem; color: var(--text-secondary);">
-                            <span id="sliderMinLabel">$0</span>
-                            <span id="sliderMaxLabel">$500</span>
-                        </div>
-                    </div>
-                    <canvas id="isoScenarioChart"></canvas>
-                </div>
-            </div>
-
-            <!-- ISO Detailed Breakdown Table -->
-            <div class="table-container">
-                <div class="section-header" onclick="toggleSection('isoTableSection')">
-                    <h2>Year-by-Year Breakdown</h2>
-                    <span class="collapse-icon" id="isoTableIcon">▼</span>
-                </div>
-                <div class="collapsible-content" id="isoTableSection">
-                    <table id="isoBreakdownTable">
-                        <thead>
-                            <tr>
-                                <th>Year</th>
-                                <th>Base Salary</th>
-                                <th>Target Variable</th>
-                                <th>Sign-On</th>
-                                <th>Total Cash</th>
-                                <th>ISO Upside (Annual)</th>
-                                <th>Total w/ ISO</th>
-                            </tr>
-                        </thead>
-                        <tbody id="isoTableBody">
-                            <!-- Populated by JavaScript -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="note">
-                <strong>Note:</strong> ISO (Incentive Stock Options) calculations are estimates. Actual tax treatment
-                depends on holding periods, AMT implications, and individual circumstances.
-                <br><br>
-                <strong>Key Considerations:</strong>
-                <ul style="margin-top: 10px; margin-left: 20px;">
-                    <li>Exercising ISOs may trigger Alternative Minimum Tax (AMT)</li>
-                    <li>Holding shares 2+ years from grant and 1+ year from exercise qualifies for favorable tax
-                        treatment</li>
-                    <li>Exercise cost must be paid upfront</li>
-                    <li>Consult a tax professional for personalized advice</li>
-                </ul>
-            </div>
-        </div>
-        <!-- End ISO Calculator -->
+            <!-- End ISO Calculator -->
 
         </div>
         <!-- End Calculator Section -->
@@ -1413,18 +1428,18 @@
             const location = document.getElementById('onboardLocation').value.trim();
             const yearsExp = document.getElementById('onboardYearsExp').value;
             const industry = document.getElementById('onboardIndustry').value.trim();
-            
+
             if (!role || !location || !yearsExp || !industry) {
                 alert('Please fill in all required fields');
                 return;
             }
-            
+
             onboardingData.role = role;
             onboardingData.location = location;
             onboardingData.yearsExp = yearsExp;
             onboardingData.industry = industry;
             onboardingData.company = document.getElementById('onboardCompany').value.trim();
-            
+
             document.getElementById('onboardingStep1').style.display = 'none';
             document.getElementById('onboardingStep2').style.display = 'block';
         }
@@ -1433,21 +1448,21 @@
             document.getElementById('onboardingStep2').style.display = 'none';
             document.getElementById('onboardingStep1').style.display = 'block';
         }
-        
+
         function editCompStructure() {
             console.log('Editing compensation structure');
-            
+
             // Pre-fill Step 2 with current selections
             const currentCashType = onboardingData.cashType || 'straight';
             const currentEquityType = onboardingData.equityType || 'none';
-            
+
             // Set radio buttons to current values
             const cashRadio = document.querySelector(`input[name="cashType"][value="${currentCashType}"]`);
             const equityRadio = document.querySelector(`input[name="equityType"][value="${currentEquityType}"]`);
-            
+
             if (cashRadio) cashRadio.checked = true;
             if (equityRadio) equityRadio.checked = true;
-            
+
             // Hide calculator, show onboarding step 2
             document.getElementById('calculatorSection').style.display = 'none';
             document.getElementById('onboardingFlow').style.display = 'block';
@@ -1457,32 +1472,32 @@
 
         function completeOnboarding() {
             console.log('=== completeOnboarding START ===');
-            
+
             const cashTypeEl = document.querySelector('input[name="cashType"]:checked');
             const equityTypeEl = document.querySelector('input[name="equityType"]:checked');
-            
+
             console.log('Cash type element:', cashTypeEl);
             console.log('Equity type element:', equityTypeEl);
-            
+
             if (!cashTypeEl || !equityTypeEl) {
                 console.error('Missing radio button selection!');
                 alert('Please select both cash and equity options');
                 return;
             }
-            
+
             const cashType = cashTypeEl.value;
             const equityType = equityTypeEl.value;
-            
+
             console.log('Cash type:', cashType);
             console.log('Equity type:', equityType);
-            
+
             onboardingData.cashType = cashType;
             onboardingData.equityType = equityType;
-            
+
             console.log('Saving onboarding data:', onboardingData);
             localStorage.setItem('onboardingCompleted', 'true');
             localStorage.setItem('onboardingData', JSON.stringify(onboardingData));
-            
+
             // Update profile banner
             console.log('Updating profile banner...');
             try {
@@ -1490,23 +1505,23 @@
             } catch (e) {
                 console.error('Error updating profile banner:', e);
             }
-            
+
             console.log('Calling showCalculator with:', equityType);
             try {
                 showCalculator(equityType);
             } catch (e) {
                 console.error('Error in showCalculator:', e);
             }
-            
+
             console.log('Hiding onboarding, showing calculator...');
             const onboardingFlow = document.getElementById('onboardingFlow');
             const calculatorSection = document.getElementById('calculatorSection');
             const startOverBtn = document.getElementById('startOverBtn');
-            
+
             console.log('Onboarding flow element:', onboardingFlow);
             console.log('Calculator section element:', calculatorSection);
             console.log('Start over button:', startOverBtn);
-            
+
             if (onboardingFlow) onboardingFlow.style.display = 'none';
             if (calculatorSection) {
                 calculatorSection.style.display = 'block';
@@ -1515,7 +1530,7 @@
                 console.error('Calculator section not found!');
             }
             if (startOverBtn) startOverBtn.style.display = 'block';
-            
+
             // Pre-fill AI analyzer fields AFTER calculator is visible
             console.log('Pre-filling AI fields...');
             setTimeout(() => {
@@ -1524,12 +1539,12 @@
                     const aiLocation = document.getElementById('aiLocation');
                     const aiYearsExp = document.getElementById('aiYearsExp');
                     const aiIndustry = document.getElementById('aiIndustry');
-                    
+
                     if (aiRole) aiRole.value = onboardingData.role;
                     if (aiLocation) aiLocation.value = onboardingData.location;
                     if (aiYearsExp) aiYearsExp.value = onboardingData.yearsExp;
                     if (aiIndustry) aiIndustry.value = onboardingData.industry;
-                    
+
                     if (aiRole && aiLocation && aiYearsExp && aiIndustry) {
                         saveAIInputs();
                     } else {
@@ -1539,29 +1554,29 @@
                     console.error('Error pre-filling AI fields:', e);
                 }
             }, 100);
-            
+
             console.log('=== completeOnboarding END ===');
         }
-        
+
         function updateProfileBanner() {
             try {
                 const data = onboardingData;
-                
+
                 // Update role and details
                 const roleEl = document.getElementById('profileRole');
                 const detailsEl = document.getElementById('profileDetails');
                 const badgeEl = document.getElementById('profileBadge');
-                
+
                 if (roleEl) roleEl.textContent = data.role;
                 if (detailsEl) {
-                    detailsEl.textContent = 
+                    detailsEl.textContent =
                         `${data.location} • ${data.yearsExp} years • ${data.industry}${data.company ? ` • ${data.company}` : ''}`;
                 }
-                
+
                 // Update badge based on comp structure
                 if (badgeEl) {
                     let badgeText = '';
-                    
+
                     if (data.equityType === 'none') {
                         badgeText = data.cashType === 'commission' ? '📈 Salary + Commission' : '💵 Cash Only';
                     } else if (data.equityType === 'rsu') {
@@ -1569,36 +1584,36 @@
                     } else if (data.equityType === 'iso') {
                         badgeText = '🎯 Cash + ISOs';
                     }
-                    
+
                     badgeEl.textContent = badgeText;
                 }
-                
+
                 // Update AI summary section
                 updateAISummary();
-                
+
                 console.log('Profile banner updated successfully');
             } catch (error) {
                 console.error('Error updating profile banner:', error);
             }
         }
-        
+
         function updateAISummary() {
             try {
                 const data = onboardingData;
-                
+
                 // Update AI analysis summary fields
                 const summaryRole = document.getElementById('aiSummaryRole');
                 const summaryLocation = document.getElementById('aiSummaryLocation');
                 const summaryYears = document.getElementById('aiSummaryYears');
                 const summaryIndustry = document.getElementById('aiSummaryIndustry');
                 const summaryCompany = document.getElementById('aiSummaryCompany');
-                
+
                 if (summaryRole) summaryRole.textContent = data.role || '-';
                 if (summaryLocation) summaryLocation.textContent = data.location || '-';
                 if (summaryYears) summaryYears.textContent = data.yearsExp ? `${data.yearsExp} years` : '-';
                 if (summaryIndustry) summaryIndustry.textContent = data.industry || '-';
                 if (summaryCompany) summaryCompany.textContent = data.company || 'Not specified';
-                
+
                 console.log('AI summary updated successfully');
             } catch (error) {
                 console.error('Error updating AI summary:', error);
@@ -1608,35 +1623,35 @@
         function showCalculator(equityType) {
             console.log('=== showCalculator START ===');
             console.log('Equity type:', equityType);
-            
+
             // Get calculator elements
             const rsuCalc = document.getElementById('rsuCalculator');
             const isoCalc = document.getElementById('isoCalculator');
             const rsuGrantsInput = document.getElementById('rsuGrantsInputSection');
             const stockPriceInput = document.getElementById('stockPriceInputSection');
-            
+
             console.log('RSU Calculator element:', rsuCalc);
             console.log('ISO Calculator element:', isoCalc);
             console.log('RSU Grants section:', rsuGrantsInput);
             console.log('Stock Price section:', stockPriceInput);
-            
+
             // Hide both calculators first
             if (rsuCalc) rsuCalc.style.display = 'none';
             if (isoCalc) isoCalc.style.display = 'none';
-            
+
             // Show/hide commission vs straight salary modes
             const isCommission = onboardingData.cashType === 'commission';
             const straightMode = document.getElementById('straightSalaryMode');
             const commissionMode = document.getElementById('commissionMode');
-            
+
             if (straightMode) straightMode.style.display = isCommission ? 'none' : 'block';
             if (commissionMode) commissionMode.style.display = isCommission ? 'block' : 'none';
-            
+
             if (equityType === 'rsu') {
                 console.log('>>> Showing RSU calculator with equity');
                 if (rsuCalc) rsuCalc.style.display = 'block';
                 currentMode = 'rsu';
-                
+
                 // Show all equity sections for RSU
                 if (rsuGrantsInput) {
                     console.log('Showing RSU grants section');
@@ -1646,7 +1661,7 @@
                     console.log('Showing stock price section');
                     stockPriceInput.style.display = 'block';
                 }
-                
+
                 updateDisplay();
             } else if (equityType === 'iso') {
                 console.log('>>> Showing ISO calculator');
@@ -1661,7 +1676,7 @@
                     console.log('RSU Calculator display set to block');
                 }
                 currentMode = 'cash-only';
-                
+
                 // Hide equity-related sections
                 if (rsuGrantsInput) {
                     console.log('Hiding RSU grants section');
@@ -1671,32 +1686,32 @@
                     console.log('Hiding stock price section');
                     stockPriceInput.style.display = 'none';
                 }
-                
+
                 // Set equity values to 0
                 const fields = ['initialGrant', 'stockYear1', 'stockYear2', 'stockYear3', 'stockYear4'];
                 fields.forEach(field => {
                     const el = document.getElementById(field);
                     if (el) el.value = 0;
                 });
-                
+
                 const refreshers = document.getElementById('enableRefreshers');
                 if (refreshers) refreshers.checked = false;
-                
+
                 console.log('Calling updateDisplay...');
                 updateDisplay();
             }
-            
+
             console.log('=== showCalculator END ===');
         }
-        
+
         // OTE/Commission calculations
         function setupOTEListeners() {
             const oteToggle = document.getElementById('oteInputMode');
             const baseVariableInputs = document.getElementById('baseVariableInputs');
             const oteInputs = document.getElementById('oteInputs');
-            
+
             if (oteToggle) {
-                oteToggle.addEventListener('change', function() {
+                oteToggle.addEventListener('change', function () {
                     if (this.checked) {
                         baseVariableInputs.style.display = 'none';
                         oteInputs.style.display = 'block';
@@ -1708,65 +1723,65 @@
                     }
                 });
             }
-            
+
             // Base + Variable mode listeners
             const commissionBase = document.getElementById('commissionBase');
             const targetVariable = document.getElementById('targetVariable');
-            
+
             if (commissionBase) {
-                commissionBase.addEventListener('input', function() {
+                commissionBase.addEventListener('input', function () {
                     calculateOTE();
                     updateDisplay();
                     saveInputs();
                 });
             }
             if (targetVariable) {
-                targetVariable.addEventListener('input', function() {
+                targetVariable.addEventListener('input', function () {
                     calculateOTE();
                     updateDisplay();
                     saveInputs();
                 });
             }
-            
+
             // OTE mode listeners
             const oteAmount = document.getElementById('oteAmount');
             const baseSplit = document.getElementById('baseSplit');
-            
+
             if (oteAmount) {
-                oteAmount.addEventListener('input', function() {
+                oteAmount.addEventListener('input', function () {
                     calculateFromOTE();
                     updateDisplay();
                     saveInputs();
                 });
             }
             if (baseSplit) {
-                baseSplit.addEventListener('input', function() {
+                baseSplit.addEventListener('input', function () {
                     calculateFromOTE();
                     updateDisplay();
                     saveInputs();
                 });
             }
-            
+
             // Annual raise checkbox for commission mode
             const enableAnnualRaiseComm = document.getElementById('enableAnnualRaiseComm');
             if (enableAnnualRaiseComm) {
-                enableAnnualRaiseComm.addEventListener('change', function() {
+                enableAnnualRaiseComm.addEventListener('change', function () {
                     updateDisplay();
                     saveInputs();
                 });
             }
         }
-        
+
         function calculateOTE() {
             const base = parseFloat(document.getElementById('commissionBase').value) || 0;
             const variable = parseFloat(document.getElementById('targetVariable').value) || 0;
             const ote = base + variable;
-            
+
             document.getElementById('calculatedOTE').textContent = '$' + ote.toLocaleString();
-            
+
             // Sync to baseSalary and bonusPercent for calculations
             document.getElementById('baseSalary').value = base;
-            
+
             // Calculate bonus percent: (variable / base) * 100
             if (base > 0) {
                 const bonusPercent = (variable / base) * 100;
@@ -1775,20 +1790,20 @@
                 document.getElementById('bonusPercent').value = 0;
             }
         }
-        
+
         function calculateFromOTE() {
             const ote = parseFloat(document.getElementById('oteAmount').value) || 0;
             const baseSplit = parseFloat(document.getElementById('baseSplit').value) || 70;
-            
+
             const base = Math.round(ote * (baseSplit / 100));
             const variable = ote - base;
-            
+
             document.getElementById('calculatedBase').textContent = '$' + base.toLocaleString();
             document.getElementById('calculatedVariable').textContent = '$' + variable.toLocaleString();
-            
+
             // Sync to baseSalary and bonusPercent for calculations
             document.getElementById('baseSalary').value = base;
-            
+
             // Calculate bonus percent: (variable / base) * 100
             if (base > 0) {
                 const bonusPercent = (variable / base) * 100;
@@ -1801,20 +1816,20 @@
         function checkOnboardingStatus() {
             const completed = localStorage.getItem('onboardingCompleted');
             const data = localStorage.getItem('onboardingData');
-            
+
             if (completed === 'true' && data) {
                 const savedData = JSON.parse(data);
                 Object.assign(onboardingData, savedData);
-                
+
                 document.getElementById('onboardingFlow').style.display = 'none';
                 document.getElementById('calculatorSection').style.display = 'block';
                 document.getElementById('startOverBtn').style.display = 'block';
-                
+
                 // Update profile banner
                 updateProfileBanner();
-                
+
                 showCalculator(savedData.equityType);
-                
+
                 // Pre-fill AI fields
                 if (document.getElementById('aiRole')) {
                     document.getElementById('aiRole').value = savedData.role;
@@ -2002,18 +2017,18 @@ Format your response in clear sections with bullet points. Be specific with sala
         // Custom Autocomplete Function
         function autocomplete(inp, arr) {
             let currentFocus;
-            
-            inp.addEventListener("input", function(e) {
+
+            inp.addEventListener("input", function (e) {
                 let a, b, i, val = this.value;
                 closeAllLists();
                 if (!val) { return false; }
                 currentFocus = -1;
-                
+
                 a = document.createElement("DIV");
                 a.setAttribute("id", this.id + "autocomplete-list");
                 a.setAttribute("class", "autocomplete-items");
                 this.parentNode.appendChild(a);
-                
+
                 let count = 0;
                 for (i = 0; i < arr.length; i++) {
                     if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
@@ -2021,7 +2036,7 @@ Format your response in clear sections with bullet points. Be specific with sala
                         b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
                         b.innerHTML += arr[i].substr(val.length);
                         b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-                        b.addEventListener("click", function(e) {
+                        b.addEventListener("click", function (e) {
                             inp.value = this.getElementsByTagName("input")[0].value;
                             saveAIInputs();
                             closeAllLists();
@@ -2032,8 +2047,8 @@ Format your response in clear sections with bullet points. Be specific with sala
                     }
                 }
             });
-            
-            inp.addEventListener("keydown", function(e) {
+
+            inp.addEventListener("keydown", function (e) {
                 let x = document.getElementById(this.id + "autocomplete-list");
                 if (x) x = x.getElementsByTagName("div");
                 if (e.keyCode == 40) {
@@ -2049,7 +2064,7 @@ Format your response in clear sections with bullet points. Be specific with sala
                     }
                 }
             });
-            
+
             function addActive(x) {
                 if (!x) return false;
                 removeActive(x);
@@ -2057,13 +2072,13 @@ Format your response in clear sections with bullet points. Be specific with sala
                 if (currentFocus < 0) currentFocus = (x.length - 1);
                 x[currentFocus].classList.add("autocomplete-active");
             }
-            
+
             function removeActive(x) {
                 for (let i = 0; i < x.length; i++) {
                     x[i].classList.remove("autocomplete-active");
                 }
             }
-            
+
             function closeAllLists(elmnt) {
                 let x = document.getElementsByClassName("autocomplete-items");
                 for (let i = 0; i < x.length; i++) {
@@ -2072,7 +2087,7 @@ Format your response in clear sections with bullet points. Be specific with sala
                     }
                 }
             }
-            
+
             document.addEventListener("click", function (e) {
                 closeAllLists(e.target);
             });
@@ -2090,7 +2105,7 @@ Format your response in clear sections with bullet points. Be specific with sala
                 "Full Stack Engineer", "Mobile Engineer (iOS)", "Mobile Engineer (Android)",
                 "Technical Program Manager", "Product Designer", "Data Engineer"
             ];
-            
+
             const locations = [
                 "San Francisco, CA", "San Jose, CA", "Mountain View, CA", "Palo Alto, CA",
                 "Sunnyvale, CA", "Santa Clara, CA", "Cupertino, CA", "Seattle, WA",
@@ -2098,7 +2113,7 @@ Format your response in clear sections with bullet points. Be specific with sala
                 "San Diego, CA", "Denver, CO", "Portland, OR", "Chicago, IL",
                 "Atlanta, GA", "Raleigh, NC", "Washington, DC", "Miami, FL"
             ];
-            
+
             const industries = [
                 "Technology", "Finance", "Healthcare", "Retail", "E-commerce",
                 "Entertainment", "Sports", "Media", "Telecommunications", "Education",
@@ -2106,7 +2121,7 @@ Format your response in clear sections with bullet points. Be specific with sala
                 "Pharmaceuticals", "Biotechnology", "Automotive", "Aerospace", "Defense",
                 "Hospitality", "Transportation", "Logistics", "Agriculture", "Government"
             ];
-            
+
             const companies = [
                 "Meta", "Google", "Microsoft", "Amazon", "Apple", "Netflix", "Uber", "Lyft",
                 "Airbnb", "Dropbox", "Yahoo", "Pinterest", "PayPal", "Intel", "IBM",
@@ -2123,7 +2138,7 @@ Format your response in clear sections with bullet points. Be specific with sala
                 "Two Sigma", "Jane Street", "Goldman Sachs", "JPMorgan", "Morgan Stanley",
                 "Palo Alto Networks", "Crusoe", "San Jose Sharks", "Ramp"
             ];
-            
+
             const jobTracks = [
                 "Software Engineer", "Product Manager", "Data Scientist",
                 "Machine Learning Engineer", "Software Engineering Manager",
@@ -2134,11 +2149,11 @@ Format your response in clear sections with bullet points. Be specific with sala
                 "Finance", "Legal", "General Counsel", "Operations",
                 "Business Analyst", "Account Manager", "Product Marketing Manager"
             ];
-            
+
             // Initialize levels.fyi fields
             autocomplete(document.getElementById("levelsCompany"), companies);
             autocomplete(document.getElementById("levelsTrack"), jobTracks);
-            
+
             // Onboarding fields
             if (document.getElementById("onboardRole")) {
                 autocomplete(document.getElementById("onboardRole"), roles);
@@ -2726,13 +2741,13 @@ Format your response in clear sections with bullet points. Be specific with sala
                 // Preserve onboarding data
                 const onboardingCompleted = localStorage.getItem('onboardingCompleted');
                 const onboardingData = localStorage.getItem('onboardingData');
-                
+
                 localStorage.removeItem('databricksCompCalc');
-                
+
                 // Restore onboarding data
                 if (onboardingCompleted) localStorage.setItem('onboardingCompleted', onboardingCompleted);
                 if (onboardingData) localStorage.setItem('onboardingData', onboardingData);
-                
+
                 location.reload();
             }
         }
@@ -2894,11 +2909,11 @@ Format your response in clear sections with bullet points. Be specific with sala
             const baseSalary = parseInt(document.getElementById('baseSalary').value) || 0;
             const bonusPercent = parseFloat(document.getElementById('bonusPercent').value) || 0;
             const signOnBonus = parseInt(document.getElementById('signOnBonus').value) || 0;
-            
+
             // Check which mode we're in and use the appropriate checkbox
             const isCommissionMode = onboardingData.cashType === 'commission';
-            const enableAnnualRaise = isCommissionMode ? 
-                document.getElementById('enableAnnualRaiseComm').checked : 
+            const enableAnnualRaise = isCommissionMode ?
+                document.getElementById('enableAnnualRaiseComm').checked :
                 document.getElementById('enableAnnualRaise').checked;
             const annualRaise = enableAnnualRaise ? 0.03 : 0; // 3% if enabled, 0% if not
 
@@ -3222,12 +3237,12 @@ Format your response in clear sections with bullet points. Be specific with sala
         loadAIInputs();
 
         // Add event listeners for levels.fyi company and track inputs
-        document.getElementById('levelsCompany').addEventListener('input', function() {
+        document.getElementById('levelsCompany').addEventListener('input', function () {
             updateLevelsIframe();
             saveInputs();
         });
-        
-        document.getElementById('levelsTrack').addEventListener('input', function() {
+
+        document.getElementById('levelsTrack').addEventListener('input', function () {
             updateLevelsIframe();
             saveInputs();
         });
