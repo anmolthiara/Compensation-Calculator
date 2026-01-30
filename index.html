@@ -413,8 +413,8 @@
             </div>
             <div style="display: flex; gap: 10px;">
                 <button id="darkModeToggle" onclick="toggleDarkMode()"
-                    style="padding: 8px 16px; background: #8feeff; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9rem; font-weight: 500;">
-                    <span id="darkModeIcon">🌙</span>
+                    style="padding: 8px 16px; background: #e5e7eb; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9rem; font-weight: 500;">
+                    <span id="darkModeIcon">⏾</span>
                 </button>
                 <button onclick="resetCalculator()"
                     style="padding: 8px 16px; background: #ff630f; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9rem; font-weight: 500;">
@@ -1226,7 +1226,7 @@
 
         function updateDarkModeIcon(isDark) {
             const icon = document.getElementById('darkModeIcon');
-            icon.textContent = isDark ? '☀️' : '🌙';
+            icon.textContent = isDark ? '☀︎' : '⏾';
         }
 
         // Initialize dark mode on page load
