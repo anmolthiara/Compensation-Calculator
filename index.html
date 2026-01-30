@@ -336,6 +336,11 @@
             color: #e5e5e5 !important;
         }
 
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         @media (max-width: 768px) {
             .inputs-grid,
             .inputs-grid-four {
@@ -829,6 +834,56 @@
             <strong>💾 Auto-Save:</strong> Your inputs are automatically saved in your browser and will persist when you
             refresh the page.
         </div>
+
+        <!-- AI Compensation Comparison -->
+        <div class="chart-container" style="margin-top: 30px;">
+            <h2 style="margin-bottom: 20px;">🤖 AI Compensation Analysis</h2>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 20px;">
+                Get AI-powered insights comparing your compensation package to industry standards.
+            </p>
+
+            <div class="inputs-grid" style="margin-bottom: 20px;">
+                <div class="input-group">
+                    <label for="aiRole">Role/Title</label>
+                    <input type="text" id="aiRole" placeholder="e.g., Senior Software Engineer">
+                </div>
+                <div class="input-group">
+                    <label for="aiLocation">Location</label>
+                    <input type="text" id="aiLocation" placeholder="e.g., San Francisco, CA">
+                </div>
+                <div class="input-group">
+                    <label for="aiYearsExp">Years of Experience</label>
+                    <input type="number" id="aiYearsExp" min="0" max="50" placeholder="e.g., 5">
+                </div>
+                <div class="input-group">
+                    <label for="aiCompanySize">Company Size</label>
+                    <select id="aiCompanySize">
+                        <option value="">Select size...</option>
+                        <option value="Startup (<50)">Startup (<50)</option>
+                        <option value="Small (50-200)">Small (50-200)</option>
+                        <option value="Medium (200-1000)">Medium (200-1000)</option>
+                        <option value="Large (1000-10000)">Large (1000-10000)</option>
+                        <option value="Enterprise (10000+)">Enterprise (10000+)</option>
+                    </select>
+                </div>
+            </div>
+
+            <button onclick="analyzeCompensation()" id="analyzeBtn"
+                style="width: 100%; padding: 15px; background: #8feeff; color: #0a0a0a; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: all 0.3s ease;">
+                Analyze My Compensation 🚀
+            </button>
+
+            <div id="aiAnalysisResult" style="margin-top: 20px; padding: 20px; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid #8feeff; display: none;">
+                <h3 style="margin-bottom: 15px; color: var(--text-primary);">Analysis Results</h3>
+                <div id="aiAnalysisContent" style="line-height: 1.8; color: var(--text-primary); white-space: pre-wrap;"></div>
+            </div>
+
+            <div id="aiLoadingSpinner" style="display: none; text-align: center; margin-top: 20px;">
+                <div style="display: inline-block; width: 40px; height: 40px; border: 4px solid var(--border-color); border-top-color: #8feeff; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                <p style="margin-top: 10px; color: var(--text-secondary);">Analyzing your compensation...</p>
+            </div>
+        </div>
+
         </div>
         <!-- End RSU Calculator -->
 
@@ -1068,6 +1123,107 @@
     </div>
 
     <script>
+        // AI Compensation Analysis with Google Gemini
+        async function analyzeCompensation() {
+            const role = document.getElementById('aiRole').value.trim();
+            const location = document.getElementById('aiLocation').value.trim();
+            const yearsExp = document.getElementById('aiYearsExp').value;
+            const companySize = document.getElementById('aiCompanySize').value;
+
+            // Validation
+            if (!role || !location || !yearsExp || !companySize) {
+                alert('Please fill in all fields (Role, Location, Years of Experience, Company Size)');
+                return;
+            }
+
+            // Get current compensation data from RSU calculator
+            const baseSalary = parseInt(document.getElementById('baseSalary').value) || 0;
+            const bonusPercent = parseFloat(document.getElementById('bonusPercent').value) || 0;
+            const signOnBonus = parseInt(document.getElementById('signOnBonus').value) || 0;
+            const initialGrant = parseFloat(document.getElementById('initialGrant').value) || 0;
+            
+            // Get stock prices
+            const stockYear1 = parseFloat(document.getElementById('stockYear1').value) || 0;
+            const stockYear4 = parseFloat(document.getElementById('stockYear4').value) || 0;
+            
+            // Calculate Year 1 total
+            const year1Bonus = baseSalary * (bonusPercent / 100);
+            const year1RSUValue = initialGrant * 0.4 * stockYear1; // 40% vests in year 1
+            const year1Total = baseSalary + year1Bonus + signOnBonus + year1RSUValue;
+            
+            // Calculate 4-year average
+            const avgAnnual = (year1Total + (baseSalary * 3 * 1.1) + year1RSUValue * 3) / 4; // Rough estimate
+
+            // Show loading
+            document.getElementById('aiLoadingSpinner').style.display = 'block';
+            document.getElementById('aiAnalysisResult').style.display = 'none';
+            document.getElementById('analyzeBtn').disabled = true;
+            document.getElementById('analyzeBtn').style.opacity = '0.6';
+            document.getElementById('analyzeBtn').textContent = 'Analyzing...';
+
+            try {
+                const prompt = `You are a compensation expert. Analyze this compensation package and compare it to industry standards.
+
+Role: ${role}
+Location: ${location}
+Years of Experience: ${yearsExp}
+Company Size: ${companySize}
+
+Current Compensation Package:
+- Base Salary: $${baseSalary.toLocaleString()}
+- Annual Bonus: ${bonusPercent}% ($${year1Bonus.toLocaleString()})
+- Sign-On Bonus: $${signOnBonus.toLocaleString()}
+- Initial RSU Grant: ${initialGrant.toLocaleString()} shares
+- Stock Price (Year 1): $${stockYear1}
+- Year 1 Total Comp: $${Math.round(year1Total).toLocaleString()}
+- 4-Year Average Annual: ~$${Math.round(avgAnnual).toLocaleString()}
+
+Please provide a comprehensive analysis covering:
+1. **Market Comparison**: How does this package compare to industry standards for this role, location, and experience level?
+2. **Strengths**: What are the strongest components of this offer?
+3. **Weaknesses**: What could be improved or negotiated?
+4. **Risk Assessment**: Comment on the equity/cash balance and stock price assumptions
+5. **Recommendations**: Specific suggestions for negotiation or evaluation
+
+Format your response in clear sections with bullet points. Be specific with salary ranges when possible.`;
+
+                const response = await fetch('/api/analyze', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        prompt: prompt
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error?.message || 'API request failed');
+                }
+
+                const data = await response.json();
+                const analysisText = data.candidates[0].content.parts[0].text;
+
+                // Display results
+                document.getElementById('aiAnalysisContent').textContent = analysisText;
+                document.getElementById('aiAnalysisResult').style.display = 'block';
+
+                // Scroll to results
+                document.getElementById('aiAnalysisResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            } catch (error) {
+                alert(`Error analyzing compensation: ${error.message}\n\nPlease check your API key and try again.`);
+                console.error('Gemini API Error:', error);
+            } finally {
+                // Hide loading
+                document.getElementById('aiLoadingSpinner').style.display = 'none';
+                document.getElementById('analyzeBtn').disabled = false;
+                document.getElementById('analyzeBtn').style.opacity = '1';
+                document.getElementById('analyzeBtn').textContent = 'Analyze My Compensation 🚀';
+            }
+        }
+
         // Mode switching
         let currentMode = 'rsu';
 
