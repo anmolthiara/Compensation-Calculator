@@ -1324,14 +1324,14 @@ Format your response in clear sections with bullet points. Be specific with sala
 
                 // Format the markdown-style text for better display
                 const formattedText = analysisText
-                    // Convert ## headers to styled headers
-                    .replace(/###\s+(.+)/g, '<h4 style="color: #8feeff; margin-top: 25px; margin-bottom: 10px; font-size: 1.1rem;">$1</h4>')
-                    .replace(/##\s+(.+)/g, '<h3 style="color: #8feeff; margin-top: 30px; margin-bottom: 12px; font-size: 1.2rem;">$1</h3>')
-                    // Convert **bold** to actual bold
-                    .replace(/\*\*(.+?)\*\*/g, '<strong style="color: var(--text-primary);">$1</strong>')
-                    // Convert * bullet points to styled bullets
+                    // Convert ## headers to styled headers (using orange that works in both modes)
+                    .replace(/###\s+(.+)/g, '<h4 style="color: #ff630f; margin-top: 25px; margin-bottom: 10px; font-size: 1.1rem; font-weight: 600;">$1</h4>')
+                    .replace(/##\s+(.+)/g, '<h3 style="color: #ff630f; margin-top: 30px; margin-bottom: 12px; font-size: 1.2rem; font-weight: 700;">$1</h3>')
+                    // Convert **bold** to actual bold (inherits text color)
+                    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                    // Convert * bullet points to styled bullets (inherits text color)
                     .replace(/^\*\s+(.+)$/gm, '<div style="margin-left: 20px; margin-bottom: 8px;">• $1</div>')
-                    // Convert numbered lists
+                    // Convert numbered lists (inherits text color)
                     .replace(/^(\d+)\.\s+(.+)$/gm, '<div style="margin-left: 20px; margin-bottom: 8px; font-weight: 600;">$1. $2</div>')
                     // Convert line breaks
                     .replace(/\n\n/g, '<br><br>')
