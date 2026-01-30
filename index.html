@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>comp.fyi</title>
+    <title>pay.fyi</title>
     <link rel="manifest" href="/manifest.webmanifest">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
@@ -408,7 +408,7 @@
     <div class="container">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
             <div>
-                <h1 class="font-instrument font-bold" style="margin: 0; font-size: 24px;">comp.fyi</h1>
+                <h1 class="font-instrument font-bold" style="margin: 0; font-size: 24px;">pay.fyi</h1>
                 <p class="font-mono" style="margin: 5px 0 0 0; font-size: 0.9rem; color: #ff630f !important;">By Anmol Thiara</p>
             </div>
             <div style="display: flex; gap: 10px;">
@@ -456,6 +456,13 @@
                     </div>
 
                     <div class="input-group">
+                        <label style="display: flex; align-items: center; cursor: pointer;">
+                            <input type="checkbox" id="enableAnnualRaise" checked style="width: auto; margin-right: 10px; cursor: pointer;">
+                            <span>Apply 3% annual raise</span>
+                        </label>
+                    </div>
+
+                    <div class="input-group">
                         <label for="bonusPercent">Annual Bonus (%)</label>
                         <input type="number" id="bonusPercent" min="0" max="100" step="0.5" placeholder="0">
                         <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">Applied to base salary each year
@@ -485,37 +492,43 @@
                     <div class="input-group">
                         <label for="vestingSchedule">Vesting Schedule</label>
                         <select id="vestingSchedule"
-                            style="width: 100%; padding: 10px; border: 2px solid #d1d5db; border-radius: 6px; font-size: 0.95rem;">
+                            style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.95rem; background: var(--bg-card); color: var(--text-primary);">
                             <option value="front">Front-loaded (40/30/20/10)</option>
                             <option value="even">Even (25/25/25/25)</option>
                         </select>
                     </div>
 
                     <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;">
-                        <p style="font-size: 0.85rem; margin-bottom: 10px; font-weight: 500;">Annual
-                            Refreshers:</p>
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" id="enableRefreshers" style="width: auto; margin-right: 10px; cursor: pointer;">
+                                <span style="font-weight: 500;">Include Annual Refreshers</span>
+                            </label>
+                        </div>
                     </div>
 
-                    <div class="input-group">
-                        <label for="refresherYear2">Year 2 Grant (RSUs)</label>
-                        <input type="number" id="refresherYear2" min="0" step="10" placeholder="0">
-                    </div>
+                    <div id="refreshersInputs" style="display: none;">
+                        <div class="input-group">
+                            <label for="refresherYear2">Year 2 Grant (RSUs)</label>
+                            <input type="number" id="refresherYear2" min="0" step="10" placeholder="0">
+                        </div>
 
-                    <div class="input-group">
-                        <label for="refresherYear3">Year 3 Grant (RSUs)</label>
-                        <input type="number" id="refresherYear3" min="0" step="10" placeholder="0">
-                    </div>
+                        <div class="input-group">
+                            <label for="refresherYear3">Year 3 Grant (RSUs)</label>
+                            <input type="number" id="refresherYear3" min="0" step="10" placeholder="0">
+                        </div>
 
-                    <div class="input-group">
-                        <label for="refresherYear4">Year 4 Grant (RSUs)</label>
-                        <input type="number" id="refresherYear4" min="0" step="10" placeholder="0">
-                    </div>
+                        <div class="input-group">
+                            <label for="refresherYear4">Year 4 Grant (RSUs)</label>
+                            <input type="number" id="refresherYear4" min="0" step="10" placeholder="0">
+                        </div>
 
-                    <div class="input-group">
-                        <label for="refresherVesting">Refresher Vesting % (per year)</label>
-                        <input type="number" id="refresherVesting" min="0" max="100" step="1" value="25">
-                        <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">% that vests in year granted
-                            (typical: 25% for 4-yr vest)</p>
+                        <div class="input-group">
+                            <label for="refresherVesting">Refresher Vesting % (per year)</label>
+                            <input type="number" id="refresherVesting" min="0" max="100" step="1" value="25">
+                            <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">% that vests in year granted
+                                (typical: 25% for 4-yr vest)</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -581,7 +594,7 @@
                     <div class="input-group">
                         <label for="filingStatus">Filing Status</label>
                         <select id="filingStatus"
-                            style="width: 100%; padding: 10px; border: 2px solid #d1d5db; border-radius: 6px; font-size: 0.95rem;">
+                            style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.95rem; background: var(--bg-card); color: var(--text-primary);">
                             <option value="single">Single</option>
                             <option value="married">Married Filing Jointly</option>
                             <option value="head">Head of Household</option>
@@ -863,13 +876,16 @@
                         <span class="collapse-icon" id="isoCashCompIcon">▼</span>
                     </div>
                     <div class="collapsible-content" id="isoCashCompSection">
-                        <p style="font-size: 0.85rem; margin-bottom: 15px;">Auto-applies 3% annual raise
-                            each year</p>
                         <div class="input-group">
                             <label for="isoBaseSalary">Base Salary ($)</label>
                             <input type="number" id="isoBaseSalary" min="0" step="1000" placeholder="0">
-                            <p style="font-size: 0.75rem; margin-top: 5px;">Applied to base salary each year
-                            </p>
+                        </div>
+
+                        <div class="input-group">
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" id="enableISOAnnualRaise" checked style="width: auto; margin-right: 10px; cursor: pointer;">
+                                <span>Apply 3% annual raise</span>
+                            </label>
                         </div>
 
                         <div class="input-group">
@@ -945,7 +961,33 @@
                             <select id="exerciseTiming"
                                 style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.95rem; background: var(--bg-card); color: var(--text-primary);">
                                 <option value="at_vest">At Vest (as options vest)</option>
-                                <option value="at_exit">At Exit (all at once)</option>
+                                <option value="at_exit" selected>At Exit (all at once)</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="isoState">State</label>
+                            <select id="isoState" onchange="updateTaxProfileOptions()"
+                                style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.95rem; background: var(--bg-card); color: var(--text-primary);">
+                                <option value="">Select state...</option>
+                                <option value="CA" selected>California</option>
+                                <option value="NY">New York</option>
+                                <option value="TX">Texas</option>
+                                <option value="FL">Florida</option>
+                                <option value="WA">Washington</option>
+                                <option value="MA">Massachusetts</option>
+                                <option value="IL">Illinois</option>
+                                <option value="PA">Pennsylvania</option>
+                                <option value="CO">Colorado</option>
+                                <option value="OR">Oregon</option>
+                                <option value="NV">Nevada</option>
+                                <option value="TN">Tennessee</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="NC">North Carolina</option>
+                                <option value="GA">Georgia</option>
+                                <option value="VA">Virginia</option>
+                                <option value="NJ">New Jersey</option>
+                                <option value="other">Other</option>
                             </select>
                         </div>
 
@@ -994,6 +1036,29 @@
                 </div>
             </div>
 
+            <!-- ISO Scenario Chart -->
+            <div class="chart-container">
+                <div class="section-header" onclick="toggleSection('isoScenarioChartSection')">
+                    <h2>Compensation + ISO Upside Scenarios</h2>
+                    <span class="collapse-icon" id="isoScenarioChartIcon">▼</span>
+                </div>
+                <div class="collapsible-content" id="isoScenarioChartSection">
+                    <!-- Slider for scenario adjustment -->
+                    <div style="margin-bottom: 20px; padding: 15px; background: var(--bg-card); border-radius: 8px; border: 1px solid var(--border-color);">
+                        <label for="scenarioSharePrice" style="display: block; font-weight: 600; margin-bottom: 10px; color: var(--text-primary);">
+                            Scenario Share Price: $<span id="scenarioSharePriceDisplay">0</span>
+                        </label>
+                        <input type="range" id="scenarioSharePrice" min="0" max="500" step="1" value="0" 
+                            style="width: 100%; height: 8px; border-radius: 4px; background: var(--bg-secondary); outline: none; cursor: pointer;">
+                        <div style="display: flex; justify-content: space-between; margin-top: 5px; font-size: 0.85rem; color: var(--text-secondary);">
+                            <span id="sliderMinLabel">$0</span>
+                            <span id="sliderMaxLabel">$500</span>
+                        </div>
+                    </div>
+                    <canvas id="isoScenarioChart"></canvas>
+                </div>
+            </div>
+
             <div class="note">
                 <strong>Note:</strong> ISO (Incentive Stock Options) calculations are estimates. Actual tax treatment depends on holding periods, AMT implications, and individual circumstances. 
                 <br><br>
@@ -1038,16 +1103,86 @@
         }
 
         // Tax Profile Handler
+        function updateTaxProfileOptions() {
+            const state = document.getElementById('isoState').value;
+            const taxProfileSelect = document.getElementById('taxProfile');
+            
+            // State tax rate mappings (approximate marginal rates for high earners)
+            const stateTaxData = {
+                'CA': { name: 'California', highRate: 40, marriedRate: 37 },
+                'NY': { name: 'New York', highRate: 39, marriedRate: 36 },
+                'NJ': { name: 'New Jersey', highRate: 38, marriedRate: 36 },
+                'OR': { name: 'Oregon', highRate: 38, marriedRate: 36 },
+                'MA': { name: 'Massachusetts', highRate: 37, marriedRate: 35 },
+                'IL': { name: 'Illinois', highRate: 36, marriedRate: 34 },
+                'CO': { name: 'Colorado', highRate: 35, marriedRate: 33 },
+                'PA': { name: 'Pennsylvania', highRate: 35, marriedRate: 33 },
+                'VA': { name: 'Virginia', highRate: 36, marriedRate: 34 },
+                'NC': { name: 'North Carolina', highRate: 35, marriedRate: 33 },
+                'GA': { name: 'Georgia', highRate: 36, marriedRate: 34 },
+                'AZ': { name: 'Arizona', highRate: 35, marriedRate: 33 },
+                // No income tax states
+                'TX': { name: 'Texas', highRate: 32, marriedRate: 32, noIncomeTax: true },
+                'FL': { name: 'Florida', highRate: 32, marriedRate: 32, noIncomeTax: true },
+                'WA': { name: 'Washington', highRate: 32, marriedRate: 32, noIncomeTax: true },
+                'NV': { name: 'Nevada', highRate: 32, marriedRate: 32, noIncomeTax: true },
+                'TN': { name: 'Tennessee', highRate: 32, marriedRate: 32, noIncomeTax: true }
+            };
+            
+            // Clear existing options
+            taxProfileSelect.innerHTML = '<option value="">Select a profile...</option>';
+            
+            if (state && stateTaxData[state]) {
+                const stateData = stateTaxData[state];
+                
+                if (stateData.noIncomeTax) {
+                    // No income tax state
+                    taxProfileSelect.innerHTML += `<option value="no_tax_${state.toLowerCase()}">${stateData.name} (no state income tax) → ${stateData.highRate}%</option>`;
+                } else {
+                    // State with income tax
+                    taxProfileSelect.innerHTML += `<option value="${state.toLowerCase()}_high">Single, ${stateData.name} high earner → ${stateData.highRate}%</option>`;
+                    taxProfileSelect.innerHTML += `<option value="${state.toLowerCase()}_married">Married, ${stateData.name} → ${stateData.marriedRate}%</option>`;
+                }
+            } else if (state === 'other') {
+                // Generic options for other states
+                taxProfileSelect.innerHTML += '<option value="other_high">High earner (est. 36%)</option>';
+                taxProfileSelect.innerHTML += '<option value="other_moderate">Moderate rate (est. 34%)</option>';
+            }
+            
+            // Always add custom option
+            taxProfileSelect.innerHTML += '<option value="custom">Custom → unlocks manual entry</option>';
+            
+            // Save state selection
+            localStorage.setItem('isoState', state);
+        }
+        
         function applyTaxProfile() {
+            const state = document.getElementById('isoState').value;
             const taxProfile = document.getElementById('taxProfile').value;
             const marginalTaxRateInput = document.getElementById('marginalTaxRate');
             
-            const taxRates = {
-                'ca_high': 40,
-                'ca_married': 37,
-                'no_income_tax': 32,
-                'custom': ''
+            // Build dynamic tax rates based on state
+            const stateTaxData = {
+                'CA': { highRate: 40, marriedRate: 37 },
+                'NY': { highRate: 39, marriedRate: 36 },
+                'NJ': { highRate: 38, marriedRate: 36 },
+                'OR': { highRate: 38, marriedRate: 36 },
+                'MA': { highRate: 37, marriedRate: 35 },
+                'IL': { highRate: 36, marriedRate: 34 },
+                'CO': { highRate: 35, marriedRate: 33 },
+                'PA': { highRate: 35, marriedRate: 33 },
+                'VA': { highRate: 36, marriedRate: 34 },
+                'NC': { highRate: 35, marriedRate: 33 },
+                'GA': { highRate: 36, marriedRate: 34 },
+                'AZ': { highRate: 35, marriedRate: 33 },
+                'TX': { highRate: 32, marriedRate: 32 },
+                'FL': { highRate: 32, marriedRate: 32 },
+                'WA': { highRate: 32, marriedRate: 32 },
+                'NV': { highRate: 32, marriedRate: 32 },
+                'TN': { highRate: 32, marriedRate: 32 }
             };
+            
+            let rate = null;
             
             if (taxProfile === 'custom') {
                 // Enable manual entry for custom
@@ -1059,10 +1194,22 @@
                 marginalTaxRateInput.disabled = true;
                 marginalTaxRateInput.value = '';
                 marginalTaxRateInput.placeholder = '37';
-            } else {
-                // Auto-fill based on profile
+            } else if (taxProfile === 'other_high') {
+                rate = 36;
+            } else if (taxProfile === 'other_moderate') {
+                rate = 34;
+            } else if (state && stateTaxData[state]) {
+                // Dynamic rate based on state and profile
+                if (taxProfile.includes('_high') || taxProfile.includes('no_tax')) {
+                    rate = stateTaxData[state].highRate;
+                } else if (taxProfile.includes('_married')) {
+                    rate = stateTaxData[state].marriedRate;
+                }
+            }
+            
+            if (rate !== null) {
                 marginalTaxRateInput.disabled = true;
-                marginalTaxRateInput.value = taxRates[taxProfile];
+                marginalTaxRateInput.value = rate;
             }
             
             // Save to localStorage
@@ -1107,11 +1254,162 @@
             document.getElementById('isoEstimatedTaxes').textContent = '$' + estimatedTaxes.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
             document.getElementById('isoNetUpside').textContent = '$' + netUpside.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
             document.getElementById('isoROI').textContent = roiMultiple.toFixed(2) + 'x';
+
+            // Update scenario chart
+            updateISOScenarioChart();
+        }
+
+        let isoScenarioChart = null;
+
+        // Get chart text color based on dark mode
+        function getChartTextColor() {
+            return document.body.classList.contains('dark-mode') ? '#e5e5e5' : '#1f2937';
+        }
+
+        function getChartGridColor() {
+            return document.body.classList.contains('dark-mode') ? '#404040' : '#e5e7eb';
+        }
+
+        function updateISOScenarioChart() {
+            // Get inputs
+            const isoBaseSalary = parseFloat(document.getElementById('isoBaseSalary').value) || 0;
+            const isoBonusPercent = parseFloat(document.getElementById('isoBonusPercent').value) || 0;
+            const isoSignOnBonus = parseFloat(document.getElementById('isoSignOnBonus').value) || 0;
+            const numberOfOptions = parseFloat(document.getElementById('numberOfOptions').value) || 0;
+            const strikePrice = parseFloat(document.getElementById('strikePrice').value) || 0;
+            const assumedSharePrice = parseFloat(document.getElementById('assumedSharePrice').value) || 0;
+            const marginalTaxRate = parseFloat(document.getElementById('marginalTaxRate').value) / 100 || 0;
+            const vestingPeriod = parseFloat(document.getElementById('vestingPeriod').value) || 4;
+
+            // Update slider display and sync
+            const scenarioSlider = document.getElementById('scenarioSharePrice');
+            const displayElement = document.getElementById('scenarioSharePriceDisplay');
+            if (displayElement) {
+                displayElement.textContent = assumedSharePrice.toFixed(2);
+            }
+            
+            // Set intelligent slider range: from strike price to 3x assumed price (or 3x strike if no assumed)
+            if (scenarioSlider && !scenarioSlider.matches(':active')) {
+                const minPrice = strikePrice || 0;
+                const maxPrice = assumedSharePrice > 0 
+                    ? Math.max(assumedSharePrice * 3, strikePrice * 3) 
+                    : (strikePrice > 0 ? strikePrice * 3 : 500);
+                
+                scenarioSlider.min = minPrice;
+                scenarioSlider.max = maxPrice;
+                scenarioSlider.value = assumedSharePrice || strikePrice;
+                
+                // Update labels
+                document.getElementById('sliderMinLabel').textContent = '$' + minPrice.toFixed(0);
+                document.getElementById('sliderMaxLabel').textContent = '$' + maxPrice.toFixed(0);
+            }
+
+            // Calculate annualized ISO upside
+            const grossUpside = (assumedSharePrice - strikePrice) * numberOfOptions;
+            const estimatedTaxes = grossUpside * marginalTaxRate;
+            const netUpside = grossUpside - estimatedTaxes;
+            const annualizedISOUpside = vestingPeriod > 0 ? netUpside / vestingPeriod : 0;
+
+            // Calculate cash comp per year (with optional 3% raise)
+            const enableISOAnnualRaise = document.getElementById('enableISOAnnualRaise').checked;
+            const annualRaiseMultiplier = enableISOAnnualRaise ? 1.03 : 1;
+            
+            const years = [];
+            for (let i = 0; i < 4; i++) {
+                const currentBaseSalary = isoBaseSalary * Math.pow(annualRaiseMultiplier, i);
+                const bonus = currentBaseSalary * (isoBonusPercent / 100);
+                const signOn = i === 0 ? isoSignOnBonus : 0;
+                const guaranteedComp = currentBaseSalary + bonus + signOn;
+                const totalWithISO = guaranteedComp + annualizedISOUpside;
+                
+                years.push({
+                    year: `Year ${i + 1}`,
+                    guaranteed: guaranteedComp,
+                    totalWithISO: totalWithISO
+                });
+            }
+
+            // Create or update chart
+            const ctx = document.getElementById('isoScenarioChart');
+            if (!ctx) return;
+
+            if (isoScenarioChart) {
+                // Update existing chart data
+                isoScenarioChart.data.datasets[0].data = years.map(y => y.guaranteed);
+                isoScenarioChart.data.datasets[1].data = years.map(y => y.totalWithISO);
+                isoScenarioChart.update('none'); // 'none' = no animation for smooth slider
+            } else {
+                // Create new chart
+                isoScenarioChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: years.map(y => y.year),
+                        datasets: [
+                            {
+                                label: 'Base Only (Guaranteed)',
+                                data: years.map(y => y.guaranteed),
+                                backgroundColor: '#8feeff',
+                            },
+                            {
+                                label: 'Base + ISO Upside',
+                                data: years.map(y => y.totalWithISO),
+                                backgroundColor: '#ff630f',
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        animation: {
+                            duration: 0 // Disable animation for smoother updates
+                        },
+                        scales: {
+                            x: {
+                                stacked: false,
+                                ticks: {
+                                    color: getChartTextColor()
+                                },
+                                grid: {
+                                    color: getChartGridColor()
+                                }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    color: getChartTextColor(),
+                                    callback: function(value) {
+                                        return '$' + (value / 1000).toFixed(0) + 'k';
+                                    }
+                                },
+                                grid: {
+                                    color: getChartGridColor()
+                                }
+                            }
+                        },
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return context.dataset.label + ': $' + context.parsed.y.toLocaleString();
+                                    }
+                                }
+                            },
+                            legend: {
+                                display: true,
+                                position: 'top',
+                                labels: {
+                                    color: getChartTextColor()
+                                }
+                            }
+                        }
+                    }
+                });
+            }
         }
 
         // Add event listeners for ISO inputs
         document.addEventListener('DOMContentLoaded', function() {
-            const isoInputs = ['isoBaseSalary', 'isoBonusPercent', 'isoSignOnBonus', 'numberOfOptions', 'strikePrice', 'assumedSharePrice', 'marginalTaxRate'];
+            const isoInputs = ['isoBaseSalary', 'isoBonusPercent', 'isoSignOnBonus', 'numberOfOptions', 'strikePrice', 'assumedSharePrice', 'marginalTaxRate', 'vestingPeriod', 'isoState', 'enableISOAnnualRaise'];
             isoInputs.forEach(id => {
                 const element = document.getElementById(id);
                 if (element) {
@@ -1128,7 +1426,54 @@
                 }
             });
 
-            // Load saved tax profile
+            // Add event listener for scenario share price slider
+            const scenarioSlider = document.getElementById('scenarioSharePrice');
+            const assumedSharePriceInput = document.getElementById('assumedSharePrice');
+            
+            if (scenarioSlider && assumedSharePriceInput) {
+                // Slider updates assumed share price and chart
+                scenarioSlider.addEventListener('input', function() {
+                    assumedSharePriceInput.value = this.value;
+                    document.getElementById('scenarioSharePriceDisplay').textContent = parseFloat(this.value).toFixed(2);
+                    // Only update chart, not full calculation (for smoothness)
+                    updateISOScenarioChart();
+                });
+                
+                // Save to localStorage on slider release
+                scenarioSlider.addEventListener('change', function() {
+                    localStorage.setItem('assumedSharePrice', this.value);
+                    calculateISO(); // Full recalc on release
+                });
+                
+                // Assumed share price input updates slider and its range
+                assumedSharePriceInput.addEventListener('input', function() {
+                    const strikePrice = parseFloat(document.getElementById('strikePrice').value) || 0;
+                    const assumedPrice = parseFloat(this.value) || 0;
+                    
+                    // Update slider range dynamically
+                    scenarioSlider.min = strikePrice || 0;
+                    scenarioSlider.max = assumedPrice > 0 
+                        ? Math.max(assumedPrice * 3, strikePrice * 3) 
+                        : (strikePrice > 0 ? strikePrice * 3 : 500);
+                    scenarioSlider.value = this.value;
+                    
+                    // Update labels
+                    document.getElementById('sliderMinLabel').textContent = '$' + scenarioSlider.min;
+                    document.getElementById('sliderMaxLabel').textContent = '$' + Math.round(scenarioSlider.max);
+                    document.getElementById('scenarioSharePriceDisplay').textContent = parseFloat(this.value || 0).toFixed(2);
+                });
+            }
+
+            // Load saved state and tax profile, or use defaults
+            const savedState = localStorage.getItem('isoState');
+            if (savedState) {
+                document.getElementById('isoState').value = savedState;
+                updateTaxProfileOptions();
+            } else {
+                // On first load, CA is already selected by default, so update options
+                updateTaxProfileOptions();
+            }
+            
             const savedTaxProfile = localStorage.getItem('taxProfile');
             if (savedTaxProfile) {
                 document.getElementById('taxProfile').value = savedTaxProfile;
@@ -1206,11 +1551,12 @@
 
         // Dark mode functionality
         function initDarkMode() {
-            // Check for saved preference or use system preference
+            // Check for saved preference, default to dark mode
             const savedMode = localStorage.getItem('darkMode');
-            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             
-            if (savedMode === 'dark' || (savedMode === null && systemPrefersDark)) {
+            // If no saved preference, default to dark mode
+            // If saved preference exists, use that
+            if (savedMode === 'dark' || savedMode === null) {
                 document.body.classList.add('dark-mode');
                 updateDarkModeIcon(true);
             } else {
@@ -1222,6 +1568,17 @@
             const isDark = document.body.classList.toggle('dark-mode');
             localStorage.setItem('darkMode', isDark ? 'dark' : 'light');
             updateDarkModeIcon(isDark);
+            
+            // Refresh charts to update colors
+            if (currentMode === 'rsu') {
+                if (typeof updateDisplay === 'function') {
+                    updateDisplay();
+                }
+            } else if (currentMode === 'iso') {
+                if (typeof calculateISO === 'function') {
+                    calculateISO();
+                }
+            }
         }
 
         function updateDarkModeIcon(isDark) {
@@ -1390,6 +1747,8 @@
 
             // Handle checkbox separately
             values['enableTax'] = document.getElementById('enableTax').checked;
+            values['enableRefreshers'] = document.getElementById('enableRefreshers').checked;
+            values['enableAnnualRaise'] = document.getElementById('enableAnnualRaise').checked;
 
             // Save Select2 dropdowns (company and job track)
             values['levelsCompany'] = $('#levelsCompany').val();
@@ -1407,13 +1766,19 @@
                     Object.keys(values).forEach(id => {
                         const element = document.getElementById(id);
                         if (element) {
-                            if (id === 'enableTax') {
+                            if (id === 'enableTax' || id === 'enableRefreshers' || id === 'enableAnnualRaise') {
                                 element.checked = values[id];
                             } else {
                                 element.value = values[id];
                             }
                         }
                     });
+
+                    // Show/hide refreshers inputs based on saved state
+                    const refreshersInputs = document.getElementById('refreshersInputs');
+                    if (values['enableRefreshers']) {
+                        refreshersInputs.style.display = 'block';
+                    }
 
                     // Load Select2 values if they exist
                     if (values['levelsCompany']) {
@@ -1436,7 +1801,8 @@
             const baseSalary = parseInt(document.getElementById('baseSalary').value) || 0;
             const bonusPercent = parseFloat(document.getElementById('bonusPercent').value) || 0;
             const signOnBonus = parseInt(document.getElementById('signOnBonus').value) || 0;
-            const annualRaise = 0.03; // Fixed 3% annual raise
+            const enableAnnualRaise = document.getElementById('enableAnnualRaise').checked;
+            const annualRaise = enableAnnualRaise ? 0.03 : 0; // 3% if enabled, 0% if not
 
             const initialGrant = parseFloat(document.getElementById('initialGrant').value) || 0;
             const vestingSchedule = getVestingSchedule();
@@ -1448,14 +1814,15 @@
                 parseFloat(document.getElementById('stockYear4').value) || 0
             ];
 
-            const refresherGrants = [
+            const enableRefreshers = document.getElementById('enableRefreshers').checked;
+            const refresherGrants = enableRefreshers ? [
                 0, // Year 1 - no refresher
                 parseFloat(document.getElementById('refresherYear2').value) || 0,
                 parseFloat(document.getElementById('refresherYear3').value) || 0,
                 parseFloat(document.getElementById('refresherYear4').value) || 0
-            ];
+            ] : [0, 0, 0, 0];
 
-            const refresherVestingPercent = parseFloat(document.getElementById('refresherVesting').value) / 100 || 0;
+            const refresherVestingPercent = enableRefreshers ? (parseFloat(document.getElementById('refresherVesting').value) / 100 || 0) : 0;
 
             // Tax calculation
             const enableTax = document.getElementById('enableTax').checked;
@@ -1621,13 +1988,25 @@
                     responsive: true,
                     maintainAspectRatio: true,
                     scales: {
-                        x: { stacked: false }, // Group bars instead of stacking
-                        y: {
-                            stacked: true, // Stack within each group
+                        x: { 
+                            stacked: false,
                             ticks: {
+                                color: getChartTextColor()
+                            },
+                            grid: {
+                                color: getChartGridColor()
+                            }
+                        },
+                        y: {
+                            stacked: true,
+                            ticks: {
+                                color: getChartTextColor(),
                                 callback: function (value) {
                                     return '$' + (value / 1000).toFixed(0) + 'k';
                                 }
+                            },
+                            grid: {
+                                color: getChartGridColor()
                             }
                         }
                     },
@@ -1637,6 +2016,11 @@
                                 label: function (context) {
                                     return context.dataset.label + ': $' + context.parsed.y.toLocaleString();
                                 }
+                            }
+                        },
+                        legend: {
+                            labels: {
+                                color: getChartTextColor()
                             }
                         }
                     }
@@ -1681,11 +2065,23 @@
                     responsive: true,
                     maintainAspectRatio: true,
                     scales: {
+                        x: {
+                            ticks: {
+                                color: getChartTextColor()
+                            },
+                            grid: {
+                                color: getChartGridColor()
+                            }
+                        },
                         y: {
                             ticks: {
+                                color: getChartTextColor(),
                                 callback: function (value) {
                                     return '$' + (value / 1000).toFixed(0) + 'k';
                                 }
+                            },
+                            grid: {
+                                color: getChartGridColor()
                             }
                         }
                     },
@@ -1695,6 +2091,11 @@
                                 label: function (context) {
                                     return context.dataset.label + ': $' + context.parsed.y.toLocaleString();
                                 }
+                            }
+                        },
+                        legend: {
+                            labels: {
+                                color: getChartTextColor()
                             }
                         }
                     }
@@ -1707,7 +2108,7 @@
             const inputs = [
                 'baseSalary', 'bonusPercent', 'signOnBonus',
                 'initialGrant', 'vestingSchedule', 'refresherYear2', 'refresherYear3', 'refresherYear4', 'refresherVesting',
-                'enableTax', 'filingStatus', 'stateTaxRate', 'ficaTaxRate'
+                'enableTax', 'filingStatus', 'stateTaxRate', 'ficaTaxRate', 'enableRefreshers', 'enableAnnualRaise'
             ];
 
             inputs.forEach(id => {
@@ -1716,6 +2117,16 @@
                     saveInputs();
                     updateDisplay();
                 });
+            });
+
+            // Toggle refreshers inputs visibility
+            const enableRefreshersCheckbox = document.getElementById('enableRefreshers');
+            const refreshersInputs = document.getElementById('refreshersInputs');
+            
+            enableRefreshersCheckbox.addEventListener('change', function() {
+                refreshersInputs.style.display = this.checked ? 'block' : 'none';
+                saveInputs();
+                updateDisplay();
             });
 
             // Special handling for stock inputs
