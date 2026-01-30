@@ -12,7 +12,9 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Syne:wght@400..800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Syne:wght@400..800&display=swap"
+        rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
@@ -73,7 +75,8 @@
             padding: 30px;
         }
 
-        h1, h2 {
+        h1,
+        h2 {
             color: var(--text-primary);
         }
 
@@ -337,11 +340,17 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         @media (max-width: 768px) {
+
             .inputs-grid,
             .inputs-grid-four {
                 grid-template-columns: 1fr;
@@ -380,7 +389,8 @@
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
             <div>
                 <h1 class="font-instrument font-bold" style="margin: 0; font-size: 24px;">pay.fyi</h1>
-                <p class="font-mono" style="margin: 5px 0 0 0; font-size: 0.9rem; color: #ff630f !important;">By Anmol Thiara</p>
+                <p class="font-mono" style="margin: 5px 0 0 0; font-size: 0.9rem; color: #ff630f !important;">By Anmol
+                    Thiara</p>
             </div>
             <div style="display: flex; gap: 10px;">
                 <button id="darkModeToggle" onclick="toggleDarkMode()"
@@ -396,7 +406,8 @@
 
         <!-- Mode Toggle -->
         <div style="display: flex; justify-content: center; margin-bottom: 30px;">
-            <div style="background: var(--bg-secondary); border-radius: 8px; padding: 4px; display: inline-flex; gap: 4px;">
+            <div
+                style="background: var(--bg-secondary); border-radius: 8px; padding: 4px; display: inline-flex; gap: 4px;">
                 <button id="rsuModeBtn" onclick="switchMode('rsu')"
                     style="padding: 10px 24px; background: #8feeff; color: #0a0a0a; border: none; border-radius: 6px; cursor: pointer; font-size: 0.95rem; font-weight: 600; transition: all 0.2s;">
                     RSU Calculator
@@ -410,479 +421,552 @@
 
         <!-- RSU Calculator Content -->
         <div id="rsuCalculator">
-        <div class="inputs-grid-four">
-            <!-- Cash Compensation -->
-            <div class="input-section">
-                <div class="section-header" onclick="toggleSection('cashCompSection')">
-                    <h2>Cash Compensation</h2>
-                    <span class="collapse-icon" id="cashCompIcon">▼</span>
-                </div>
-                <div class="collapsible-content" id="cashCompSection">
-                    <p style="font-size: 0.85rem; color: #57534e; margin-bottom: 15px;">Auto-applies 3% annual raise
-                        each year</p>
-
-                    <div class="input-group">
-                        <label for="baseSalary">Starting Base Salary ($)</label>
-                        <input type="number" id="baseSalary" min="0" step="1000" placeholder="0">
+            <div class="inputs-grid-four">
+                <!-- Cash Compensation -->
+                <div class="input-section">
+                    <div class="section-header" onclick="toggleSection('cashCompSection')">
+                        <h2>Cash Compensation</h2>
+                        <span class="collapse-icon" id="cashCompIcon">▼</span>
                     </div>
+                    <div class="collapsible-content" id="cashCompSection">
+                        <p style="font-size: 0.85rem; color: #57534e; margin-bottom: 15px;">Auto-applies 3% annual raise
+                            each year</p>
 
-                    <div class="input-group">
-                        <label style="display: flex; align-items: center; cursor: pointer;">
-                            <input type="checkbox" id="enableAnnualRaise" checked style="width: auto; margin-right: 10px; cursor: pointer;">
-                            <span>Apply 3% annual raise</span>
-                        </label>
-                    </div>
+                        <div class="input-group">
+                            <label for="baseSalary">Starting Base Salary ($)</label>
+                            <input type="number" id="baseSalary" min="0" step="1000" placeholder="0">
+                        </div>
 
-                    <div class="input-group">
-                        <label for="bonusPercent">Annual Bonus (%)</label>
-                        <input type="number" id="bonusPercent" min="0" max="100" step="0.5" placeholder="0">
-                        <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">Applied to base salary each year
-                        </p>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="signOnBonus">Sign-On Bonus ($)</label>
-                        <input type="number" id="signOnBonus" min="0" step="1000" placeholder="0">
-                        <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">One-time payment in Year 1</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- RSU Grants -->
-            <div class="input-section">
-                <div class="section-header" onclick="toggleSection('rsuGrantsSection')">
-                    <h2>RSU Grants</h2>
-                    <span class="collapse-icon" id="rsuGrantsIcon">▼</span>
-                </div>
-                <div class="collapsible-content" id="rsuGrantsSection">
-                    <div class="input-group">
-                        <label for="initialGrant">Initial Grant (RSUs)</label>
-                        <input type="number" id="initialGrant" min="0" step="10" placeholder="0">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="vestingSchedule">Vesting Schedule</label>
-                        <select id="vestingSchedule"
-                            style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.95rem; background: var(--bg-card); color: var(--text-primary);">
-                            <option value="front">Front-loaded (40/30/20/10)</option>
-                            <option value="even">Even (25/25/25/25)</option>
-                        </select>
-                    </div>
-
-                    <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;">
-                        <div class="input-group" style="margin-bottom: 15px;">
+                        <div class="input-group">
                             <label style="display: flex; align-items: center; cursor: pointer;">
-                                <input type="checkbox" id="enableRefreshers" style="width: auto; margin-right: 10px; cursor: pointer;">
-                                <span style="font-weight: 500;">Include Annual Refreshers</span>
+                                <input type="checkbox" id="enableAnnualRaise" checked
+                                    style="width: auto; margin-right: 10px; cursor: pointer;">
+                                <span>Apply 3% annual raise</span>
                             </label>
                         </div>
-                    </div>
 
-                    <div id="refreshersInputs" style="display: none;">
                         <div class="input-group">
-                            <label for="refresherYear2">Year 2 Grant (RSUs)</label>
-                            <input type="number" id="refresherYear2" min="0" step="10" placeholder="0">
+                            <label for="bonusPercent">Annual Bonus (%)</label>
+                            <input type="number" id="bonusPercent" min="0" max="100" step="0.5" placeholder="0">
+                            <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">Applied to base salary each
+                                year
+                            </p>
                         </div>
 
                         <div class="input-group">
-                            <label for="refresherYear3">Year 3 Grant (RSUs)</label>
-                            <input type="number" id="refresherYear3" min="0" step="10" placeholder="0">
+                            <label for="signOnBonus">Sign-On Bonus ($)</label>
+                            <input type="number" id="signOnBonus" min="0" step="1000" placeholder="0">
+                            <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">One-time payment in Year 1
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RSU Grants -->
+                <div class="input-section">
+                    <div class="section-header" onclick="toggleSection('rsuGrantsSection')">
+                        <h2>RSU Grants</h2>
+                        <span class="collapse-icon" id="rsuGrantsIcon">▼</span>
+                    </div>
+                    <div class="collapsible-content" id="rsuGrantsSection">
+                        <div class="input-group">
+                            <label for="initialGrant">Initial Grant (RSUs)</label>
+                            <input type="number" id="initialGrant" min="0" step="10" placeholder="0">
                         </div>
 
                         <div class="input-group">
-                            <label for="refresherYear4">Year 4 Grant (RSUs)</label>
-                            <input type="number" id="refresherYear4" min="0" step="10" placeholder="0">
+                            <label for="vestingSchedule">Vesting Schedule</label>
+                            <select id="vestingSchedule"
+                                style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.95rem; background: var(--bg-card); color: var(--text-primary);">
+                                <option value="front">Front-loaded (40/30/20/10)</option>
+                                <option value="even">Even (25/25/25/25)</option>
+                            </select>
+                        </div>
+
+                        <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;">
+                            <div class="input-group" style="margin-bottom: 15px;">
+                                <label style="display: flex; align-items: center; cursor: pointer;">
+                                    <input type="checkbox" id="enableRefreshers"
+                                        style="width: auto; margin-right: 10px; cursor: pointer;">
+                                    <span style="font-weight: 500;">Include Annual Refreshers</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="refreshersInputs" style="display: none;">
+                            <div class="input-group">
+                                <label for="refresherYear2">Year 2 Grant (RSUs)</label>
+                                <input type="number" id="refresherYear2" min="0" step="10" placeholder="0">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="refresherYear3">Year 3 Grant (RSUs)</label>
+                                <input type="number" id="refresherYear3" min="0" step="10" placeholder="0">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="refresherYear4">Year 4 Grant (RSUs)</label>
+                                <input type="number" id="refresherYear4" min="0" step="10" placeholder="0">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="refresherVesting">Refresher Vesting % (per year)</label>
+                                <input type="number" id="refresherVesting" min="0" max="100" step="1" value="25">
+                                <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">% that vests in year
+                                    granted
+                                    (typical: 25% for 4-yr vest)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stock Prices -->
+                <div class="input-section">
+                    <div class="section-header" onclick="toggleSection('stockPriceSection')">
+                        <h2>Stock Price per Year</h2>
+                        <span class="collapse-icon" id="stockPriceIcon">▼</span>
+                    </div>
+                    <div class="collapsible-content" id="stockPriceSection">
+                        <div class="input-group">
+                            <label for="stockYear1">Year 1 Stock Price ($)</label>
+                            <input type="number" id="stockYear1" min="0" step="1" placeholder="0">
                         </div>
 
                         <div class="input-group">
-                            <label for="refresherVesting">Refresher Vesting % (per year)</label>
-                            <input type="number" id="refresherVesting" min="0" max="100" step="1" value="25">
-                            <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">% that vests in year granted
-                                (typical: 25% for 4-yr vest)</p>
+                            <label for="stockGrowth">Annual Stock Growth (%)</label>
+                            <input type="number" id="stockGrowth" min="-100" max="500" step="1" placeholder="0">
+                            <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">Auto-calculates Years 2-4
+                                prices
+                                (0 = no growth)</p>
+                        </div>
+
+                        <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;">
+                            <p style="font-size: 0.85rem; color: #57534e; margin-bottom: 10px; font-weight: 500;">Or
+                                manually set each year:</p>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="stockYear2">Year 2 Stock Price ($)</label>
+                            <input type="number" id="stockYear2" min="0" step="1" placeholder="0">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="stockYear3">Year 3 Stock Price ($)</label>
+                            <input type="number" id="stockYear3" min="0" step="1" placeholder="0">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="stockYear4">Year 4 Stock Price ($)</label>
+                            <input type="number" id="stockYear4" min="0" step="1" placeholder="0">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tax Withholding -->
+                <div class="input-section">
+                    <div class="section-header" onclick="toggleSection('taxWithholdingSection')">
+                        <h2>Tax Withholding</h2>
+                        <span class="collapse-icon" id="taxWithholdingIcon">▼</span>
+                    </div>
+                    <div class="collapsible-content" id="taxWithholdingSection">
+                        <p style="font-size: 0.85rem; color: #57534e; margin-bottom: 15px;">Optional: Calculate
+                            after-tax
+                            compensation using progressive federal tax brackets</p>
+
+                        <div class="input-group">
+                            <label for="enableTax">
+                                <input type="checkbox" id="enableTax" style="width: auto; margin-right: 8px;">
+                                Apply tax withholding
+                            </label>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="filingStatus">Filing Status</label>
+                            <select id="filingStatus"
+                                style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.95rem; background: var(--bg-card); color: var(--text-primary);">
+                                <option value="single">Single</option>
+                                <option value="married">Married Filing Jointly</option>
+                                <option value="head">Head of Household</option>
+                            </select>
+                            <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">Automatically applies 2026
+                                standard deduction and progressive brackets</p>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="stateTaxRate">State Tax Rate (%)</label>
+                            <input type="number" id="stateTaxRate" min="0" max="20" step="0.5" placeholder="0">
+                            <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">CA: ~9-13%, NY: ~4-11%,
+                                TX/FL:
+                                0%</p>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="ficaTaxRate">FICA Tax (%)</label>
+                            <input type="number" id="ficaTaxRate" min="0" max="20" step="0.01" value="7.65">
+                            <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">Social Security (6.2%) +
+                                Medicare (1.45%) = 7.65%</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Stock Prices -->
-            <div class="input-section">
-                <div class="section-header" onclick="toggleSection('stockPriceSection')">
-                    <h2>Stock Price per Year</h2>
-                    <span class="collapse-icon" id="stockPriceIcon">▼</span>
+            <!-- Summary Stats -->
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <div class="summary-label">Year 1 Total</div>
+                    <div class="summary-value" id="year1Total" onclick="copyToClipboard(this)" style="cursor: pointer;"
+                        title="Click to copy">$0</div>
+                    <div class="summary-label" style="font-size: 0.75rem; margin-top: 5px;" id="year1TotalAfterTax">
+                    </div>
                 </div>
-                <div class="collapsible-content" id="stockPriceSection">
-                    <div class="input-group">
-                        <label for="stockYear1">Year 1 Stock Price ($)</label>
-                        <input type="number" id="stockYear1" min="0" step="1" placeholder="0">
+                <div class="summary-card">
+                    <div class="summary-label">Year 4 Total</div>
+                    <div class="summary-value" id="year4Total" onclick="copyToClipboard(this)" style="cursor: pointer;"
+                        title="Click to copy">$0</div>
+                    <div class="summary-label" style="font-size: 0.75rem; margin-top: 5px;" id="year4TotalAfterTax">
                     </div>
-
-                    <div class="input-group">
-                        <label for="stockGrowth">Annual Stock Growth (%)</label>
-                        <input type="number" id="stockGrowth" min="-100" max="500" step="1" placeholder="0">
-                        <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">Auto-calculates Years 2-4 prices
-                            (0 = no growth)</p>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-label">4-Year Total</div>
+                    <div class="summary-value" id="fourYearTotal" onclick="copyToClipboard(this)"
+                        style="cursor: pointer;" title="Click to copy">$0</div>
+                    <div class="summary-label" style="font-size: 0.75rem; margin-top: 5px;" id="fourYearTotalAfterTax">
                     </div>
-
-                    <div style="border-top: 1px solid #d1d5db; margin: 15px 0; padding-top: 15px;">
-                        <p style="font-size: 0.85rem; color: #57534e; margin-bottom: 10px; font-weight: 500;">Or
-                            manually set each year:</p>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="stockYear2">Year 2 Stock Price ($)</label>
-                        <input type="number" id="stockYear2" min="0" step="1" placeholder="0">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="stockYear3">Year 3 Stock Price ($)</label>
-                        <input type="number" id="stockYear3" min="0" step="1" placeholder="0">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="stockYear4">Year 4 Stock Price ($)</label>
-                        <input type="number" id="stockYear4" min="0" step="1" placeholder="0">
+                </div>
+                <div class="summary-card">
+                    <div class="summary-label">Average Annual</div>
+                    <div class="summary-value" id="avgAnnual" onclick="copyToClipboard(this)" style="cursor: pointer;"
+                        title="Click to copy">$0</div>
+                    <div class="summary-label" style="font-size: 0.75rem; margin-top: 5px;" id="avgAnnualAfterTax">
                     </div>
                 </div>
             </div>
 
-            <!-- Tax Withholding -->
-            <div class="input-section">
-                <div class="section-header" onclick="toggleSection('taxWithholdingSection')">
-                    <h2>Tax Withholding</h2>
-                    <span class="collapse-icon" id="taxWithholdingIcon">▼</span>
+            <!-- Stacked Bar Chart -->
+            <div class="chart-container">
+                <div class="section-header" onclick="toggleSection('stackedChartSection')">
+                    <h2>Compensation Breakdown by Year</h2>
+                    <span class="collapse-icon" id="stackedChartIcon">▼</span>
                 </div>
-                <div class="collapsible-content" id="taxWithholdingSection">
-                    <p style="font-size: 0.85rem; color: #57534e; margin-bottom: 15px;">Optional: Calculate after-tax
-                        compensation using progressive federal tax brackets</p>
-
-                    <div class="input-group">
-                        <label for="enableTax">
-                            <input type="checkbox" id="enableTax" style="width: auto; margin-right: 8px;">
-                            Apply tax withholding
-                        </label>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="filingStatus">Filing Status</label>
-                        <select id="filingStatus"
-                            style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.95rem; background: var(--bg-card); color: var(--text-primary);">
-                            <option value="single">Single</option>
-                            <option value="married">Married Filing Jointly</option>
-                            <option value="head">Head of Household</option>
-                        </select>
-                        <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">Automatically applies 2026
-                            standard deduction and progressive brackets</p>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="stateTaxRate">State Tax Rate (%)</label>
-                        <input type="number" id="stateTaxRate" min="0" max="20" step="0.5" placeholder="0">
-                        <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">CA: ~9-13%, NY: ~4-11%, TX/FL:
-                            0%</p>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="ficaTaxRate">FICA Tax (%)</label>
-                        <input type="number" id="ficaTaxRate" min="0" max="20" step="0.01" value="7.65">
-                        <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">Social Security (6.2%) +
-                            Medicare (1.45%) = 7.65%</p>
-                    </div>
+                <div class="collapsible-content" id="stackedChartSection">
+                    <canvas id="stackedChart" onclick="copyChartToClipboard('stackedChart')" style="cursor: pointer;"
+                        title="Click to copy chart as image"></canvas>
                 </div>
             </div>
-        </div>
 
-        <!-- Summary Stats -->
-        <div class="summary-grid">
-            <div class="summary-card">
-                <div class="summary-label">Year 1 Total</div>
-                <div class="summary-value" id="year1Total" onclick="copyToClipboard(this)" style="cursor: pointer;" title="Click to copy">$0</div>
-                <div class="summary-label" style="font-size: 0.75rem; margin-top: 5px;" id="year1TotalAfterTax"></div>
-            </div>
-            <div class="summary-card">
-                <div class="summary-label">Year 4 Total</div>
-                <div class="summary-value" id="year4Total" onclick="copyToClipboard(this)" style="cursor: pointer;" title="Click to copy">$0</div>
-                <div class="summary-label" style="font-size: 0.75rem; margin-top: 5px;" id="year4TotalAfterTax"></div>
-            </div>
-            <div class="summary-card">
-                <div class="summary-label">4-Year Total</div>
-                <div class="summary-value" id="fourYearTotal" onclick="copyToClipboard(this)" style="cursor: pointer;" title="Click to copy">$0</div>
-                <div class="summary-label" style="font-size: 0.75rem; margin-top: 5px;" id="fourYearTotalAfterTax">
+            <!-- Line Chart -->
+            <div class="chart-container">
+                <div class="section-header" onclick="toggleSection('lineChartSection')">
+                    <h2>Total Compensation Trend</h2>
+                    <span class="collapse-icon" id="lineChartIcon">▼</span>
+                </div>
+                <div class="collapsible-content" id="lineChartSection">
+                    <canvas id="lineChart"></canvas>
                 </div>
             </div>
-            <div class="summary-card">
-                <div class="summary-label">Average Annual</div>
-                <div class="summary-value" id="avgAnnual" onclick="copyToClipboard(this)" style="cursor: pointer;" title="Click to copy">$0</div>
-                <div class="summary-label" style="font-size: 0.75rem; margin-top: 5px;" id="avgAnnualAfterTax"></div>
-            </div>
-        </div>
 
-        <!-- Stacked Bar Chart -->
-        <div class="chart-container">
-            <div class="section-header" onclick="toggleSection('stackedChartSection')">
-                <h2>Compensation Breakdown by Year</h2>
-                <span class="collapse-icon" id="stackedChartIcon">▼</span>
-            </div>
-            <div class="collapsible-content" id="stackedChartSection">
-                <canvas id="stackedChart" onclick="copyChartToClipboard('stackedChart')" style="cursor: pointer;" title="Click to copy chart as image"></canvas>
-            </div>
-        </div>
-
-        <!-- Line Chart -->
-        <div class="chart-container">
-            <div class="section-header" onclick="toggleSection('lineChartSection')">
-                <h2>Total Compensation Trend</h2>
-                <span class="collapse-icon" id="lineChartIcon">▼</span>
-            </div>
-            <div class="collapsible-content" id="lineChartSection">
-                <canvas id="lineChart"></canvas>
-            </div>
-        </div>
-
-        <!-- Detailed Table -->
-        <div class="chart-container">
-            <div class="section-header" onclick="toggleSection('detailedTableSection')">
-                <h2>Detailed Breakdown</h2>
-                <span class="collapse-icon" id="detailedTableIcon">▼</span>
-            </div>
-            <div class="collapsible-content" id="detailedTableSection">
-                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Year</th>
-                                <th class="text-right">Base Salary</th>
-                                <th class="text-right">Bonus</th>
-                                <th class="text-right">Sign-On</th>
-                                <th class="text-right">Initial RSUs</th>
-                                <th class="text-right">Refresher RSUs</th>
-                                <th class="text-right">Stock Price</th>
-                                <th class="text-right">Stock Value</th>
-                                <th class="text-right"><strong>Total Comp</strong></th>
-                                <th class="text-right" id="afterTaxHeader" style="display: none;"><strong>After
-                                        Tax</strong></th>
-                            </tr>
-                        </thead>
-                        <tbody id="tableBody">
-                        </tbody>
-                    </table>
+            <!-- Detailed Table -->
+            <div class="chart-container">
+                <div class="section-header" onclick="toggleSection('detailedTableSection')">
+                    <h2>Detailed Breakdown</h2>
+                    <span class="collapse-icon" id="detailedTableIcon">▼</span>
+                </div>
+                <div class="collapsible-content" id="detailedTableSection">
+                    <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Year</th>
+                                    <th class="text-right">Base Salary</th>
+                                    <th class="text-right">Bonus</th>
+                                    <th class="text-right">Sign-On</th>
+                                    <th class="text-right">Initial RSUs</th>
+                                    <th class="text-right">Refresher RSUs</th>
+                                    <th class="text-right">Stock Price</th>
+                                    <th class="text-right">Stock Value</th>
+                                    <th class="text-right"><strong>Total Comp</strong></th>
+                                    <th class="text-right" id="afterTaxHeader" style="display: none;"><strong>After
+                                            Tax</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Levels.fyi Comparison -->
-        <div class="chart-container">
-            <div class="section-header" onclick="toggleSection('levelsFyiSection')">
-                <h2>📊 Compare with Market Data</h2>
-                <span class="collapse-icon" id="levelsFyiIcon">▼</span>
-            </div>
-            <div class="collapsible-content" id="levelsFyiSection">
-                <p style="font-size: 0.9rem; color: #57534e; margin-bottom: 15px;">
-                    Use the interactive chart below to compare your compensation with market data from levels.fyi
+            <!-- AI Compensation Comparison -->
+            <div class="chart-container" style="margin-top: 30px;">
+                <h2 style="margin-bottom: 20px;">🤖 AI Compensation Analysis</h2>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 20px;">
+                    Get AI-powered insights comparing your compensation package to industry standards.
                 </p>
 
-                <div
-                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 15px;">
-                    <div>
-                        <label for="levelsCompany"
-                            style="display: block; font-weight: 500; margin-bottom: 8px; font-size: 0.9rem;">Company</label>
-                        <select id="levelsCompany"
-                            style="width: 100%; padding: 10px; border: 2px solid #d1d5db; border-radius: 6px; font-size: 0.9rem;">
-                            <option value="Meta">Meta</option>
-                            <option value="Google">Google</option>
-                            <option value="Microsoft">Microsoft</option>
-                            <option value="Amazon">Amazon</option>
-                            <option value="Apple">Apple</option>
-                            <option value="Netflix">Netflix</option>
-                            <option value="Uber">Uber</option>
-                            <option value="Lyft">Lyft</option>
-                            <option value="Airbnb">Airbnb</option>
-                            <option value="Dropbox">Dropbox</option>
-                            <option value="Yahoo">Yahoo</option>
-                            <option value="Pinterest">Pinterest</option>
-                            <option value="PayPal">PayPal</option>
-                            <option value="Intel">Intel</option>
-                            <option value="IBM">IBM</option>
-                            <option value="Salesforce">Salesforce</option>
-                            <option value="Cisco">Cisco</option>
-                            <option value="Workday">Workday</option>
-                            <option value="LinkedIn">LinkedIn</option>
-                            <option value="eBay">eBay</option>
-                            <option value="Oracle">Oracle</option>
-                            <option value="Intuit">Intuit</option>
-                            <option value="Qualcomm">Qualcomm</option>
-                            <option value="VMware">VMware</option>
-                            <option value="Square">Square</option>
-                            <option value="DoorDash">DoorDash</option>
-                            <option value="Snap">Snap</option>
-                            <option value="Comcast">Comcast</option>
-                            <option value="Stripe">Stripe</option>
-                            <option value="Quora">Quora</option>
-                            <option value="Yelp">Yelp</option>
-                            <option value="Adobe">Adobe</option>
-                            <option value="Nextdoor">Nextdoor</option>
-                            <option value="Spotify">Spotify</option>
-                            <option value="Twitter">Twitter</option>
-                            <option value="Zillow">Zillow</option>
-                            <option value="Tesla">Tesla</option>
-                            <option value="Groupon">Groupon</option>
-                            <option value="SAP">SAP</option>
-                            <option value="Indeed">Indeed</option>
-                            <option value="Symantec">Symantec</option>
-                            <option value="NetApp">NetApp</option>
-                            <option value="Waymo">Waymo</option>
-                            <option value="Nvidia">Nvidia</option>
-                            <option value="AMD">AMD</option>
-                            <option value="Snowflake">Snowflake</option>
-                            <option value="Databricks">Databricks</option>
-                            <option value="Atlassian">Atlassian</option>
-                            <option value="Twilio">Twilio</option>
-                            <option value="GitHub">GitHub</option>
-                            <option value="GitLab">GitLab</option>
-                            <option value="Asana">Asana</option>
-                            <option value="Notion">Notion</option>
-                            <option value="Figma">Figma</option>
-                            <option value="Slack">Slack</option>
-                            <option value="Zoom">Zoom</option>
-                            <option value="Coinbase">Coinbase</option>
-                            <option value="Robinhood">Robinhood</option>
-                            <option value="Affirm">Affirm</option>
-                            <option value="Shopify">Shopify</option>
-                            <option value="Roblox">Roblox</option>
-                            <option value="Unity">Unity</option>
-                            <option value="Epic Games">Epic Games</option>
-                            <option value="Reddit">Reddit</option>
-                            <option value="Discord">Discord</option>
-                            <option value="Instacart">Instacart</option>
-                            <option value="Grubhub">Grubhub</option>
-                            <option value="Expedia">Expedia</option>
-                            <option value="Booking.com">Booking.com</option>
-                            <option value="Box">Box</option>
-                            <option value="Cloudflare">Cloudflare</option>
-                            <option value="Datadog">Datadog</option>
-                            <option value="Splunk">Splunk</option>
-                            <option value="MongoDB">MongoDB</option>
-                            <option value="Elastic">Elastic</option>
-                            <option value="Palantir">Palantir</option>
-                            <option value="Cruise">Cruise</option>
-                            <option value="Rivian">Rivian</option>
-                            <option value="Bloomberg">Bloomberg</option>
-                            <option value="Citadel">Citadel</option>
-                            <option value="Two Sigma">Two Sigma</option>
-                            <option value="Jane Street">Jane Street</option>
-                            <option value="Goldman Sachs">Goldman Sachs</option>
-                            <option value="JPMorgan">JPMorgan</option>
-                            <option value="Morgan Stanley">Morgan Stanley</option>
-                            <option value="Palo Alto Networks">Palo Alto Networks</option>
-                            <option value="Crusoe">Crusoe</option>
-                            <option value="San Jose Sharks">San Jose Sharks</option>
-                            <option value="Ramp">Ramp</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label for="levelsTrack"
-                            style="display: block; font-weight: 500; margin-bottom: 8px; font-size: 0.9rem;">Job
-                            Track</label>
-                        <select id="levelsTrack"
-                            style="width: 100%; padding: 10px; border: 2px solid #d1d5db; border-radius: 6px; font-size: 0.9rem;">
+                <div class="inputs-grid" style="margin-bottom: 20px;">
+                    <div class="input-group">
+                        <label for="aiRole">Role/Title</label>
+                        <select id="aiRole" style="width: 100%;">
+                            <option value="">Select or type a role...</option>
                             <option value="Software Engineer">Software Engineer</option>
+                            <option value="Senior Software Engineer">Senior Software Engineer</option>
+                            <option value="Staff Software Engineer">Staff Software Engineer</option>
+                            <option value="Principal Software Engineer">Principal Software Engineer</option>
+                            <option value="Engineering Manager">Engineering Manager</option>
+                            <option value="Senior Engineering Manager">Senior Engineering Manager</option>
                             <option value="Product Manager">Product Manager</option>
+                            <option value="Senior Product Manager">Senior Product Manager</option>
+                            <option value="Principal Product Manager">Principal Product Manager</option>
                             <option value="Data Scientist">Data Scientist</option>
+                            <option value="Senior Data Scientist">Senior Data Scientist</option>
                             <option value="Machine Learning Engineer">Machine Learning Engineer</option>
-                            <option value="Software Engineering Manager">Software Engineering Manager</option>
+                            <option value="Senior ML Engineer">Senior ML Engineer</option>
+                            <option value="DevOps Engineer">DevOps Engineer</option>
+                            <option value="Site Reliability Engineer">Site Reliability Engineer</option>
+                            <option value="Security Engineer">Security Engineer</option>
+                            <option value="Frontend Engineer">Frontend Engineer</option>
+                            <option value="Backend Engineer">Backend Engineer</option>
+                            <option value="Full Stack Engineer">Full Stack Engineer</option>
+                            <option value="Mobile Engineer (iOS)">Mobile Engineer (iOS)</option>
+                            <option value="Mobile Engineer (Android)">Mobile Engineer (Android)</option>
+                            <option value="Technical Program Manager">Technical Program Manager</option>
                             <option value="Product Designer">Product Designer</option>
                             <option value="Data Engineer">Data Engineer</option>
-                            <option value="Technical Program Manager">Technical Program Manager</option>
-                            <option value="Solutions Architect">Solutions Architect</option>
-                            <option value="DevOps Engineer">DevOps Engineer</option>
-                            <option value="Security Engineer">Security Engineer</option>
-                            <option value="QA Engineer">QA Engineer</option>
-                            <option value="Mechanical Engineer">Mechanical Engineer</option>
-                            <option value="Hardware Engineer">Hardware Engineer</option>
-                            <option value="Recruiter">Recruiter</option>
-                            <option value="Customer Success">Customer Success</option>
-                            <option value="Sales">Sales</option>
-                            <option value="Marketing">Marketing</option>
-                            <option value="Finance">Finance</option>
-                            <option value="Legal">Legal</option>
-                            <option value="General Counsel">General Counsel</option>
-                            <option value="Operations">Operations</option>
-                            <option value="Business Analyst">Business Analyst</option>
-                            <option value="Account Manager">Account Manager</option>
-                            <option value="Product Marketing Manager">Product Marketing Manager</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="aiLocation">Location</label>
+                        <select id="aiLocation" style="width: 100%;">
+                            <option value="">Select or type a location...</option>
+                            <option value="San Francisco, CA">San Francisco, CA</option>
+                            <option value="San Jose, CA">San Jose, CA</option>
+                            <option value="Mountain View, CA">Mountain View, CA</option>
+                            <option value="Palo Alto, CA">Palo Alto, CA</option>
+                            <option value="Sunnyvale, CA">Sunnyvale, CA</option>
+                            <option value="Santa Clara, CA">Santa Clara, CA</option>
+                            <option value="Cupertino, CA">Cupertino, CA</option>
+                            <option value="Seattle, WA">Seattle, WA</option>
+                            <option value="Austin, TX">Austin, TX</option>
+                            <option value="New York, NY">New York, NY</option>
+                            <option value="Boston, MA">Boston, MA</option>
+                            <option value="Los Angeles, CA">Los Angeles, CA</option>
+                            <option value="San Diego, CA">San Diego, CA</option>
+                            <option value="Denver, CO">Denver, CO</option>
+                            <option value="Portland, OR">Portland, OR</option>
+                            <option value="Chicago, IL">Chicago, IL</option>
+                            <option value="Atlanta, GA">Atlanta, GA</option>
+                            <option value="Raleigh, NC">Raleigh, NC</option>
+                            <option value="Washington, DC">Washington, DC</option>
+                            <option value="Miami, FL">Miami, FL</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="aiYearsExp">Years of Experience</label>
+                        <input type="number" id="aiYearsExp" min="0" max="50" placeholder="e.g., 5">
+                    </div>
+                    <div class="input-group">
+                        <label for="aiCompanySize">Company Size</label>
+                        <select id="aiCompanySize">
+                            <option value="">Select size...</option>
+                            <option value="Startup (<50)">Startup (<50)< /option>
+                            <option value="Small (50-200)">Small (50-200)</option>
+                            <option value="Medium (200-1000)">Medium (200-1000)</option>
+                            <option value="Large (1000-10000)">Large (1000-10000)</option>
+                            <option value="Enterprise (10000+)">Enterprise (10000+)</option>
                         </select>
                     </div>
                 </div>
 
-                <iframe id="levelsIframe"
-                    src="https://www.levels.fyi/charts_embed.html?company=Meta&track=Software%20Engineer&hide_selector=true"
-                    height="500" style="width: 100%; border: 1px solid #e5e7eb; border-radius: 8px;" frameborder="0"
-                    scrolling="auto">
-                </iframe>
-            </div>
-        </div>
+                <button onclick="analyzeCompensation()" id="analyzeBtn"
+                    style="width: 100%; padding: 15px; background: #8feeff; color: #0a0a0a; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: all 0.3s ease;">
+                    Analyze My Compensation 🚀
+                </button>
 
-        <div class="note">
-            <strong>Note:</strong> This calculator shows your initial grant vesting schedule (40/30/20/10) plus any
-            refresher grants you add.
-            Refresher RSUs typically vest over 4 years (25% per year by default, adjustable). The calculator assumes
-            each refresher grant starts
-            vesting in the year it's granted and continues vesting in subsequent years. For example, a Year 2 refresher
-            will vest in Years 2, 3,
-            and 4. Ask your recruiter for the specific refresher amounts and vesting schedules!
-            <br><br>
-            <strong>💾 Auto-Save:</strong> Your inputs are automatically saved in your browser and will persist when you
-            refresh the page.
-        </div>
+                <div id="aiAnalysisResult"
+                    style="margin-top: 20px; padding: 25px; background: var(--bg-card); border-radius: 8px; border: 2px solid #8feeff; display: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                    <h3
+                        style="margin-bottom: 20px; color: #8feeff; font-size: 1.3rem; border-bottom: 2px solid #8feeff; padding-bottom: 10px;">
+                        📊 Analysis Results</h3>
+                    <div id="aiAnalysisContent"
+                        style="line-height: 1.9; color: var(--text-primary); font-size: 0.95rem;"></div>
+                </div>
 
-        <!-- AI Compensation Comparison -->
-        <div class="chart-container" style="margin-top: 30px;">
-            <h2 style="margin-bottom: 20px;">🤖 AI Compensation Analysis</h2>
-            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 20px;">
-                Get AI-powered insights comparing your compensation package to industry standards.
-            </p>
-
-            <div class="inputs-grid" style="margin-bottom: 20px;">
-                <div class="input-group">
-                    <label for="aiRole">Role/Title</label>
-                    <input type="text" id="aiRole" placeholder="e.g., Senior Software Engineer">
-                </div>
-                <div class="input-group">
-                    <label for="aiLocation">Location</label>
-                    <input type="text" id="aiLocation" placeholder="e.g., San Francisco, CA">
-                </div>
-                <div class="input-group">
-                    <label for="aiYearsExp">Years of Experience</label>
-                    <input type="number" id="aiYearsExp" min="0" max="50" placeholder="e.g., 5">
-                </div>
-                <div class="input-group">
-                    <label for="aiCompanySize">Company Size</label>
-                    <select id="aiCompanySize">
-                        <option value="">Select size...</option>
-                        <option value="Startup (<50)">Startup (<50)</option>
-                        <option value="Small (50-200)">Small (50-200)</option>
-                        <option value="Medium (200-1000)">Medium (200-1000)</option>
-                        <option value="Large (1000-10000)">Large (1000-10000)</option>
-                        <option value="Enterprise (10000+)">Enterprise (10000+)</option>
-                    </select>
+                <div id="aiLoadingSpinner" style="display: none; text-align: center; margin-top: 20px;">
+                    <div
+                        style="display: inline-block; width: 40px; height: 40px; border: 4px solid var(--border-color); border-top-color: #8feeff; border-radius: 50%; animation: spin 1s linear infinite;">
+                    </div>
+                    <p style="margin-top: 10px; color: var(--text-secondary);">Analyzing your compensation...</p>
                 </div>
             </div>
 
-            <button onclick="analyzeCompensation()" id="analyzeBtn"
-                style="width: 100%; padding: 15px; background: #8feeff; color: #0a0a0a; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: all 0.3s ease;">
-                Analyze My Compensation 🚀
-            </button>
 
-            <div id="aiAnalysisResult" style="margin-top: 20px; padding: 20px; background: var(--bg-secondary); border-radius: 8px; border-left: 4px solid #8feeff; display: none;">
-                <h3 style="margin-bottom: 15px; color: var(--text-primary);">Analysis Results</h3>
-                <div id="aiAnalysisContent" style="line-height: 1.8; color: var(--text-primary); white-space: pre-wrap;"></div>
+            <!-- Levels.fyi Comparison -->
+            <div class="chart-container">
+                <div class="section-header" onclick="toggleSection('levelsFyiSection')">
+                    <h2>📊 Compare with Market Data</h2>
+                    <span class="collapse-icon" id="levelsFyiIcon">▼</span>
+                </div>
+                <div class="collapsible-content" id="levelsFyiSection">
+                    <p style="font-size: 0.9rem; color: #57534e; margin-bottom: 15px;">
+                        Use the interactive chart below to compare your compensation with market data from levels.fyi
+                    </p>
+
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 15px;">
+                        <div>
+                            <label for="levelsCompany"
+                                style="display: block; font-weight: 500; margin-bottom: 8px; font-size: 0.9rem;">Company</label>
+                            <select id="levelsCompany"
+                                style="width: 100%; padding: 10px; border: 2px solid #d1d5db; border-radius: 6px; font-size: 0.9rem;">
+                                <option value="Meta">Meta</option>
+                                <option value="Google">Google</option>
+                                <option value="Microsoft">Microsoft</option>
+                                <option value="Amazon">Amazon</option>
+                                <option value="Apple">Apple</option>
+                                <option value="Netflix">Netflix</option>
+                                <option value="Uber">Uber</option>
+                                <option value="Lyft">Lyft</option>
+                                <option value="Airbnb">Airbnb</option>
+                                <option value="Dropbox">Dropbox</option>
+                                <option value="Yahoo">Yahoo</option>
+                                <option value="Pinterest">Pinterest</option>
+                                <option value="PayPal">PayPal</option>
+                                <option value="Intel">Intel</option>
+                                <option value="IBM">IBM</option>
+                                <option value="Salesforce">Salesforce</option>
+                                <option value="Cisco">Cisco</option>
+                                <option value="Workday">Workday</option>
+                                <option value="LinkedIn">LinkedIn</option>
+                                <option value="eBay">eBay</option>
+                                <option value="Oracle">Oracle</option>
+                                <option value="Intuit">Intuit</option>
+                                <option value="Qualcomm">Qualcomm</option>
+                                <option value="VMware">VMware</option>
+                                <option value="Square">Square</option>
+                                <option value="DoorDash">DoorDash</option>
+                                <option value="Snap">Snap</option>
+                                <option value="Comcast">Comcast</option>
+                                <option value="Stripe">Stripe</option>
+                                <option value="Quora">Quora</option>
+                                <option value="Yelp">Yelp</option>
+                                <option value="Adobe">Adobe</option>
+                                <option value="Nextdoor">Nextdoor</option>
+                                <option value="Spotify">Spotify</option>
+                                <option value="Twitter">Twitter</option>
+                                <option value="Zillow">Zillow</option>
+                                <option value="Tesla">Tesla</option>
+                                <option value="Groupon">Groupon</option>
+                                <option value="SAP">SAP</option>
+                                <option value="Indeed">Indeed</option>
+                                <option value="Symantec">Symantec</option>
+                                <option value="NetApp">NetApp</option>
+                                <option value="Waymo">Waymo</option>
+                                <option value="Nvidia">Nvidia</option>
+                                <option value="AMD">AMD</option>
+                                <option value="Snowflake">Snowflake</option>
+                                <option value="Databricks">Databricks</option>
+                                <option value="Atlassian">Atlassian</option>
+                                <option value="Twilio">Twilio</option>
+                                <option value="GitHub">GitHub</option>
+                                <option value="GitLab">GitLab</option>
+                                <option value="Asana">Asana</option>
+                                <option value="Notion">Notion</option>
+                                <option value="Figma">Figma</option>
+                                <option value="Slack">Slack</option>
+                                <option value="Zoom">Zoom</option>
+                                <option value="Coinbase">Coinbase</option>
+                                <option value="Robinhood">Robinhood</option>
+                                <option value="Affirm">Affirm</option>
+                                <option value="Shopify">Shopify</option>
+                                <option value="Roblox">Roblox</option>
+                                <option value="Unity">Unity</option>
+                                <option value="Epic Games">Epic Games</option>
+                                <option value="Reddit">Reddit</option>
+                                <option value="Discord">Discord</option>
+                                <option value="Instacart">Instacart</option>
+                                <option value="Grubhub">Grubhub</option>
+                                <option value="Expedia">Expedia</option>
+                                <option value="Booking.com">Booking.com</option>
+                                <option value="Box">Box</option>
+                                <option value="Cloudflare">Cloudflare</option>
+                                <option value="Datadog">Datadog</option>
+                                <option value="Splunk">Splunk</option>
+                                <option value="MongoDB">MongoDB</option>
+                                <option value="Elastic">Elastic</option>
+                                <option value="Palantir">Palantir</option>
+                                <option value="Cruise">Cruise</option>
+                                <option value="Rivian">Rivian</option>
+                                <option value="Bloomberg">Bloomberg</option>
+                                <option value="Citadel">Citadel</option>
+                                <option value="Two Sigma">Two Sigma</option>
+                                <option value="Jane Street">Jane Street</option>
+                                <option value="Goldman Sachs">Goldman Sachs</option>
+                                <option value="JPMorgan">JPMorgan</option>
+                                <option value="Morgan Stanley">Morgan Stanley</option>
+                                <option value="Palo Alto Networks">Palo Alto Networks</option>
+                                <option value="Crusoe">Crusoe</option>
+                                <option value="San Jose Sharks">San Jose Sharks</option>
+                                <option value="Ramp">Ramp</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="levelsTrack"
+                                style="display: block; font-weight: 500; margin-bottom: 8px; font-size: 0.9rem;">Job
+                                Track</label>
+                            <select id="levelsTrack"
+                                style="width: 100%; padding: 10px; border: 2px solid #d1d5db; border-radius: 6px; font-size: 0.9rem;">
+                                <option value="Software Engineer">Software Engineer</option>
+                                <option value="Product Manager">Product Manager</option>
+                                <option value="Data Scientist">Data Scientist</option>
+                                <option value="Machine Learning Engineer">Machine Learning Engineer</option>
+                                <option value="Software Engineering Manager">Software Engineering Manager</option>
+                                <option value="Product Designer">Product Designer</option>
+                                <option value="Data Engineer">Data Engineer</option>
+                                <option value="Technical Program Manager">Technical Program Manager</option>
+                                <option value="Solutions Architect">Solutions Architect</option>
+                                <option value="DevOps Engineer">DevOps Engineer</option>
+                                <option value="Security Engineer">Security Engineer</option>
+                                <option value="QA Engineer">QA Engineer</option>
+                                <option value="Mechanical Engineer">Mechanical Engineer</option>
+                                <option value="Hardware Engineer">Hardware Engineer</option>
+                                <option value="Recruiter">Recruiter</option>
+                                <option value="Customer Success">Customer Success</option>
+                                <option value="Sales">Sales</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Finance">Finance</option>
+                                <option value="Legal">Legal</option>
+                                <option value="General Counsel">General Counsel</option>
+                                <option value="Operations">Operations</option>
+                                <option value="Business Analyst">Business Analyst</option>
+                                <option value="Account Manager">Account Manager</option>
+                                <option value="Product Marketing Manager">Product Marketing Manager</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <iframe id="levelsIframe"
+                        src="https://www.levels.fyi/charts_embed.html?company=Meta&track=Software%20Engineer&hide_selector=true"
+                        height="500" style="width: 100%; border: 1px solid #e5e7eb; border-radius: 8px;" frameborder="0"
+                        scrolling="auto">
+                    </iframe>
+                </div>
             </div>
 
-            <div id="aiLoadingSpinner" style="display: none; text-align: center; margin-top: 20px;">
-                <div style="display: inline-block; width: 40px; height: 40px; border: 4px solid var(--border-color); border-top-color: #8feeff; border-radius: 50%; animation: spin 1s linear infinite;"></div>
-                <p style="margin-top: 10px; color: var(--text-secondary);">Analyzing your compensation...</p>
+            <div class="note">
+                <strong>Note:</strong> This calculator shows your initial grant vesting schedule (40/30/20/10) plus any
+                refresher grants you add.
+                Refresher RSUs typically vest over 4 years (25% per year by default, adjustable). The calculator assumes
+                each refresher grant starts
+                vesting in the year it's granted and continues vesting in subsequent years. For example, a Year 2
+                refresher
+                will vest in Years 2, 3,
+                and 4. Ask your recruiter for the specific refresher amounts and vesting schedules!
+                <br><br>
+                <strong>💾 Auto-Save:</strong> Your inputs are automatically saved in your browser and will persist when
+                you
+                refresh the page.
             </div>
-        </div>
+
 
         </div>
         <!-- End RSU Calculator -->
@@ -904,7 +988,8 @@
 
                         <div class="input-group">
                             <label style="display: flex; align-items: center; cursor: pointer;">
-                                <input type="checkbox" id="enableISOAnnualRaise" checked style="width: auto; margin-right: 10px; cursor: pointer;">
+                                <input type="checkbox" id="enableISOAnnualRaise" checked
+                                    style="width: auto; margin-right: 10px; cursor: pointer;">
                                 <span>Apply 3% annual raise</span>
                             </label>
                         </div>
@@ -917,7 +1002,8 @@
                         <div class="input-group">
                             <label for="isoSignOnBonus">Sign-On Bonus ($)</label>
                             <input type="number" id="isoSignOnBonus" min="0" step="1000" placeholder="0">
-                            <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">One-time payment in Year 1</p>
+                            <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">One-time payment in Year 1
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -1025,9 +1111,11 @@
                         </div>
 
                         <div class="input-group">
-                            <label for="marginalTaxRate">Marginal Tax Rate  % (on ISO gains)</label>
-                            <input type="number" id="marginalTaxRate" min="0" max="100" step="0.1" placeholder="37" disabled>
-                            <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">Estimated combined federal + state rate applied to ISO gains. Not the same as tax withholding.</p>
+                            <label for="marginalTaxRate">Marginal Tax Rate % (on ISO gains)</label>
+                            <input type="number" id="marginalTaxRate" min="0" max="100" step="0.1" placeholder="37"
+                                disabled>
+                            <p style="font-size: 0.75rem; color: #57534e; margin-top: 5px;">Estimated combined federal +
+                                state rate applied to ISO gains. Not the same as tax withholding.</p>
                         </div>
                     </div>
                 </div>
@@ -1037,23 +1125,28 @@
             <div class="summary-grid">
                 <div class="summary-card">
                     <div class="summary-label">💸 Exercise Cost</div>
-                    <div class="summary-value" id="isoExerciseCost" onclick="copyToClipboard(this)" style="cursor: pointer;" title="Click to copy">$0</div>
+                    <div class="summary-value" id="isoExerciseCost" onclick="copyToClipboard(this)"
+                        style="cursor: pointer;" title="Click to copy">$0</div>
                 </div>
                 <div class="summary-card">
                     <div class="summary-label">📈 Gross Upside</div>
-                    <div class="summary-value" id="isoGrossUpside" onclick="copyToClipboard(this)" style="cursor: pointer;" title="Click to copy">$0</div>
+                    <div class="summary-value" id="isoGrossUpside" onclick="copyToClipboard(this)"
+                        style="cursor: pointer;" title="Click to copy">$0</div>
                 </div>
                 <div class="summary-card">
                     <div class="summary-label">🧾 Estimated Taxes</div>
-                    <div class="summary-value" id="isoEstimatedTaxes" onclick="copyToClipboard(this)" style="cursor: pointer;" title="Click to copy">$0</div>
+                    <div class="summary-value" id="isoEstimatedTaxes" onclick="copyToClipboard(this)"
+                        style="cursor: pointer;" title="Click to copy">$0</div>
                 </div>
                 <div class="summary-card">
                     <div class="summary-label">✅ Net Upside</div>
-                    <div class="summary-value" id="isoNetUpside" onclick="copyToClipboard(this)" style="cursor: pointer;" title="Click to copy">$0</div>
+                    <div class="summary-value" id="isoNetUpside" onclick="copyToClipboard(this)"
+                        style="cursor: pointer;" title="Click to copy">$0</div>
                 </div>
                 <div class="summary-card">
                     <div class="summary-label">📊 ROI Multiple</div>
-                    <div class="summary-value" id="isoROI" onclick="copyToClipboard(this)" style="cursor: pointer;" title="Click to copy">0x</div>
+                    <div class="summary-value" id="isoROI" onclick="copyToClipboard(this)" style="cursor: pointer;"
+                        title="Click to copy">0x</div>
                 </div>
             </div>
 
@@ -1065,13 +1158,16 @@
                 </div>
                 <div class="collapsible-content" id="isoScenarioChartSection">
                     <!-- Slider for scenario adjustment -->
-                    <div style="margin-bottom: 20px; padding: 15px; background: var(--bg-card); border-radius: 8px; border: 1px solid var(--border-color);">
-                        <label for="scenarioSharePrice" style="display: block; font-weight: 600; margin-bottom: 10px; color: var(--text-primary);">
+                    <div
+                        style="margin-bottom: 20px; padding: 15px; background: var(--bg-card); border-radius: 8px; border: 1px solid var(--border-color);">
+                        <label for="scenarioSharePrice"
+                            style="display: block; font-weight: 600; margin-bottom: 10px; color: var(--text-primary);">
                             Scenario Share Price: $<span id="scenarioSharePriceDisplay">0</span>
                         </label>
-                        <input type="range" id="scenarioSharePrice" min="0" max="500" step="1" value="0" 
+                        <input type="range" id="scenarioSharePrice" min="0" max="500" step="1" value="0"
                             style="width: 100%; height: 8px; border-radius: 4px; background: var(--bg-secondary); outline: none; cursor: pointer;">
-                        <div style="display: flex; justify-content: space-between; margin-top: 5px; font-size: 0.85rem; color: var(--text-secondary);">
+                        <div
+                            style="display: flex; justify-content: space-between; margin-top: 5px; font-size: 0.85rem; color: var(--text-secondary);">
                             <span id="sliderMinLabel">$0</span>
                             <span id="sliderMaxLabel">$500</span>
                         </div>
@@ -1107,12 +1203,14 @@
             </div>
 
             <div class="note">
-                <strong>Note:</strong> ISO (Incentive Stock Options) calculations are estimates. Actual tax treatment depends on holding periods, AMT implications, and individual circumstances. 
+                <strong>Note:</strong> ISO (Incentive Stock Options) calculations are estimates. Actual tax treatment
+                depends on holding periods, AMT implications, and individual circumstances.
                 <br><br>
                 <strong>Key Considerations:</strong>
                 <ul style="margin-top: 10px; margin-left: 20px;">
                     <li>Exercising ISOs may trigger Alternative Minimum Tax (AMT)</li>
-                    <li>Holding shares 2+ years from grant and 1+ year from exercise qualifies for favorable tax treatment</li>
+                    <li>Holding shares 2+ years from grant and 1+ year from exercise qualifies for favorable tax
+                        treatment</li>
                     <li>Exercise cost must be paid upfront</li>
                     <li>Consult a tax professional for personalized advice</li>
                 </ul>
@@ -1141,16 +1239,16 @@
             const bonusPercent = parseFloat(document.getElementById('bonusPercent').value) || 0;
             const signOnBonus = parseInt(document.getElementById('signOnBonus').value) || 0;
             const initialGrant = parseFloat(document.getElementById('initialGrant').value) || 0;
-            
+
             // Get stock prices
             const stockYear1 = parseFloat(document.getElementById('stockYear1').value) || 0;
             const stockYear4 = parseFloat(document.getElementById('stockYear4').value) || 0;
-            
+
             // Calculate Year 1 total
             const year1Bonus = baseSalary * (bonusPercent / 100);
             const year1RSUValue = initialGrant * 0.4 * stockYear1; // 40% vests in year 1
             const year1Total = baseSalary + year1Bonus + signOnBonus + year1RSUValue;
-            
+
             // Calculate 4-year average
             const avgAnnual = (year1Total + (baseSalary * 3 * 1.1) + year1RSUValue * 3) / 4; // Rough estimate
 
@@ -1216,16 +1314,31 @@ Format your response in clear sections with bullet points. Be specific with sala
                 }
 
                 const data = await response.json();
-                
+
                 // Check if we have the expected response structure
                 if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
                     throw new Error('Invalid response from API');
                 }
-                
+
                 const analysisText = data.candidates[0].content.parts[0].text;
 
+                // Format the markdown-style text for better display
+                const formattedText = analysisText
+                    // Convert ## headers to styled headers
+                    .replace(/###\s+(.+)/g, '<h4 style="color: #8feeff; margin-top: 25px; margin-bottom: 10px; font-size: 1.1rem;">$1</h4>')
+                    .replace(/##\s+(.+)/g, '<h3 style="color: #8feeff; margin-top: 30px; margin-bottom: 12px; font-size: 1.2rem;">$1</h3>')
+                    // Convert **bold** to actual bold
+                    .replace(/\*\*(.+?)\*\*/g, '<strong style="color: var(--text-primary);">$1</strong>')
+                    // Convert * bullet points to styled bullets
+                    .replace(/^\*\s+(.+)$/gm, '<div style="margin-left: 20px; margin-bottom: 8px;">• $1</div>')
+                    // Convert numbered lists
+                    .replace(/^(\d+)\.\s+(.+)$/gm, '<div style="margin-left: 20px; margin-bottom: 8px; font-weight: 600;">$1. $2</div>')
+                    // Convert line breaks
+                    .replace(/\n\n/g, '<br><br>')
+                    .replace(/\n/g, '<br>');
+
                 // Display results
-                document.getElementById('aiAnalysisContent').textContent = analysisText;
+                document.getElementById('aiAnalysisContent').innerHTML = formattedText;
                 document.getElementById('aiAnalysisResult').style.display = 'block';
 
                 // Scroll to results
@@ -1233,14 +1346,14 @@ Format your response in clear sections with bullet points. Be specific with sala
 
             } catch (error) {
                 let errorMsg = error.message;
-                
+
                 // Provide more helpful error messages
                 if (errorMsg.includes('valid JSON')) {
                     errorMsg = 'Server configuration error. Please check that the /api folder is properly deployed to Vercel.';
                 } else if (errorMsg.includes('Failed to fetch')) {
                     errorMsg = 'Network error. Please check your connection and try again.';
                 }
-                
+
                 alert(`Error analyzing compensation: ${errorMsg}`);
                 console.error('Analysis Error:', error);
             } finally {
@@ -1252,12 +1365,57 @@ Format your response in clear sections with bullet points. Be specific with sala
             }
         }
 
+        // AI Analyzer - Save and Load inputs
+        function saveAIInputs() {
+            const aiInputs = {
+                role: $('#aiRole').val(),
+                location: $('#aiLocation').val(),
+                yearsExp: document.getElementById('aiYearsExp').value,
+                companySize: document.getElementById('aiCompanySize').value
+            };
+            localStorage.setItem('aiAnalyzerInputs', JSON.stringify(aiInputs));
+        }
+
+        function loadAIInputs() {
+            const saved = localStorage.getItem('aiAnalyzerInputs');
+            if (saved) {
+                try {
+                    const inputs = JSON.parse(saved);
+                    if (inputs.role) $('#aiRole').val(inputs.role).trigger('change');
+                    if (inputs.location) $('#aiLocation').val(inputs.location).trigger('change');
+                    if (inputs.yearsExp) document.getElementById('aiYearsExp').value = inputs.yearsExp;
+                    if (inputs.companySize) document.getElementById('aiCompanySize').value = inputs.companySize;
+                } catch (e) {
+                    console.error('Error loading AI inputs:', e);
+                }
+            }
+        }
+
+        // Initialize Select2 for AI analyzer dropdowns
+        function initializeAISelect2() {
+            $('#aiRole').select2({
+                tags: true,
+                placeholder: 'Select or type a role...',
+                allowClear: true
+            });
+            $('#aiLocation').select2({
+                tags: true,
+                placeholder: 'Select or type a location...',
+                allowClear: true
+            });
+
+            // Save on change
+            $('#aiRole, #aiLocation').on('change', saveAIInputs);
+            document.getElementById('aiYearsExp').addEventListener('input', saveAIInputs);
+            document.getElementById('aiCompanySize').addEventListener('change', saveAIInputs);
+        }
+
         // Mode switching
         let currentMode = 'rsu';
 
         function switchMode(mode) {
             currentMode = mode;
-            
+
             if (mode === 'rsu') {
                 document.getElementById('rsuCalculator').style.display = 'block';
                 document.getElementById('isoCalculator').style.display = 'none';
@@ -1274,7 +1432,7 @@ Format your response in clear sections with bullet points. Be specific with sala
                 document.getElementById('isoModeBtn').style.color = '#0a0a0a';
                 calculateISO();
             }
-            
+
             localStorage.setItem('calculatorMode', mode);
         }
 
@@ -1282,7 +1440,7 @@ Format your response in clear sections with bullet points. Be specific with sala
         function updateTaxProfileOptions() {
             const state = document.getElementById('isoState').value;
             const taxProfileSelect = document.getElementById('taxProfile');
-            
+
             // State tax rate mappings (approximate marginal rates for high earners)
             const stateTaxData = {
                 'CA': { name: 'California', highRate: 40, marriedRate: 37 },
@@ -1304,13 +1462,13 @@ Format your response in clear sections with bullet points. Be specific with sala
                 'NV': { name: 'Nevada', highRate: 32, marriedRate: 32, noIncomeTax: true },
                 'TN': { name: 'Tennessee', highRate: 32, marriedRate: 32, noIncomeTax: true }
             };
-            
+
             // Clear existing options
             taxProfileSelect.innerHTML = '<option value="">Select a profile...</option>';
-            
+
             if (state && stateTaxData[state]) {
                 const stateData = stateTaxData[state];
-                
+
                 if (stateData.noIncomeTax) {
                     // No income tax state
                     taxProfileSelect.innerHTML += `<option value="no_tax_${state.toLowerCase()}">${stateData.name} (no state income tax) → ${stateData.highRate}%</option>`;
@@ -1324,19 +1482,19 @@ Format your response in clear sections with bullet points. Be specific with sala
                 taxProfileSelect.innerHTML += '<option value="other_high">High earner (est. 36%)</option>';
                 taxProfileSelect.innerHTML += '<option value="other_moderate">Moderate rate (est. 34%)</option>';
             }
-            
+
             // Always add custom option
             taxProfileSelect.innerHTML += '<option value="custom">Custom → unlocks manual entry</option>';
-            
+
             // Save state selection
             localStorage.setItem('isoState', state);
         }
-        
+
         function applyTaxProfile() {
             const state = document.getElementById('isoState').value;
             const taxProfile = document.getElementById('taxProfile').value;
             const marginalTaxRateInput = document.getElementById('marginalTaxRate');
-            
+
             // Build dynamic tax rates based on state
             const stateTaxData = {
                 'CA': { highRate: 40, marriedRate: 37 },
@@ -1357,9 +1515,9 @@ Format your response in clear sections with bullet points. Be specific with sala
                 'NV': { highRate: 32, marriedRate: 32 },
                 'TN': { highRate: 32, marriedRate: 32 }
             };
-            
+
             let rate = null;
-            
+
             if (taxProfile === 'custom') {
                 // Enable manual entry for custom
                 marginalTaxRateInput.disabled = false;
@@ -1382,15 +1540,15 @@ Format your response in clear sections with bullet points. Be specific with sala
                     rate = stateTaxData[state].marriedRate;
                 }
             }
-            
+
             if (rate !== null) {
                 marginalTaxRateInput.disabled = true;
                 marginalTaxRateInput.value = rate;
             }
-            
+
             // Save to localStorage
             localStorage.setItem('taxProfile', taxProfile);
-            
+
             // Recalculate
             calculateISO();
         }
@@ -1401,7 +1559,7 @@ Format your response in clear sections with bullet points. Be specific with sala
             const isoBaseSalary = parseFloat(document.getElementById('isoBaseSalary').value) || 0;
             const isoBonusPercent = parseFloat(document.getElementById('isoBonusPercent').value) || 0;
             const isoSignOnBonus = parseFloat(document.getElementById('isoSignOnBonus').value) || 0;
-            
+
             // ISO values
             const numberOfOptions = parseFloat(document.getElementById('numberOfOptions').value) || 0;
             const strikePrice = parseFloat(document.getElementById('strikePrice').value) || 0;
@@ -1449,9 +1607,9 @@ Format your response in clear sections with bullet points. Be specific with sala
         function updateISOTable(years) {
             const tbody = document.getElementById('isoTableBody');
             if (!tbody) return;
-            
+
             tbody.innerHTML = '';
-            
+
             years.forEach(year => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
@@ -1484,18 +1642,18 @@ Format your response in clear sections with bullet points. Be specific with sala
             if (displayElement) {
                 displayElement.textContent = assumedSharePrice.toFixed(2);
             }
-            
+
             // Set intelligent slider range: from strike price to 3x assumed price (or 3x strike if no assumed)
             if (scenarioSlider && !scenarioSlider.matches(':active')) {
                 const minPrice = strikePrice || 0;
-                const maxPrice = assumedSharePrice > 0 
-                    ? Math.max(assumedSharePrice * 3, strikePrice * 3) 
+                const maxPrice = assumedSharePrice > 0
+                    ? Math.max(assumedSharePrice * 3, strikePrice * 3)
                     : (strikePrice > 0 ? strikePrice * 3 : 500);
-                
+
                 scenarioSlider.min = minPrice;
                 scenarioSlider.max = maxPrice;
                 scenarioSlider.value = assumedSharePrice || strikePrice;
-                
+
                 // Update labels
                 document.getElementById('sliderMinLabel').textContent = '$' + minPrice.toFixed(0);
                 document.getElementById('sliderMaxLabel').textContent = '$' + maxPrice.toFixed(0);
@@ -1510,7 +1668,7 @@ Format your response in clear sections with bullet points. Be specific with sala
             // Calculate cash comp per year (with optional 3% raise)
             const enableISOAnnualRaise = document.getElementById('enableISOAnnualRaise').checked;
             const annualRaiseMultiplier = enableISOAnnualRaise ? 1.03 : 1;
-            
+
             const years = [];
             for (let i = 0; i < 4; i++) {
                 const currentBaseSalary = isoBaseSalary * Math.pow(annualRaiseMultiplier, i);
@@ -1518,7 +1676,7 @@ Format your response in clear sections with bullet points. Be specific with sala
                 const signOn = i === 0 ? isoSignOnBonus : 0;
                 const totalCash = currentBaseSalary + bonus + signOn;
                 const totalWithISO = totalCash + annualizedISOUpside;
-                
+
                 years.push({
                     year: `Year ${i + 1}`,
                     baseSalary: currentBaseSalary,
@@ -1582,7 +1740,7 @@ Format your response in clear sections with bullet points. Be specific with sala
                                 beginAtZero: true,
                                 ticks: {
                                     color: getChartTextColor(),
-                                    callback: function(value) {
+                                    callback: function (value) {
                                         return '$' + (value / 1000).toFixed(0) + 'k';
                                     }
                                 },
@@ -1594,7 +1752,7 @@ Format your response in clear sections with bullet points. Be specific with sala
                         plugins: {
                             tooltip: {
                                 callbacks: {
-                                    label: function(context) {
+                                    label: function (context) {
                                         return context.dataset.label + ': $' + context.parsed.y.toLocaleString();
                                     }
                                 }
@@ -1613,14 +1771,14 @@ Format your response in clear sections with bullet points. Be specific with sala
         }
 
         // Add event listeners for ISO inputs
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const isoInputs = ['isoBaseSalary', 'isoBonusPercent', 'isoSignOnBonus', 'numberOfOptions', 'strikePrice', 'assumedSharePrice', 'marginalTaxRate', 'vestingPeriod', 'isoState', 'enableISOAnnualRaise'];
             isoInputs.forEach(id => {
                 const element = document.getElementById(id);
                 if (element) {
                     element.addEventListener('input', calculateISO);
                     // Save to localStorage
-                    element.addEventListener('change', function() {
+                    element.addEventListener('change', function () {
                         localStorage.setItem(id, this.value);
                     });
                     // Load from localStorage
@@ -1634,34 +1792,34 @@ Format your response in clear sections with bullet points. Be specific with sala
             // Add event listener for scenario share price slider
             const scenarioSlider = document.getElementById('scenarioSharePrice');
             const assumedSharePriceInput = document.getElementById('assumedSharePrice');
-            
+
             if (scenarioSlider && assumedSharePriceInput) {
                 // Slider updates assumed share price and chart
-                scenarioSlider.addEventListener('input', function() {
+                scenarioSlider.addEventListener('input', function () {
                     assumedSharePriceInput.value = this.value;
                     document.getElementById('scenarioSharePriceDisplay').textContent = parseFloat(this.value).toFixed(2);
                     // Only update chart, not full calculation (for smoothness)
                     updateISOScenarioChart();
                 });
-                
+
                 // Save to localStorage on slider release
-                scenarioSlider.addEventListener('change', function() {
+                scenarioSlider.addEventListener('change', function () {
                     localStorage.setItem('assumedSharePrice', this.value);
                     calculateISO(); // Full recalc on release
                 });
-                
+
                 // Assumed share price input updates slider and its range
-                assumedSharePriceInput.addEventListener('input', function() {
+                assumedSharePriceInput.addEventListener('input', function () {
                     const strikePrice = parseFloat(document.getElementById('strikePrice').value) || 0;
                     const assumedPrice = parseFloat(this.value) || 0;
-                    
+
                     // Update slider range dynamically
                     scenarioSlider.min = strikePrice || 0;
-                    scenarioSlider.max = assumedPrice > 0 
-                        ? Math.max(assumedPrice * 3, strikePrice * 3) 
+                    scenarioSlider.max = assumedPrice > 0
+                        ? Math.max(assumedPrice * 3, strikePrice * 3)
                         : (strikePrice > 0 ? strikePrice * 3 : 500);
                     scenarioSlider.value = this.value;
-                    
+
                     // Update labels
                     document.getElementById('sliderMinLabel').textContent = '$' + scenarioSlider.min;
                     document.getElementById('sliderMaxLabel').textContent = '$' + Math.round(scenarioSlider.max);
@@ -1678,7 +1836,7 @@ Format your response in clear sections with bullet points. Be specific with sala
                 // On first load, CA is already selected by default, so update options
                 updateTaxProfileOptions();
             }
-            
+
             const savedTaxProfile = localStorage.getItem('taxProfile');
             if (savedTaxProfile) {
                 document.getElementById('taxProfile').value = savedTaxProfile;
@@ -1693,11 +1851,11 @@ Format your response in clear sections with bullet points. Be specific with sala
         // Copy/Download chart as PNG
         function copyChartToClipboard(chartId) {
             const canvas = document.getElementById(chartId);
-            
+
             // Convert canvas to blob and try clipboard API first
             canvas.toBlob(async (blob) => {
                 let success = false;
-                
+
                 // Try Clipboard API (works in some browsers)
                 if (navigator.clipboard && ClipboardItem) {
                     try {
@@ -1713,7 +1871,7 @@ Format your response in clear sections with bullet points. Be specific with sala
                         console.log('Clipboard API not supported, downloading instead');
                     }
                 }
-                
+
                 // Fallback: Download the image
                 if (!success) {
                     const url = canvas.toDataURL('image/png');
@@ -1729,7 +1887,7 @@ Format your response in clear sections with bullet points. Be specific with sala
         function showChartCopyFeedback(chartId, message) {
             const canvas = document.getElementById(chartId);
             const container = canvas.parentElement;
-            
+
             // Create feedback overlay
             const feedback = document.createElement('div');
             feedback.textContent = '✓ ' + message;
@@ -1745,10 +1903,10 @@ Format your response in clear sections with bullet points. Be specific with sala
             feedback.style.fontWeight = '600';
             feedback.style.zIndex = '1000';
             feedback.style.pointerEvents = 'none';
-            
+
             container.style.position = 'relative';
             container.appendChild(feedback);
-            
+
             setTimeout(() => {
                 feedback.remove();
             }, 2000);
@@ -1758,7 +1916,7 @@ Format your response in clear sections with bullet points. Be specific with sala
         function initDarkMode() {
             // Check for saved preference, default to dark mode
             const savedMode = localStorage.getItem('darkMode');
-            
+
             // If no saved preference, default to dark mode
             // If saved preference exists, use that
             if (savedMode === 'dark' || savedMode === null) {
@@ -1773,7 +1931,7 @@ Format your response in clear sections with bullet points. Be specific with sala
             const isDark = document.body.classList.toggle('dark-mode');
             localStorage.setItem('darkMode', isDark ? 'dark' : 'light');
             updateDarkModeIcon(isDark);
-            
+
             // Refresh charts to update colors
             if (currentMode === 'rsu') {
                 if (typeof updateDisplay === 'function') {
@@ -1797,7 +1955,7 @@ Format your response in clear sections with bullet points. Be specific with sala
         // Copy to clipboard function
         function copyToClipboard(element) {
             const text = element.textContent.trim();
-            
+
             // Try modern clipboard API first
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(text).then(() => {
@@ -1820,14 +1978,14 @@ Format your response in clear sections with bullet points. Be specific with sala
             document.body.appendChild(textarea);
             textarea.select();
             textarea.setSelectionRange(0, 99999); // For mobile
-            
+
             try {
                 document.execCommand('copy');
                 showCopyFeedback(element);
             } catch (err) {
                 console.error('Copy failed:', err);
             }
-            
+
             document.body.removeChild(textarea);
         }
 
@@ -1835,7 +1993,7 @@ Format your response in clear sections with bullet points. Be specific with sala
             const originalText = element.textContent;
             element.textContent = '✓ Copied!';
             element.style.color = '#10b981';
-            
+
             setTimeout(() => {
                 element.textContent = originalText;
                 element.style.color = '';
@@ -2193,7 +2351,7 @@ Format your response in clear sections with bullet points. Be specific with sala
                     responsive: true,
                     maintainAspectRatio: true,
                     scales: {
-                        x: { 
+                        x: {
                             stacked: false,
                             ticks: {
                                 color: getChartTextColor()
@@ -2327,8 +2485,8 @@ Format your response in clear sections with bullet points. Be specific with sala
             // Toggle refreshers inputs visibility
             const enableRefreshersCheckbox = document.getElementById('enableRefreshers');
             const refreshersInputs = document.getElementById('refreshersInputs');
-            
-            enableRefreshersCheckbox.addEventListener('change', function() {
+
+            enableRefreshersCheckbox.addEventListener('change', function () {
                 refreshersInputs.style.display = this.checked ? 'block' : 'none';
                 saveInputs();
                 updateDisplay();
@@ -2393,6 +2551,10 @@ Format your response in clear sections with bullet points. Be specific with sala
         // Initialize
         loadInputs();
         setupInputListeners();
+
+        // Initialize AI Analyzer Select2 and load saved inputs
+        initializeAISelect2();
+        loadAIInputs();
 
         // Initialize Select2 for searchable dropdowns
         $(document).ready(function () {
