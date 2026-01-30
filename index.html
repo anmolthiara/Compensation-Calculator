@@ -757,6 +757,12 @@
                         <input type="number" id="aiYearsExp" min="0" max="50" placeholder="e.g., 5">
                     </div>
                     <div class="input-group">
+                        <label for="aiIndustry">Industry</label>
+                        <div class="autocomplete-wrapper">
+                            <input type="text" id="aiIndustry" placeholder="e.g., Technology" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="input-group">
                         <label for="aiCompanySize">Company Size</label>
                         <select id="aiCompanySize">
                             <option value="">Select size...</option>
@@ -808,132 +814,22 @@
                         <div>
                             <label for="levelsCompany"
                                 style="display: block; font-weight: 500; margin-bottom: 8px; font-size: 0.9rem;">Company</label>
-                            <select id="levelsCompany"
-                                style="width: 100%; padding: 10px; border: 2px solid #d1d5db; border-radius: 6px; font-size: 0.9rem;">
-                                <option value="Meta">Meta</option>
-                                <option value="Google">Google</option>
-                                <option value="Microsoft">Microsoft</option>
-                                <option value="Amazon">Amazon</option>
-                                <option value="Apple">Apple</option>
-                                <option value="Netflix">Netflix</option>
-                                <option value="Uber">Uber</option>
-                                <option value="Lyft">Lyft</option>
-                                <option value="Airbnb">Airbnb</option>
-                                <option value="Dropbox">Dropbox</option>
-                                <option value="Yahoo">Yahoo</option>
-                                <option value="Pinterest">Pinterest</option>
-                                <option value="PayPal">PayPal</option>
-                                <option value="Intel">Intel</option>
-                                <option value="IBM">IBM</option>
-                                <option value="Salesforce">Salesforce</option>
-                                <option value="Cisco">Cisco</option>
-                                <option value="Workday">Workday</option>
-                                <option value="LinkedIn">LinkedIn</option>
-                                <option value="eBay">eBay</option>
-                                <option value="Oracle">Oracle</option>
-                                <option value="Intuit">Intuit</option>
-                                <option value="Qualcomm">Qualcomm</option>
-                                <option value="VMware">VMware</option>
-                                <option value="Square">Square</option>
-                                <option value="DoorDash">DoorDash</option>
-                                <option value="Snap">Snap</option>
-                                <option value="Comcast">Comcast</option>
-                                <option value="Stripe">Stripe</option>
-                                <option value="Quora">Quora</option>
-                                <option value="Yelp">Yelp</option>
-                                <option value="Adobe">Adobe</option>
-                                <option value="Nextdoor">Nextdoor</option>
-                                <option value="Spotify">Spotify</option>
-                                <option value="Twitter">Twitter</option>
-                                <option value="Zillow">Zillow</option>
-                                <option value="Tesla">Tesla</option>
-                                <option value="Groupon">Groupon</option>
-                                <option value="SAP">SAP</option>
-                                <option value="Indeed">Indeed</option>
-                                <option value="Symantec">Symantec</option>
-                                <option value="NetApp">NetApp</option>
-                                <option value="Waymo">Waymo</option>
-                                <option value="Nvidia">Nvidia</option>
-                                <option value="AMD">AMD</option>
-                                <option value="Snowflake">Snowflake</option>
-                                <option value="Databricks">Databricks</option>
-                                <option value="Atlassian">Atlassian</option>
-                                <option value="Twilio">Twilio</option>
-                                <option value="GitHub">GitHub</option>
-                                <option value="GitLab">GitLab</option>
-                                <option value="Asana">Asana</option>
-                                <option value="Notion">Notion</option>
-                                <option value="Figma">Figma</option>
-                                <option value="Slack">Slack</option>
-                                <option value="Zoom">Zoom</option>
-                                <option value="Coinbase">Coinbase</option>
-                                <option value="Robinhood">Robinhood</option>
-                                <option value="Affirm">Affirm</option>
-                                <option value="Shopify">Shopify</option>
-                                <option value="Roblox">Roblox</option>
-                                <option value="Unity">Unity</option>
-                                <option value="Epic Games">Epic Games</option>
-                                <option value="Reddit">Reddit</option>
-                                <option value="Discord">Discord</option>
-                                <option value="Instacart">Instacart</option>
-                                <option value="Grubhub">Grubhub</option>
-                                <option value="Expedia">Expedia</option>
-                                <option value="Booking.com">Booking.com</option>
-                                <option value="Box">Box</option>
-                                <option value="Cloudflare">Cloudflare</option>
-                                <option value="Datadog">Datadog</option>
-                                <option value="Splunk">Splunk</option>
-                                <option value="MongoDB">MongoDB</option>
-                                <option value="Elastic">Elastic</option>
-                                <option value="Palantir">Palantir</option>
-                                <option value="Cruise">Cruise</option>
-                                <option value="Rivian">Rivian</option>
-                                <option value="Bloomberg">Bloomberg</option>
-                                <option value="Citadel">Citadel</option>
-                                <option value="Two Sigma">Two Sigma</option>
-                                <option value="Jane Street">Jane Street</option>
-                                <option value="Goldman Sachs">Goldman Sachs</option>
-                                <option value="JPMorgan">JPMorgan</option>
-                                <option value="Morgan Stanley">Morgan Stanley</option>
-                                <option value="Palo Alto Networks">Palo Alto Networks</option>
-                                <option value="Crusoe">Crusoe</option>
-                                <option value="San Jose Sharks">San Jose Sharks</option>
-                                <option value="Ramp">Ramp</option>
-                            </select>
+                            <div class="autocomplete-wrapper">
+                                <input type="text" id="levelsCompany"
+                                    style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.9rem; background: var(--bg-card); color: var(--text-primary);"
+                                    placeholder="e.g., Meta" autocomplete="off">
+                            </div>
                         </div>
 
                         <div>
                             <label for="levelsTrack"
                                 style="display: block; font-weight: 500; margin-bottom: 8px; font-size: 0.9rem;">Job
                                 Track</label>
-                            <select id="levelsTrack"
-                                style="width: 100%; padding: 10px; border: 2px solid #d1d5db; border-radius: 6px; font-size: 0.9rem;">
-                                <option value="Software Engineer">Software Engineer</option>
-                                <option value="Product Manager">Product Manager</option>
-                                <option value="Data Scientist">Data Scientist</option>
-                                <option value="Machine Learning Engineer">Machine Learning Engineer</option>
-                                <option value="Software Engineering Manager">Software Engineering Manager</option>
-                                <option value="Product Designer">Product Designer</option>
-                                <option value="Data Engineer">Data Engineer</option>
-                                <option value="Technical Program Manager">Technical Program Manager</option>
-                                <option value="Solutions Architect">Solutions Architect</option>
-                                <option value="DevOps Engineer">DevOps Engineer</option>
-                                <option value="Security Engineer">Security Engineer</option>
-                                <option value="QA Engineer">QA Engineer</option>
-                                <option value="Mechanical Engineer">Mechanical Engineer</option>
-                                <option value="Hardware Engineer">Hardware Engineer</option>
-                                <option value="Recruiter">Recruiter</option>
-                                <option value="Customer Success">Customer Success</option>
-                                <option value="Sales">Sales</option>
-                                <option value="Marketing">Marketing</option>
-                                <option value="Finance">Finance</option>
-                                <option value="Legal">Legal</option>
-                                <option value="General Counsel">General Counsel</option>
-                                <option value="Operations">Operations</option>
-                                <option value="Business Analyst">Business Analyst</option>
-                                <option value="Account Manager">Account Manager</option>
-                                <option value="Product Marketing Manager">Product Marketing Manager</option>
-                            </select>
+                            <div class="autocomplete-wrapper">
+                                <input type="text" id="levelsTrack"
+                                    style="width: 100%; padding: 10px; border: 2px solid var(--border-color); border-radius: 6px; font-size: 0.9rem; background: var(--bg-card); color: var(--text-primary);"
+                                    placeholder="e.g., Software Engineer" autocomplete="off">
+                            </div>
                         </div>
                     </div>
 
@@ -1219,11 +1115,12 @@
             const role = document.getElementById('aiRole').value.trim();
             const location = document.getElementById('aiLocation').value.trim();
             const yearsExp = document.getElementById('aiYearsExp').value;
+            const industry = document.getElementById('aiIndustry').value.trim();
             const companySize = document.getElementById('aiCompanySize').value;
 
             // Validation
-            if (!role || !location || !yearsExp || !companySize) {
-                alert('Please fill in all fields (Role, Location, Years of Experience, Company Size)');
+            if (!role || !location || !yearsExp || !industry || !companySize) {
+                alert('Please fill in all fields (Role, Location, Years of Experience, Industry, Company Size)');
                 return;
             }
 
@@ -1258,6 +1155,7 @@
 Role: ${role}
 Location: ${location}
 Years of Experience: ${yearsExp}
+Industry: ${industry}
 Company Size: ${companySize}
 
 Current Compensation Package:
@@ -1270,13 +1168,13 @@ Current Compensation Package:
 - 4-Year Average Annual: ~$${Math.round(avgAnnual).toLocaleString()}
 
 Please provide a comprehensive analysis covering:
-1. **Market Comparison**: How does this package compare to industry standards for this role, location, and experience level?
+1. **Market Comparison**: How does this package compare to ${industry} industry standards for this role, location, and experience level? Consider industry-specific compensation trends and norms.
 2. **Strengths**: What are the strongest components of this offer?
 3. **Weaknesses**: What could be improved or negotiated?
-4. **Risk Assessment**: Comment on the equity/cash balance and stock price assumptions
+4. **Risk Assessment**: Comment on the equity/cash balance and stock price assumptions, especially in the context of the ${industry} industry
 5. **Recommendations**: Specific suggestions for negotiation or evaluation
 
-Format your response in clear sections with bullet points. Be specific with salary ranges when possible.`;
+Format your response in clear sections with bullet points. Be specific with salary ranges when possible, taking into account ${industry} industry standards.`;
 
                 const response = await fetch('/api/analyze', {
                     method: 'POST',
@@ -1364,6 +1262,7 @@ Format your response in clear sections with bullet points. Be specific with sala
                 role: document.getElementById('aiRole').value,
                 location: document.getElementById('aiLocation').value,
                 yearsExp: document.getElementById('aiYearsExp').value,
+                industry: document.getElementById('aiIndustry').value,
                 companySize: document.getElementById('aiCompanySize').value
             };
             localStorage.setItem('aiAnalyzerInputs', JSON.stringify(aiInputs));
@@ -1377,6 +1276,7 @@ Format your response in clear sections with bullet points. Be specific with sala
                     if (inputs.role) document.getElementById('aiRole').value = inputs.role;
                     if (inputs.location) document.getElementById('aiLocation').value = inputs.location;
                     if (inputs.yearsExp) document.getElementById('aiYearsExp').value = inputs.yearsExp;
+                    if (inputs.industry) document.getElementById('aiIndustry').value = inputs.industry;
                     if (inputs.companySize) document.getElementById('aiCompanySize').value = inputs.companySize;
                 } catch (e) {
                     console.error('Error loading AI inputs:', e);
@@ -1389,6 +1289,7 @@ Format your response in clear sections with bullet points. Be specific with sala
             document.getElementById('aiRole').addEventListener('input', saveAIInputs);
             document.getElementById('aiLocation').addEventListener('input', saveAIInputs);
             document.getElementById('aiYearsExp').addEventListener('input', saveAIInputs);
+            document.getElementById('aiIndustry').addEventListener('input', saveAIInputs);
             document.getElementById('aiCompanySize').addEventListener('change', saveAIInputs);
         }
 
@@ -1492,8 +1393,47 @@ Format your response in clear sections with bullet points. Be specific with sala
                 "Atlanta, GA", "Raleigh, NC", "Washington, DC", "Miami, FL"
             ];
             
+            const industries = [
+                "Technology", "Finance", "Healthcare", "Retail", "E-commerce",
+                "Entertainment", "Sports", "Media", "Telecommunications", "Education",
+                "Consulting", "Manufacturing", "Real Estate", "Insurance", "Energy",
+                "Pharmaceuticals", "Biotechnology", "Automotive", "Aerospace", "Defense",
+                "Hospitality", "Transportation", "Logistics", "Agriculture", "Government"
+            ];
+            
+            const companies = [
+                "Meta", "Google", "Microsoft", "Amazon", "Apple", "Netflix", "Uber", "Lyft",
+                "Airbnb", "Dropbox", "Yahoo", "Pinterest", "PayPal", "Intel", "IBM",
+                "Salesforce", "Cisco", "Workday", "LinkedIn", "eBay", "Oracle", "Intuit",
+                "Qualcomm", "VMware", "Square", "DoorDash", "Snap", "Comcast", "Stripe",
+                "Quora", "Yelp", "Adobe", "Nextdoor", "Spotify", "Twitter", "Zillow",
+                "Tesla", "Groupon", "SAP", "Indeed", "Symantec", "NetApp", "Waymo",
+                "Nvidia", "AMD", "Snowflake", "Databricks", "Atlassian", "Twilio",
+                "GitHub", "GitLab", "Asana", "Notion", "Figma", "Slack", "Zoom",
+                "Coinbase", "Robinhood", "Affirm", "Shopify", "Roblox", "Unity",
+                "Epic Games", "Reddit", "Discord", "Instacart", "Grubhub", "Expedia",
+                "Booking.com", "Box", "Cloudflare", "Datadog", "Splunk", "MongoDB",
+                "Elastic", "Palantir", "Cruise", "Rivian", "Bloomberg", "Citadel",
+                "Two Sigma", "Jane Street", "Goldman Sachs", "JPMorgan", "Morgan Stanley",
+                "Palo Alto Networks", "Crusoe", "San Jose Sharks", "Ramp"
+            ];
+            
+            const jobTracks = [
+                "Software Engineer", "Product Manager", "Data Scientist",
+                "Machine Learning Engineer", "Software Engineering Manager",
+                "Product Designer", "Data Engineer", "Technical Program Manager",
+                "Solutions Architect", "DevOps Engineer", "Security Engineer",
+                "QA Engineer", "Mechanical Engineer", "Hardware Engineer",
+                "Recruiter", "Customer Success", "Sales", "Marketing",
+                "Finance", "Legal", "General Counsel", "Operations",
+                "Business Analyst", "Account Manager", "Product Marketing Manager"
+            ];
+            
             autocomplete(document.getElementById("aiRole"), roles);
             autocomplete(document.getElementById("aiLocation"), locations);
+            autocomplete(document.getElementById("aiIndustry"), industries);
+            autocomplete(document.getElementById("levelsCompany"), companies);
+            autocomplete(document.getElementById("levelsTrack"), jobTracks);
         }
 
         // Mode switching
@@ -2643,35 +2583,22 @@ Format your response in clear sections with bullet points. Be specific with sala
         initializeAutocomplete();
         loadAIInputs();
 
-        // Initialize Select2 for searchable dropdowns
-        $(document).ready(function () {
-            $('#levelsCompany').select2({
-                placeholder: 'Search for a company...',
-                allowClear: false,
-                width: '100%'
-            });
-
-            $('#levelsTrack').select2({
-                placeholder: 'Search for a job track...',
-                allowClear: false,
-                width: '100%'
-            });
-
-            // Trigger Select2 to update with loaded values
-            $('#levelsCompany').trigger('change.select2');
-            $('#levelsTrack').trigger('change.select2');
-
-            // Update iframe when Select2 dropdowns change
-            $('#levelsCompany').on('change', function () {
-                updateLevelsIframe();
-                saveInputs(); // Save to localStorage
-            });
-
-            $('#levelsTrack').on('change', function () {
-                updateLevelsIframe();
-                saveInputs(); // Save to localStorage
-            });
+        // Add event listeners for levels.fyi company and track inputs
+        document.getElementById('levelsCompany').addEventListener('input', function() {
+            updateLevelsIframe();
+            saveInputs();
         });
+        
+        document.getElementById('levelsTrack').addEventListener('input', function() {
+            updateLevelsIframe();
+            saveInputs();
+        });
+
+        // Set default values
+        document.getElementById('levelsCompany').value = 'Meta';
+        document.getElementById('levelsTrack').value = 'Software Engineer';
+        updateLevelsIframe();
+
 
         updateDisplay();
     </script>
